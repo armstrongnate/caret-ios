@@ -10,9 +10,11 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+  @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    weeklyCalendarView.delegate = self
   }
 
   override func didReceiveMemoryWarning() {
@@ -20,6 +22,17 @@ class FirstViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
-
 }
 
+extension FirstViewController: CLWeeklyCalendarViewDelegate {
+  func CLCalendarBehaviorAttributes() -> [NSObject : AnyObject]! {
+    return [
+      CLCalendarBackgroundImageColor : UIColor.primaryColor(),
+      CLCalendarDayTitleTextColor : UIColor(white: 1.0, alpha: 0.6)
+    ]
+  }
+
+  func dailyCalendarViewDidSelect(date: NSDate!) {
+    // noop
+  }
+}

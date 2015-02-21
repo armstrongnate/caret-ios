@@ -76,11 +76,25 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        [self addSubview:self.backgroundImageView];
-        self.arrDailyWeather = @{};
+      [self setup];
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+      [self setup];
+    }
+    return self;
+}
+
+- (void)setup
+{
+    // Initialization code
+    [self addSubview:self.backgroundImageView];
+    self.arrDailyWeather = @{};
 }
 
 -(void)setDelegate:(id<CLWeeklyCalendarViewDelegate>)delegate
@@ -109,9 +123,11 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     NSLog(@"%@  %f", attributes[CLCalendarBackgroundImageColor],  self.selectedDatePrintFontSize);
     self.backgroundImageColor = attributes[CLCalendarBackgroundImageColor];
+    [self refreshBackgroundImageColor];
     
     [self setNeedsDisplay];
 }
+
 -(UIView *)dailyInfoSubViewContainer
 {
     if(!_dailyInfoSubViewContainer){
@@ -126,6 +142,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     return _dailyInfoSubViewContainer;
 }
+
 -(UIImageView *)weatherIcon
 {
     if(!_weatherIcon){
@@ -133,6 +150,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     return _weatherIcon;
 }
+
 -(UILabel *)dateInfoLabel
 {
     if(!_dateInfoLabel){
@@ -144,6 +162,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     _dateInfoLabel.textColor = self.selectedDatePrintColor;
     return _dateInfoLabel;
 }
+
 -(UIView *)dayTitleSubViewContainer
 {
     if(!_dayTitleSubViewContainer){
@@ -155,6 +174,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     return _dayTitleSubViewContainer;
     
 }
+
 -(UIView *)dailySubViewContainer
 {
     if(!_dailySubViewContainer){
@@ -165,6 +185,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     }
     return _dailySubViewContainer;
 }
+
 -(UIImageView *)backgroundImageView
 {
     if(!_backgroundImageView){
@@ -192,9 +213,19 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         [recognizerLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
         [_backgroundImageView addGestureRecognizer:recognizerLeft];
     }
-    _backgroundImageView.backgroundColor = self.backgroundImageColor? self.backgroundImageColor : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];;
+    
+    [self refreshBackgroundImageColor];
+    
     return _backgroundImageView;
 }
+
+- (void)refreshBackgroundImageColor
+{
+    _backgroundImageView.backgroundColor = self.backgroundImageColor
+        ? self.backgroundImageColor
+        : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];
+}
+
 -(void)initDailyViews
 {
     CGFloat dailyWidth = self.bounds.size.width/WEEKLY_VIEW_COUNT;
@@ -280,15 +311,18 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     self.dateInfoLabel.text = strDate;
 }
+
 -(void)dailyInfoViewDidClick: (UIGestureRecognizer *)tap
 {
     //Click to jump back to today
     [self redrawToDate:[NSDate new] ];
 }
+
 -(void)dayTitleViewDidClick: (UIGestureRecognizer *)tap
 {
     [self redrawToDate:((DayTitleLabel *)tap.view).date];
 }
+
 -(void)redrawToDate:(NSDate *)dt
 {
     if(![dt isWithinDate:self.startDate toDate:self.endDate]){
@@ -298,11 +332,13 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
     
     [self dailyCalendarViewDidSelect:dt];
 }
+
 -(void)redrawCalenderData
 {
     [self redrawToDate:self.selectedDate];
     
 }
+
 -(void)adjustDailyInfoLabelAndWeatherIcon: (BOOL)blnShowWeatherIcon
 {
     self.dateInfoLabel.textAlignment = (blnShowWeatherIcon)?NSTextAlignmentLeft:NSTextAlignmentCenter;
@@ -326,10 +362,12 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 {
     [self delegateSwipeAnimation: NO blnToday:NO selectedDate:nil];
 }
+
 -(void)swipeRight: (UISwipeGestureRecognizer *)swipe
 {
     [self delegateSwipeAnimation: YES blnToday:NO selectedDate:nil];
 }
+
 -(void)delegateSwipeAnimation: (BOOL)blnSwipeRight blnToday: (BOOL)blnToday selectedDate:(NSDate *)selectedDate
 {
     CATransition *animation = [CATransition animation];
