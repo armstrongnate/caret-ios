@@ -16,3 +16,6 @@ xcuserdata
 DerivedData
 *.xcuserstate
 
+### Other ###
+.DS_Store
+
