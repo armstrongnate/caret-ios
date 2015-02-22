@@ -26,7 +26,7 @@
 
 #define DATE_LABEL_MARGIN_LEFT 9.f
 #define DATE_LABEL_INFO_WIDTH 160.f
-#define DATE_LABEL_INFO_HEIGHT 40.f
+#define DATE_LABEL_INFO_HEIGHT 0.f
 
 #define WEATHER_ICON_WIDTH 20
 #define WEATHER_ICON_HEIGHT 20
@@ -135,7 +135,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         _dailyInfoSubViewContainer.userInteractionEnabled = YES;
         [_dailyInfoSubViewContainer addSubview:self.weatherIcon];
         [_dailyInfoSubViewContainer addSubview:self.dateInfoLabel];
-        
+
         
         UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dailyInfoViewDidClick:)];
         [_dailyInfoSubViewContainer addGestureRecognizer:singleFingerTap];

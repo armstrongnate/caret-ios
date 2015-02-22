@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  SettingsController.swift
 //  Caret
 //
 //  Created by Nate Armstrong on 2/21/15.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SettingsViewController: UITableViewController {
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    var selectedImage = UIImage(named: "tabbar-reports-selected")
+    var selectedImage = UIImage(named: "tabbar-settings-selected")
     selectedImage = selectedImage?.imageWithRenderingMode(.AlwaysOriginal)
-    var image = UIImage(named: "tabbar-reports")
+    var image = UIImage(named: "tabbar-settings")
     image = image?.imageWithRenderingMode(.AlwaysOriginal)
     tabBarItem = UITabBarItem(title: nil, image: nil, tag: 0)
     tabBarItem.image = image
@@ -26,14 +26,8 @@ class SecondViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-  }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+    // Do any additional setup after loading the view.
   }
-
 
 }
-

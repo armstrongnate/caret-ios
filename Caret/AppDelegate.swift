@@ -20,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     navigationBarAppearance.barTintColor = UIColor.primaryColor()
     navigationBarAppearance.tintColor = UIColor.whiteColor()
     navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+    UIApplication.sharedApplication().statusBarStyle = .LightContent
+
+    // Custom tab bar colors
+    let tabBarAppearance = UITabBar.appearance()
+    tabBarAppearance.tintColor = UIColor.grayColor()
+    tabBarAppearance.backgroundColor = UIColor.whiteColor()
 
     return true
   }

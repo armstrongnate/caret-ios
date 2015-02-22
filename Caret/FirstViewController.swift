@@ -12,9 +12,28 @@ class FirstViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
 
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    var selectedImage = UIImage(named: "tabbar-entries-selected")
+    selectedImage = selectedImage?.imageWithRenderingMode(.AlwaysOriginal)
+    var image = UIImage(named: "tabbar-entries")
+    image = image?.imageWithRenderingMode(.AlwaysOriginal)
+    tabBarItem = UITabBarItem(title: nil, image: nil, tag: 0)
+    tabBarItem.image = image
+    tabBarItem.selectedImage = selectedImage
+    tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+
+    tabBarController?.tabBar.tintColor = UIColor.grayColor()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     weeklyCalendarView.delegate = self
+    let navBar = navigationController!.navigationBar
+    navBar.titleTextAttributes = [
+      NSFontAttributeName: UIFont.systemFontOfSize(14.0),
+      NSForegroundColorAttributeName: UIColor.whiteColor()
+    ]
   }
 
   override func didReceiveMemoryWarning() {
@@ -33,6 +52,12 @@ extension FirstViewController: CLWeeklyCalendarViewDelegate {
   }
 
   func dailyCalendarViewDidSelect(date: NSDate!) {
-    // noop
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "EEE, d MMM yyyy"
+    var strDate = formatter.stringFromDate(date)
+    if date.isDateToday() {
+      strDate = "Today, \(strDate)"
+    }
+    navigationItem.title = strDate
   }
 }

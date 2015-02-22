@@ -22,6 +22,8 @@
 		43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E012891A994A0B00647961 /* NSDictionary+CL.m */; };
 		43E012931A994A0B00647961 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E0128B1A994A0B00647961 /* UIColor+CL.m */; };
 		43E012941A994A0B00647961 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E0128D1A994A0B00647961 /* UIImage+CL.m */; };
+		43E012961A9963C100647961 /* NSDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012951A9963C100647961 /* NSDate+.swift */; };
+		43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012971A99A57D00647961 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		43E0128B1A994A0B00647961 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
 		43E0128C1A994A0B00647961 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
 		43E0128D1A994A0B00647961 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
+		43E012951A9963C100647961 /* NSDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+.swift"; sourceTree = "<group>"; };
+		43E012971A99A57D00647961 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				43E012491A993E9800647961 /* LaunchScreen.xib */,
 				43E0123C1A993E9800647961 /* Supporting Files */,
 				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
+				43E012971A99A57D00647961 /* SettingsViewController.swift */,
 			);
 			path = Caret;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				43E0127C1A9944C200647961 /* UIColorExtension.swift */,
+				43E012951A9963C100647961 /* NSDate+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -280,7 +286,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
+				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
 				43E012431A993E9800647961 /* SecondViewController.swift in Sources */,
+				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
 				43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */,
 				43E0128F1A994A0B00647961 /* DailyCalendarView.m in Sources */,
