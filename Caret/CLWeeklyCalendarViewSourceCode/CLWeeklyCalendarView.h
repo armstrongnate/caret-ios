@@ -20,6 +20,7 @@ extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage co
 -(NSDictionary *)CLCalendarBehaviorAttributes;       //Optional Function, Set the calendar behavior attributes by using above keys
 
 -(void)dailyCalendarViewDidSelect: (NSDate *)date;
+-(void)weeklyCalendarViewChangedWeek: (NSDate *)date;
 
 
 @end

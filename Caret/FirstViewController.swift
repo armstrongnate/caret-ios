@@ -60,4 +60,8 @@ extension FirstViewController: CLWeeklyCalendarViewDelegate {
     }
     navigationItem.title = strDate
   }
+
+  func weeklyCalendarViewChangedWeek(date: NSDate!) {
+    weeklyCalendarView.redrawToDate(date)
+  }
 }
