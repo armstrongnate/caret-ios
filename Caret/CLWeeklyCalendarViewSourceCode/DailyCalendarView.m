@@ -9,6 +9,8 @@
 #import "NSDate+CL.h"
 #import "UIColor+CL.h"
 
+#import "Caret-Swift.h"
+
 @interface DailyCalendarView()
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIView *dateLabelContainer;
@@ -80,13 +82,13 @@
 {
     //    DLog(@"mark date selected %@ -- %d",self.date, blnSelected);
     if([self.date isDateToday]){
-        self.dateLabelContainer.backgroundColor = (blnSelected)?[UIColor whiteColor]: [UIColor colorWithHex:0x0081c1];
+        self.dateLabelContainer.backgroundColor = (blnSelected)?[UIColor secondaryColor]: [UIColor whiteColor];
         
-        self.dateLabel.textColor = (blnSelected)?[UIColor colorWithHex:0x0081c1]:[UIColor whiteColor];
+        self.dateLabel.textColor = (blnSelected)?[UIColor whiteColor]:[UIColor primaryColor];
     }else{
-        self.dateLabelContainer.backgroundColor = (blnSelected)?[UIColor whiteColor]: [UIColor clearColor];
+        self.dateLabelContainer.backgroundColor = (blnSelected)?[UIColor secondaryColor]: [UIColor clearColor];
         
-        self.dateLabel.textColor = (blnSelected)?[UIColor colorWithRed:52.0/255.0 green:161.0/255.0 blue:255.0/255.0 alpha:1.0]:[self colorByDate];
+        self.dateLabel.textColor = (blnSelected)?[UIColor whiteColor]:[UIColor whiteColor];
     }
     
     
