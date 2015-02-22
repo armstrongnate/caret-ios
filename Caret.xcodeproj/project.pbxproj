@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0123E1A993E9800647961 /* AppDelegate.swift */; };
-		43E012411A993E9800647961 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012401A993E9800647961 /* FirstViewController.swift */; };
-		43E012431A993E9800647961 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012421A993E9800647961 /* SecondViewController.swift */; };
+		43E012411A993E9800647961 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012401A993E9800647961 /* EntriesViewController.swift */; };
+		43E012431A993E9800647961 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012421A993E9800647961 /* ReportsViewController.swift */; };
 		43E012461A993E9800647961 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E012441A993E9800647961 /* Main.storyboard */; };
 		43E012481A993E9800647961 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E012471A993E9800647961 /* Images.xcassets */; };
 		43E0124B1A993E9800647961 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E012491A993E9800647961 /* LaunchScreen.xib */; };
@@ -40,8 +40,8 @@
 		43E012391A993E9800647961 /* Caret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caret.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E0123D1A993E9800647961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43E0123E1A993E9800647961 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		43E012401A993E9800647961 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		43E012421A993E9800647961 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		43E012401A993E9800647961 /* EntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
+		43E012421A993E9800647961 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		43E012451A993E9800647961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43E012471A993E9800647961 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		43E0124A1A993E9800647961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -110,8 +110,8 @@
 				43E0127E1A994A0B00647961 /* CLWeeklyCalendarViewSourceCode */,
 				43E0127B1A9944A900647961 /* Extensions */,
 				43E0123E1A993E9800647961 /* AppDelegate.swift */,
-				43E012401A993E9800647961 /* FirstViewController.swift */,
-				43E012421A993E9800647961 /* SecondViewController.swift */,
+				43E012401A993E9800647961 /* EntriesViewController.swift */,
+				43E012421A993E9800647961 /* ReportsViewController.swift */,
 				43E012441A993E9800647961 /* Main.storyboard */,
 				43E012471A993E9800647961 /* Images.xcassets */,
 				43E012491A993E9800647961 /* LaunchScreen.xib */,
@@ -287,7 +287,7 @@
 			files = (
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
 				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
-				43E012431A993E9800647961 /* SecondViewController.swift in Sources */,
+				43E012431A993E9800647961 /* ReportsViewController.swift in Sources */,
 				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
 				43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */,
@@ -296,7 +296,7 @@
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
-				43E012411A993E9800647961 /* FirstViewController.swift in Sources */,
+				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
 				43E012911A994A0B00647961 /* NSDate+CL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +500,7 @@
 				43E0125C1A993E9800647961 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43E0125D1A993E9800647961 /* Build configuration list for PBXNativeTarget "CaretTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +509,7 @@
 				43E0125F1A993E9800647961 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

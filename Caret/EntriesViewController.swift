@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class EntriesViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
 
@@ -43,7 +43,7 @@ class FirstViewController: UIViewController {
 
 }
 
-extension FirstViewController: CLWeeklyCalendarViewDelegate {
+extension EntriesViewController: CLWeeklyCalendarViewDelegate {
   func CLCalendarBehaviorAttributes() -> [NSObject : AnyObject]! {
     return [
       CLCalendarBackgroundImageColor : UIColor.primaryColor(),
