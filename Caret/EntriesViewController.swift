@@ -11,6 +11,19 @@ import UIKit
 class EntriesViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
+  @IBOutlet weak var swipeView: SwipeView!
+
+  var date = NSDate()
+
+  lazy var timerEntryView: UIView = {
+    let timerView = TimerEntryView(frame: CGRectZero)
+    return timerView
+  }()
+
+  lazy var entriesTableView: UIView = {
+    return UITableView(frame: self.view.frame, style: .Plain)
+  }()
+
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -28,6 +41,8 @@ class EntriesViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    Caret.api.entries.all { (collection: [Entry]?) in
+    }
     weeklyCalendarView.delegate = self
     let navBar = navigationController!.navigationBar
     navBar.titleTextAttributes = [
@@ -36,13 +51,9 @@ class EntriesViewController: UIViewController {
     ]
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
 }
 
+// MARK: - Weekly calendar view delegate
 extension EntriesViewController: CLWeeklyCalendarViewDelegate {
   func CLCalendarBehaviorAttributes() -> [NSObject : AnyObject]! {
     return [
@@ -52,16 +63,47 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
   }
 
   func dailyCalendarViewDidSelect(date: NSDate!) {
+    self.date = date
+    swipeView.reloadData()
     let formatter = NSDateFormatter()
     formatter.dateFormat = "EEE, d MMM yyyy"
     var strDate = formatter.stringFromDate(date)
     if date.isDateToday() {
       strDate = "Today, \(strDate)"
+    } else {
     }
     navigationItem.title = strDate
   }
 
   func weeklyCalendarViewChangedWeek(date: NSDate!) {
     weeklyCalendarView.redrawToDate(date)
+  }
+}
+
+// MARK: - Swipe view data source
+extension EntriesViewController: SwipeViewDataSource {
+  func numberOfItemsInSwipeView(swipeView: SwipeView!) -> Int {
+    return date.isDateToday() ? 2 : 1
+  }
+
+  func swipeView(swipeView: SwipeView!, viewForItemAtIndex index: Int, reusingView view: UIView!) -> UIView! {
+    let frame = swipeView.frame
+    if date.isDateToday() && index == 0 {
+      timerEntryView.frame = swipeView.bounds
+      return timerEntryView
+    }
+    entriesTableView.frame = swipeView.bounds
+    return entriesTableView
+  }
+}
+
+// MARK: - Swipe view delegate
+extension EntriesViewController: SwipeViewDelegate {
+  func swipeViewItemSize(swipeView: SwipeView!) -> CGSize {
+    var size = swipeView.frame.size
+    if date.isDateToday() && UIDevice.currentDevice().userInterfaceIdiom == .Pad { // TODO: work size classes?
+      size.width /= 2
+    }
+    return size
   }
 }

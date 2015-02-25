@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0431A9D6F3D008896D3 /* Alamofire+.swift */; };
+		4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0471A9D9F86008896D3 /* SwipeView.m */; };
+		4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4345E04A1A9DA080008896D3 /* TimerEntryView.xib */; };
+		4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */; };
 		4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351B99E1A9AAB440008E8CD /* Resource.swift */; };
 		43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0123E1A993E9800647961 /* AppDelegate.swift */; };
 		43E012411A993E9800647961 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012401A993E9800647961 /* EntriesViewController.swift */; };
@@ -43,6 +46,10 @@
 
 /* Begin PBXFileReference section */
 		4345E0431A9D6F3D008896D3 /* Alamofire+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+.swift"; path = "Extensions/Alamofire+.swift"; sourceTree = "<group>"; };
+		4345E0461A9D9F86008896D3 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
+		4345E0471A9D9F86008896D3 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
+		4345E04A1A9DA080008896D3 /* TimerEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimerEntryView.xib; path = Views/TimerEntryView.xib; sourceTree = "<group>"; };
+		4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimerEntryView.swift; path = Views/TimerEntryView.swift; sourceTree = "<group>"; };
 		4351B99E1A9AAB440008E8CD /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		43E012391A993E9800647961 /* Caret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caret.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E0123D1A993E9800647961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,7 +127,8 @@
 		4345E0491A9DA05B008896D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4345E04A1A9DA080008896D3 /* TimerEntry.xib */,
+				4345E04A1A9DA080008896D3 /* TimerEntryView.xib */,
+				4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -148,17 +156,20 @@
 		43E0123B1A993E9800647961 /* Caret */ = {
 			isa = PBXGroup;
 			children = (
+				4345E0491A9DA05B008896D3 /* Views */,
 				43E0127E1A994A0B00647961 /* CLWeeklyCalendarViewSourceCode */,
+				4345E0451A9D9F86008896D3 /* SwipeView */,
 				43E0127B1A9944A900647961 /* Extensions */,
 				43E0123E1A993E9800647961 /* AppDelegate.swift */,
 				43E012401A993E9800647961 /* EntriesViewController.swift */,
 				43E012421A993E9800647961 /* ReportsViewController.swift */,
+				43E012971A99A57D00647961 /* SettingsViewController.swift */,
+				4351B99E1A9AAB440008E8CD /* Resource.swift */,
+				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
 				43E012441A993E9800647961 /* Main.storyboard */,
 				43E012471A993E9800647961 /* Images.xcassets */,
 				43E012491A993E9800647961 /* LaunchScreen.xib */,
 				43E0123C1A993E9800647961 /* Supporting Files */,
-				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
-				43E012971A99A57D00647961 /* SettingsViewController.swift */,
 			);
 			path = Caret;
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 			files = (
 				43E012461A993E9800647961 /* Main.storyboard in Resources */,
 				43E0124B1A993E9800647961 /* LaunchScreen.xib in Resources */,
+				4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */,
 				43E012481A993E9800647961 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +455,8 @@
 				43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */,
 				43E0128F1A994A0B00647961 /* DailyCalendarView.m in Sources */,
 				43E0128E1A994A0B00647961 /* CLWeeklyCalendarView.m in Sources */,
+				4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */,
+				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
