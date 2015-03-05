@@ -34,6 +34,8 @@
 #import "SwipeView.h"
 #import <objc/message.h>
 
+#import "Caret-Swift.h"
+
 
 #pragma GCC diagnostic ignored "-Wdirect-ivar-access"
 #pragma GCC diagnostic ignored "-Warc-repeated-use-of-weak"
@@ -118,7 +120,8 @@
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.scrollsToTop = NO;
     _scrollView.clipsToBounds = NO;
-    
+    _scrollView.backgroundColor = [UIColor primaryColor];
+
     _decelerationRate = _scrollView.decelerationRate;
     _itemViews = [[NSMutableDictionary alloc] init];
     _previousItemIndex = 0;

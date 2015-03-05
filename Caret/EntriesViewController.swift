@@ -43,6 +43,7 @@ class EntriesViewController: UIViewController {
     super.viewDidLoad()
     Caret.api.entries.all { (collection: [Entry]?) in
     }
+    view.backgroundColor = UIColor.primaryColor()
     weeklyCalendarView.delegate = self
     let navBar = navigationController!.navigationBar
     navBar.titleTextAttributes = [
