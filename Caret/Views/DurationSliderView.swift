@@ -102,21 +102,35 @@ class DurationSliderView: UIControl {
     }
     var count: Double = 0
     while count <= maximumValue {
-      let tall = count > 0 && count % 1.25 == 0
-      let x = whereIs(count, of: (minimumValue, maximumValue), within: (0, Double(CGRectGetWidth(bounds))))
-      let y = tall ? CGRectGetHeight(bounds) / 6 : CGRectGetHeight(bounds) / 3
-      let width: CGFloat = tall ? 1.0 : 0.5
-      let height = tall ? CGRectGetHeight(bounds) - y*2 : CGRectGetHeight(bounds) / 3
-      var frame = CGRectMake(CGFloat(x), y, width, height)
-      var line = UIView(frame: frame)
-      line.backgroundColor = UIColor.whiteColor()
-      if CGFloat(x) < CGRectGetMinX(bounds) || CGFloat(x) > CGRectGetMaxX(bounds) {
-        line.backgroundColor = UIColor.clearColor()
+      let x = whereIs(count, of: (minimumValue, maximumValue), within: (Double(pixelMin), Double(pixelMax)))
+      if count % 2 == 0 {
+        let line = tallLineAt(CGFloat(x))
+        insertSubview(line, atIndex: 0)
+      } else {
+        let line = smallLineAt(CGFloat(x))
+        insertSubview(line, atIndex: 0)
       }
-      line.alpha = tall ? 1.0 : 0.3
-      insertSubview(line, atIndex: 0)
       count += 0.25
     }
+  }
+
+  func tallLineAt(x: CGFloat) -> UIView {
+    let y = CGRectGetHeight(bounds) / 6
+    let height = CGRectGetHeight(bounds) - y*2
+    let width: CGFloat = 1.0
+    let line = UIView(frame: CGRectMake(x, y, width, height))
+    line.backgroundColor = UIColor.whiteColor()
+    return line
+  }
+
+  func smallLineAt(x: CGFloat) -> UIView {
+    let y = CGRectGetHeight(bounds) / 3
+    let height = CGRectGetHeight(bounds) / 3
+    let width: CGFloat = 0.5
+    let line = UIView(frame: CGRectMake(x, y, width, height))
+    line.backgroundColor = UIColor.whiteColor()
+    line.alpha = 0.3
+    return line
   }
 
   func didPan(gestureRecognizer: UIGestureRecognizer) {

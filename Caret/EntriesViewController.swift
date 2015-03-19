@@ -92,7 +92,7 @@ extension EntriesViewController: SwipeViewDataSource {
 
   func swipeView(swipeView: SwipeView!, viewForItemAtIndex index: Int, reusingView view: UIView!) -> UIView! {
     let frame = swipeView.frame
-    if false && date.isDateToday() && index == 0 {
+    if true || date.isDateToday() && index == 0 {
       timerEntryView.frame = swipeView.bounds
       return timerEntryView
     }
