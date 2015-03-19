@@ -21,7 +21,7 @@ class EntriesViewController: UIViewController {
   }()
 
   lazy var entriesTableView: UIView = {
-    return UITableView(frame: self.view.frame, style: .Plain)
+    return UITableView(frame: CGRectZero, style: .Plain)
   }()
 
 
@@ -41,7 +41,7 @@ class EntriesViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    Caret.api.entries.all { (collection: [Entry]?) in
+    Caret.api.entries.all(parameters: nil) { (collection: [Entry]?) in
     }
     view.backgroundColor = UIColor.primaryColor()
     weeklyCalendarView.delegate = self
@@ -84,12 +84,12 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 // MARK: - Swipe view data source
 extension EntriesViewController: SwipeViewDataSource {
   func numberOfItemsInSwipeView(swipeView: SwipeView!) -> Int {
-    return date.isDateToday() ? 2 : 1
+    return date.isDateToday() ? 1 : 1
   }
 
   func swipeView(swipeView: SwipeView!, viewForItemAtIndex index: Int, reusingView view: UIView!) -> UIView! {
     let frame = swipeView.frame
-    if date.isDateToday() && index == 0 {
+    if false && date.isDateToday() && index == 0 {
       timerEntryView.frame = swipeView.bounds
       return timerEntryView
     }
@@ -99,12 +99,12 @@ extension EntriesViewController: SwipeViewDataSource {
 }
 
 // MARK: - Swipe view delegate
-extension EntriesViewController: SwipeViewDelegate {
-  func swipeViewItemSize(swipeView: SwipeView!) -> CGSize {
-    var size = swipeView.frame.size
-    if date.isDateToday() && UIDevice.currentDevice().userInterfaceIdiom == .Pad { // TODO: work size classes?
-      size.width /= 2
-    }
-    return size
-  }
-}
+//extension EntriesViewController: SwipeViewDelegate {
+//  func swipeViewItemSize(swipeView: SwipeView!) -> CGSize {
+//    var size = swipeView.frame.size
+//    if date.isDateToday() && UIDevice.currentDevice().userInterfaceIdiom == .Pad { // TODO: work size classes?
+//      size.width /= 2
+//    }
+//    return size
+//  }
+//}

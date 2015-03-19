@@ -135,6 +135,8 @@
 		4345E0491A9DA05B008896D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				43E0127E1A994A0B00647961 /* CLWeeklyCalendarViewSourceCode */,
+				4345E0451A9D9F86008896D3 /* SwipeView */,
 				4345E04A1A9DA080008896D3 /* TimerEntryView.xib */,
 				4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */,
 				4345E04E1A9EB409008896D3 /* DurationSliderView.swift */,
@@ -177,8 +179,6 @@
 			children = (
 				43BC260D1AA6AE9700CA1E53 /* Utils */,
 				4345E0491A9DA05B008896D3 /* Views */,
-				43E0127E1A994A0B00647961 /* CLWeeklyCalendarViewSourceCode */,
-				4345E0451A9D9F86008896D3 /* SwipeView */,
 				43E0127B1A9944A900647961 /* Extensions */,
 				43E0123E1A993E9800647961 /* AppDelegate.swift */,
 				43E012401A993E9800647961 /* EntriesViewController.swift */,
@@ -563,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -601,7 +601,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -652,6 +652,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = CaretTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caret.app/Caret";
@@ -668,6 +669,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = CaretTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caret.app/Caret";

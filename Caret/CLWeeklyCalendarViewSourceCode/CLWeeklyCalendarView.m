@@ -234,9 +234,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
 - (void)refreshBackgroundImageColor
 {
-    _backgroundImageView.backgroundColor = self.backgroundImageColor
-        ? self.backgroundImageColor
-        : [UIColor colorWithPatternImage:[UIImage calendarBackgroundImage:self.bounds.size.height]];
+    _backgroundImageView.backgroundColor = self.backgroundImageColor;
 }
 
 -(void)initDailyViews

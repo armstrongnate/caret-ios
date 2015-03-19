@@ -14,22 +14,22 @@ class PanPauseGestureRecognizer: UIGestureRecognizer {
   var timer: NSTimer?
 
 
-  override func touchesBegan(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
     state = .Began
     paused = false
     startTimer()
   }
 
-  override func touchesMoved(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
     state = .Changed
     startTimer()
   }
 
-  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
     cancel()
   }
 
-  override func touchesEnded(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
     cancel(gracefully: true)
   }
 

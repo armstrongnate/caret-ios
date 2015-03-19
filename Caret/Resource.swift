@@ -31,7 +31,7 @@ class CaretAPI: NSObject {
 }
 
 class Caret {
-  static var api: CaretAPI { return CaretAPI() }
+  class var api: CaretAPI { return CaretAPI() }
 }
 
 final class Entry: NSObject {
@@ -41,15 +41,15 @@ final class Entry: NSObject {
 extension Entry: ResponseObjectSerializable {
   convenience init?(response: NSHTTPURLResponse, representation: AnyObject) {
     self.init()
-    self.notes = representation.valueForKeyPath("description") as! String
+    self.notes = representation.valueForKeyPath("description") as String
   }
 }
 
 extension Entry: ResponseCollectionSerializable {
-  static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Entry] {
+  class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Entry] {
     var entries: [Entry] = []
-    for dict in representation as! NSArray {
-      if let entry = Entry(response: response, representation: dict as! NSObject) {
+    for dict in representation as NSArray {
+      if let entry = Entry(response: response, representation: dict as NSObject) {
         entries.append(entry)
       }
     }

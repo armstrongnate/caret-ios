@@ -95,7 +95,7 @@ class DurationSliderView: UIControl {
   func drawLines() {
     pin.frame.origin.x = CGFloat(whereIs(value, of: (minimumValue, maximumValue), within: (Double(pixelMin), Double(pixelMax))))
     for view in subviews {
-      let v = view as! UIView
+      let v = view as UIView
       if v != pin && v != gestureView && v != bottomBorder && v != topBorder {
         view.removeFromSuperview()
       }
@@ -121,7 +121,7 @@ class DurationSliderView: UIControl {
 
   func didPan(gestureRecognizer: UIGestureRecognizer) {
     if gestureRecognizer.state == .Changed || gestureRecognizer.state == .Began {
-      let panPauseGesture = gestureRecognizer as! PanPauseGestureRecognizer
+      let panPauseGesture = gestureRecognizer as PanPauseGestureRecognizer
       if panPauseGesture.paused {
         if phase++ < numberOfPhases - 1 {
           sendActionsForControlEvents(.ApplicationReserved)
