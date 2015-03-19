@@ -15,7 +15,9 @@ class EntryStore: EventEmitter {
 
 
   func emitChange() {
-    emit(.Change)
+    dispatch_async(dispatch_get_main_queue()) {
+      self.emit(.Change)
+    }
   }
 
   func create(entries: [Entry]) {

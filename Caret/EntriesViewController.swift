@@ -42,9 +42,7 @@ class EntriesViewController: UIViewController {
   }
 
   func onChange() {
-    dispatch_async(dispatch_get_main_queue()) {
-      self.entriesTableView.reloadData()
-    }
+    self.entriesTableView.reloadData()
   }
 
 }
