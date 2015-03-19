@@ -34,7 +34,9 @@ extension EntriesList: UITableViewDataSource {
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as UITableViewCell
-    cell.textLabel!.text = entries[indexPath.row].notes
+    let entry = entries[indexPath.row]
+    cell.textLabel!.text = entry.notes
+    cell.detailTextLabel!.text = entry.project?.name
     return cell
   }
 }

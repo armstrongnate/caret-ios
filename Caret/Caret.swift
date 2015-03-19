@@ -30,4 +30,8 @@ class StoreManager: NSObject {
     return EntryStore()
   }()
 
+  lazy var projects: ProjectStore = {
+    return ProjectStore()
+  }()
+
 }

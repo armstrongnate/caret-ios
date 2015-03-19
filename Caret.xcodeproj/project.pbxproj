@@ -42,6 +42,8 @@
 		43E012941A994A0B00647961 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E0128D1A994A0B00647961 /* UIImage+CL.m */; };
 		43E012961A9963C100647961 /* NSDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012951A9963C100647961 /* NSDate+.swift */; };
 		43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012971A99A57D00647961 /* SettingsViewController.swift */; };
+		43E589E61ABB0F7F00655DDD /* ProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E589E51ABB0F7F00655DDD /* ProjectStore.swift */; };
+		43E589E81ABB0FB700655DDD /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E589E71ABB0FB700655DDD /* Project.swift */; };
 		50F4A046D2E4FFA390D4DAC8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9EA35E48B42C9AEBB867C70F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CAA88A4407C3A9A7A6F8A95A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -107,6 +109,8 @@
 		43E0128D1A994A0B00647961 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
 		43E012951A9963C100647961 /* NSDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+.swift"; sourceTree = "<group>"; };
 		43E012971A99A57D00647961 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		43E589E51ABB0F7F00655DDD /* ProjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectStore.swift; path = Stores/ProjectStore.swift; sourceTree = "<group>"; };
+		43E589E71ABB0FB700655DDD /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
 		522EB100A18F94DE90C6F40F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF3B173D9B7891209ECB5DA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F83930592AAB2992D6283784 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			children = (
 				4351B99E1A9AAB440008E8CD /* Resource.swift */,
 				4319E0D11ABA5ADB006BFA40 /* Entry.swift */,
+				43E589E71ABB0FB700655DDD /* Project.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 			children = (
 				4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */,
 				4319E0E11ABA8515006BFA40 /* EntryStore.swift */,
+				43E589E51ABB0F7F00655DDD /* ProjectStore.swift */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */,
+				43E589E61ABB0F7F00655DDD /* ProjectStore.swift in Sources */,
 				4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */,
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
 				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
@@ -557,6 +564,7 @@
 				43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */,
 				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,
+				43E589E81ABB0FB700655DDD /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

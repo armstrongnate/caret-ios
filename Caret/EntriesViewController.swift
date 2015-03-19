@@ -27,7 +27,9 @@ class EntriesViewController: UIViewController {
 
     // setup
     Caret.stores.entries.on(.Change, send: "onChange", to: self)
-    Caret.api.getEntries(date)
+    Caret.api.getProjects() { (projects) in
+      Caret.api.getEntries(self.date)
+    }
     weeklyCalendarView.delegate = self
     entriesTableView.dataSource = data
     entriesTableView.delegate = self

@@ -11,8 +11,15 @@ import UIKit
 final class Entry: NSObject {
 
   var entryID: NSNumber?
-  var notes: String = ""
+  var projectID: NSNumber?
+  var project: Project?
+  var notes: String?
   var happenedOn: NSDate!
+
+
+  private override init() {
+    super.init()
+  }
 
 }
 
@@ -20,10 +27,16 @@ extension Entry: ResponseObjectSerializable {
 
   convenience init?(response: NSHTTPURLResponse, representation: AnyObject) {
     self.init()
-    self.entryID = representation.valueForKeyPath("id") as? NSNumber
-    self.notes = representation.valueForKeyPath("description") as String
-    let happenedOn = representation.valueForKeyPath("happened_on") as String
-    self.happenedOn = NSDate(fromString: happenedOn, withFormat: "yyyy-MM-dd")
+    entryID = representation.valueForKeyPath("id") as? NSNumber
+    notes = representation.valueForKeyPath("description") as? String
+    let happenedOnString = representation.valueForKeyPath("happened_on") as String
+    happenedOn = NSDate(fromString: happenedOnString, withFormat: "yyyy-MM-dd")
+
+    // project
+    if let projectID = representation.valueForKeyPath("project_id") as? NSNumber {
+      self.projectID = projectID
+      project = Caret.stores.projects.get(projectID)
+    }
   }
 
 }
@@ -46,14 +59,6 @@ extension Entry: Printable {
 
   override var description: String {
     return self.notes ?? "no notes"
-  }
-
-}
-
-extension Resource {
-
-  func current<T: Entry>() {
-    // TODO: this is an Entry specific method for retrieving current entry
   }
 
 }
