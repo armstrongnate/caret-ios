@@ -430,7 +430,7 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         self.endDate = dt;
     }
 
-    [self.delegate weeklyCalendarViewChangedWeek:dtStart];
+    [self.delegate weeklyCalendarView:self changedWeek:dtStart];
 }
 
 -(void)updateWeatherIconByKey:(NSString *)key

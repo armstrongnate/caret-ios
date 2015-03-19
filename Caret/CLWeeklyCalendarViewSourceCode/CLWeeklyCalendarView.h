@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CLWeeklyCalendarView;
 @protocol CLWeeklyCalendarViewDelegate <NSObject>
 
 // Keys for customize the calendar behavior
@@ -20,7 +21,7 @@ extern NSString *const CLCalendarBackgroundImageColor;      //BackgroundImage co
 -(NSDictionary *)CLCalendarBehaviorAttributes;       //Optional Function, Set the calendar behavior attributes by using above keys
 
 -(void)dailyCalendarViewDidSelect: (NSDate *)date;
--(void)weeklyCalendarViewChangedWeek: (NSDate *)date;
+-(void)weeklyCalendarView: (CLWeeklyCalendarView *)weeklyCalendarView changedWeek: (NSDate *)date;
 
 
 @end

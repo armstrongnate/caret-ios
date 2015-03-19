@@ -11,5 +11,23 @@ import UIKit
 class Caret {
 
   class var api: CaretAPI { return CaretAPI.sharedInstance }
+  class var stores: StoreManager { return StoreManager.defaultStoreManager }
+
+}
+
+class StoreManager: NSObject {
+
+  struct Static {
+    static var defaultStoreManager = StoreManager()
+  }
+
+  class var defaultStoreManager: StoreManager {
+    get { return Static.defaultStoreManager }
+    set { Static.defaultStoreManager = newValue }
+  }
+
+  lazy var entries: EntryStore = {
+    return EntryStore()
+  }()
 
 }

@@ -10,6 +10,12 @@
 		4319E0CD1ABA59CE006BFA40 /* CaretAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */; };
 		4319E0CF1ABA5A66006BFA40 /* Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0CE1ABA5A66006BFA40 /* Caret.swift */; };
 		4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D11ABA5ADB006BFA40 /* Entry.swift */; };
+		4319E0D61ABA73A9006BFA40 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D51ABA73A9006BFA40 /* NSDate+Utilities.m */; };
+		4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D81ABA78F3006BFA40 /* Calendar.swift */; };
+		4319E0DB1ABA7CE2006BFA40 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */; };
+		4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */; };
+		4319E0E21ABA8515006BFA40 /* EntryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E11ABA8515006BFA40 /* EntryStore.swift */; };
+		4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */; };
 		4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0431A9D6F3D008896D3 /* Alamofire+.swift */; };
 		4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0471A9D9F86008896D3 /* SwipeView.m */; };
 		4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4345E04A1A9DA080008896D3 /* TimerEntryView.xib */; };
@@ -55,6 +61,13 @@
 		4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaretAPI.swift; path = Utils/CaretAPI.swift; sourceTree = "<group>"; };
 		4319E0CE1ABA5A66006BFA40 /* Caret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caret.swift; sourceTree = "<group>"; };
 		4319E0D11ABA5ADB006BFA40 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Models/Entry.swift; sourceTree = "<group>"; };
+		4319E0D41ABA73A9006BFA40 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		4319E0D51ABA73A9006BFA40 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		4319E0D81ABA78F3006BFA40 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Calendar.swift; path = Components/Calendar.swift; sourceTree = "<group>"; };
+		4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+.swift"; path = "Extensions/UIViewController+.swift"; sourceTree = "<group>"; };
+		4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesList.swift; sourceTree = "<group>"; };
+		4319E0E11ABA8515006BFA40 /* EntryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryStore.swift; path = Stores/EntryStore.swift; sourceTree = "<group>"; };
+		4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 		4345E0431A9D6F3D008896D3 /* Alamofire+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+.swift"; path = "Extensions/Alamofire+.swift"; sourceTree = "<group>"; };
 		4345E0461A9D9F86008896D3 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		4345E0471A9D9F86008896D3 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
@@ -148,6 +161,24 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		4319E0D71ABA78B6006BFA40 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4319E0D81ABA78F3006BFA40 /* Calendar.swift */,
+				4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		4319E0E01ABA8501006BFA40 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */,
+				4319E0E11ABA8515006BFA40 /* EntryStore.swift */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
 		4345E0451A9D9F86008896D3 /* SwipeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,10 +234,12 @@
 		43E0123B1A993E9800647961 /* Caret */ = {
 			isa = PBXGroup;
 			children = (
+				4319E0E01ABA8501006BFA40 /* Stores */,
 				4319E0CE1ABA5A66006BFA40 /* Caret.swift */,
 				4319E0D31ABA5BC8006BFA40 /* Controllers */,
 				4319E0D01ABA5AC5006BFA40 /* Models */,
 				43BC260D1AA6AE9700CA1E53 /* Utils */,
+				4319E0D71ABA78B6006BFA40 /* Components */,
 				4345E0491A9DA05B008896D3 /* Views */,
 				43E0127B1A9944A900647961 /* Extensions */,
 				43E0123E1A993E9800647961 /* AppDelegate.swift */,
@@ -247,9 +280,12 @@
 		43E0127B1A9944A900647961 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4319E0D41ABA73A9006BFA40 /* NSDate+Utilities.h */,
+				4319E0D51ABA73A9006BFA40 /* NSDate+Utilities.m */,
 				43E0127C1A9944C200647961 /* UIColorExtension.swift */,
 				43E012951A9963C100647961 /* NSDate+.swift */,
 				4345E0431A9D6F3D008896D3 /* Alamofire+.swift */,
+				4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -491,16 +527,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */,
 				4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */,
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
 				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
 				43E012431A993E9800647961 /* ReportsViewController.swift in Sources */,
+				4319E0D61ABA73A9006BFA40 /* NSDate+Utilities.m in Sources */,
+				4319E0DB1ABA7CE2006BFA40 /* UIViewController+.swift in Sources */,
 				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
 				4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */,
 				43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */,
+				4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */,
 				43E0128F1A994A0B00647961 /* DailyCalendarView.m in Sources */,
+				4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */,
 				43E0128E1A994A0B00647961 /* CLWeeklyCalendarView.m in Sources */,
+				4319E0E21ABA8515006BFA40 /* EntryStore.swift in Sources */,
 				4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */,
 				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,

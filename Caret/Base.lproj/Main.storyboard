@@ -16,14 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsE-il-S67" customClass="SwipeView">
-                                <rect key="frame" x="0.0" y="139" width="600" height="412"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="qlQ-hS-SrT"/>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Pit-Vp-ab9"/>
-                                </connections>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qI5-Cc-D56" customClass="CLWeeklyCalendarView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,17 +23,37 @@
                                     <constraint firstAttribute="height" constant="75" id="LKj-mD-iB9"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="H85-H3-7Eb">
+                                <rect key="frame" x="0.0" y="139" width="600" height="412"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="entryCell" textLabel="ReK-I9-2Rt" style="IBUITableViewCellStyleDefault" id="KoC-1j-lrm">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KoC-1j-lrm" id="lUq-9I-A21">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ReK-I9-2Rt">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fsE-il-S67" firstAttribute="top" secondItem="qI5-Cc-D56" secondAttribute="bottom" id="17p-at-e3S"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="H85-H3-7Eb" secondAttribute="bottom" id="41r-Qh-PNz"/>
                             <constraint firstItem="qI5-Cc-D56" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="5Th-Na-hQO"/>
                             <constraint firstItem="qI5-Cc-D56" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="Bat-CU-RBY"/>
-                            <constraint firstItem="fsE-il-S67" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="VU6-AK-7ay"/>
+                            <constraint firstItem="H85-H3-7Eb" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Mr4-cx-AxV"/>
+                            <constraint firstItem="H85-H3-7Eb" firstAttribute="top" secondItem="qI5-Cc-D56" secondAttribute="bottom" id="NKD-vj-FXD"/>
                             <constraint firstAttribute="trailing" secondItem="qI5-Cc-D56" secondAttribute="trailing" id="YgS-Q4-cLN"/>
                             <constraint firstItem="qI5-Cc-D56" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="aGL-O4-7zL"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="fsE-il-S67" secondAttribute="bottom" id="qKa-sd-Air"/>
-                            <constraint firstAttribute="trailing" secondItem="fsE-il-S67" secondAttribute="trailing" id="xJU-Zs-GOs"/>
+                            <constraint firstAttribute="trailing" secondItem="H85-H3-7Eb" secondAttribute="trailing" id="wIp-VJ-eq1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -51,7 +63,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ds4-pP-NkZ"/>
                     <connections>
-                        <outlet property="swipeView" destination="fsE-il-S67" id="hzT-4T-BTR"/>
+                        <outlet property="entriesTableView" destination="H85-H3-7Eb" id="BOH-sx-u84"/>
                         <outlet property="weeklyCalendarView" destination="qI5-Cc-D56" id="2kg-R5-7ba"/>
                     </connections>
                 </viewController>
@@ -75,13 +87,13 @@
                                 <rect key="frame" x="195" y="279" width="210" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
                                 <rect key="frame" x="192" y="329" width="216" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

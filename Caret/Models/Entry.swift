@@ -9,14 +9,21 @@
 import UIKit
 
 final class Entry: NSObject {
+
+  var entryID: NSNumber?
   var notes: String = ""
+  var happenedOn: NSDate!
+
 }
 
 extension Entry: ResponseObjectSerializable {
 
   convenience init?(response: NSHTTPURLResponse, representation: AnyObject) {
     self.init()
+    self.entryID = representation.valueForKeyPath("id") as? NSNumber
     self.notes = representation.valueForKeyPath("description") as String
+    let happenedOn = representation.valueForKeyPath("happened_on") as String
+    self.happenedOn = NSDate(fromString: happenedOn, withFormat: "yyyy-MM-dd")
   }
 
 }
