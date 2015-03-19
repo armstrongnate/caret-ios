@@ -56,6 +56,7 @@ class EntriesViewController: UIViewController {
 
 // MARK: - Weekly calendar view delegate
 extension EntriesViewController: CLWeeklyCalendarViewDelegate {
+
   func CLCalendarBehaviorAttributes() -> [NSObject : AnyObject]! {
     return [
       CLCalendarBackgroundImageColor : UIColor.primaryColor(),
@@ -79,10 +80,12 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
   func weeklyCalendarViewChangedWeek(date: NSDate!) {
     weeklyCalendarView.redrawToDate(date)
   }
+
 }
 
 // MARK: - Swipe view data source
 extension EntriesViewController: SwipeViewDataSource {
+
   func numberOfItemsInSwipeView(swipeView: SwipeView!) -> Int {
     return date.isDateToday() ? 1 : 1
   }
@@ -96,6 +99,7 @@ extension EntriesViewController: SwipeViewDataSource {
     entriesTableView.frame = swipeView.bounds
     return entriesTableView
   }
+
 }
 
 // MARK: - Swipe view delegate

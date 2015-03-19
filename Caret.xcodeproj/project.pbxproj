@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4319E0CD1ABA59CE006BFA40 /* CaretAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */; };
+		4319E0CF1ABA5A66006BFA40 /* Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0CE1ABA5A66006BFA40 /* Caret.swift */; };
+		4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D11ABA5ADB006BFA40 /* Entry.swift */; };
 		4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0431A9D6F3D008896D3 /* Alamofire+.swift */; };
 		4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0471A9D9F86008896D3 /* SwipeView.m */; };
 		4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4345E04A1A9DA080008896D3 /* TimerEntryView.xib */; };
@@ -49,6 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaretAPI.swift; path = Utils/CaretAPI.swift; sourceTree = "<group>"; };
+		4319E0CE1ABA5A66006BFA40 /* Caret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caret.swift; sourceTree = "<group>"; };
+		4319E0D11ABA5ADB006BFA40 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Models/Entry.swift; sourceTree = "<group>"; };
 		4345E0431A9D6F3D008896D3 /* Alamofire+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+.swift"; path = "Extensions/Alamofire+.swift"; sourceTree = "<group>"; };
 		4345E0461A9D9F86008896D3 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		4345E0471A9D9F86008896D3 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
@@ -123,6 +129,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4319E0D01ABA5AC5006BFA40 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4351B99E1A9AAB440008E8CD /* Resource.swift */,
+				4319E0D11ABA5ADB006BFA40 /* Entry.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		4319E0D31ABA5BC8006BFA40 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				43E012401A993E9800647961 /* EntriesViewController.swift */,
+				43E012421A993E9800647961 /* ReportsViewController.swift */,
+				43E012971A99A57D00647961 /* SettingsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		4345E0451A9D9F86008896D3 /* SwipeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +175,7 @@
 			children = (
 				43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */,
 				43BC26101AA6C5CD00CA1E53 /* whereIs.swift */,
+				4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -177,18 +203,17 @@
 		43E0123B1A993E9800647961 /* Caret */ = {
 			isa = PBXGroup;
 			children = (
+				4319E0CE1ABA5A66006BFA40 /* Caret.swift */,
+				4319E0D31ABA5BC8006BFA40 /* Controllers */,
+				4319E0D01ABA5AC5006BFA40 /* Models */,
 				43BC260D1AA6AE9700CA1E53 /* Utils */,
 				4345E0491A9DA05B008896D3 /* Views */,
 				43E0127B1A9944A900647961 /* Extensions */,
 				43E0123E1A993E9800647961 /* AppDelegate.swift */,
-				43E012401A993E9800647961 /* EntriesViewController.swift */,
-				43E012421A993E9800647961 /* ReportsViewController.swift */,
-				43E012971A99A57D00647961 /* SettingsViewController.swift */,
-				4351B99E1A9AAB440008E8CD /* Resource.swift */,
-				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
 				43E012441A993E9800647961 /* Main.storyboard */,
-				43E012471A993E9800647961 /* Images.xcassets */,
 				43E012491A993E9800647961 /* LaunchScreen.xib */,
+				43E012471A993E9800647961 /* Images.xcassets */,
+				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
 				43E0123C1A993E9800647961 /* Supporting Files */,
 			);
 			path = Caret;
@@ -466,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */,
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
 				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
 				43E012431A993E9800647961 /* ReportsViewController.swift in Sources */,
@@ -479,11 +505,13 @@
 				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
+				4319E0CF1ABA5A66006BFA40 /* Caret.swift in Sources */,
 				4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
 				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
 				43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */,
 				43E012911A994A0B00647961 /* NSDate+CL.m in Sources */,
+				4319E0CD1ABA59CE006BFA40 /* CaretAPI.swift in Sources */,
 				43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */,
 				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,
