@@ -1,4 +1,4 @@
-# Caret iOS
+# Caret
 
 Caret is a time tracking solution targeted for developers.
 
