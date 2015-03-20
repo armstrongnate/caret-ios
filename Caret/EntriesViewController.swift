@@ -11,8 +11,6 @@ import UIKit
 class EntriesViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
-  @IBOutlet weak var entriesTableView: UITableView!
-  var data = EntriesList()
 
   var date = NSDate()
 
@@ -26,13 +24,10 @@ class EntriesViewController: UIViewController {
     super.viewDidLoad()
 
     // setup
-    Caret.stores.entries.on(.Change, send: "onChange", to: self)
     Caret.api.getProjects() { (projects) in
       Caret.api.getEntries(self.date)
     }
     weeklyCalendarView.delegate = self
-    entriesTableView.dataSource = data
-    entriesTableView.delegate = self
 
     // styles
     view.backgroundColor = UIColor.primaryColor()
@@ -43,8 +38,17 @@ class EntriesViewController: UIViewController {
     ]
   }
 
-  func onChange() {
-    self.entriesTableView.reloadData()
+  @IBAction func unwindFromEditEntry(segue: UIStoryboardSegue) {
+    dismissViewControllerAnimated(true, completion: nil)
+    Caret.api.getEntries(self.date)
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "editEntry" {
+      let indexPath = sender as NSIndexPath
+      let entry = Caret.stores.entries.getAllSorted()[indexPath.row]
+      let entryForm = segue.destinationViewController.topViewController as UIViewController
+    }
   }
 
 }
@@ -76,7 +80,11 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 
 }
 
+
 // MARK: - Table view delegate
 extension EntriesViewController: UITableViewDelegate {
-  // TODO
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    performSegueWithIdentifier("editEntry", sender: indexPath)
+  }
 }

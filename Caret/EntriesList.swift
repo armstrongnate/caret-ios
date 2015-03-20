@@ -10,6 +10,8 @@ import UIKit
 
 class EntriesList: NSObject {
 
+  @IBOutlet weak var tableView: UITableView!
+
   var entries: [Entry] = []
 
   override init() {
@@ -19,6 +21,7 @@ class EntriesList: NSObject {
 
   func onChange() {
     entries = Caret.stores.entries.getAllSorted()
+    tableView.reloadData()
   }
 }
 
@@ -33,10 +36,17 @@ extension EntriesList: UITableViewDataSource {
   }
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as UITableViewCell
+    var onceToken = dispatch_once_t()
+    dispatch_once(&onceToken) {
+      tableView.registerNib(UINib(nibName: "EntryTableViewCell",
+        bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "entryCell")
+    }
+    let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as EntryTableViewCell
     let entry = entries[indexPath.row]
-    cell.textLabel!.text = entry.notes
-    cell.detailTextLabel!.text = entry.project?.name
+    cell.projectLabel.text = entry.project?.name
+    cell.entryDurationLabel.text = secondsToTime(entry.duration.integerValue)
+    cell.entryNotesLabel.text = entry.notes
     return cell
   }
+
 }

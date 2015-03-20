@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -97,12 +97,12 @@
                         <mask key="constraints">
                             <exclude reference="ICX-xd-7E5"/>
                             <exclude reference="MfM-BV-EdA"/>
+                            <exclude reference="fDD-NE-ehX"/>
                             <exclude reference="Ew7-Ps-YCK"/>
                             <exclude reference="P85-sf-dGC"/>
                             <exclude reference="TAC-pf-sLg"/>
                             <exclude reference="Vqc-U7-AfO"/>
                             <exclude reference="YFG-dF-Xdq"/>
-                            <exclude reference="fDD-NE-ehX"/>
                             <exclude reference="xgb-IF-aW4"/>
                         </mask>
                     </variation>
@@ -110,13 +110,13 @@
                         <mask key="constraints">
                             <exclude reference="ICX-xd-7E5"/>
                             <include reference="MfM-BV-EdA"/>
+                            <include reference="fDD-NE-ehX"/>
                             <exclude reference="lz6-ZX-l3g"/>
                             <exclude reference="naG-pf-vYa"/>
                             <include reference="Ew7-Ps-YCK"/>
                             <exclude reference="P85-sf-dGC"/>
                             <include reference="YFG-dF-Xdq"/>
                             <exclude reference="al4-5H-YIA"/>
-                            <include reference="fDD-NE-ehX"/>
                             <exclude reference="gKv-gD-fUA"/>
                             <exclude reference="vSS-Y3-C7A"/>
                             <include reference="xgb-IF-aW4"/>

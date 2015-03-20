@@ -15,6 +15,7 @@ final class Entry: NSObject {
   var project: Project?
   var notes: String?
   var happenedOn: NSDate!
+  var duration: NSNumber!
 
 
   private override init() {
@@ -31,6 +32,7 @@ extension Entry: ResponseObjectSerializable {
     notes = representation.valueForKeyPath("description") as? String
     let happenedOnString = representation.valueForKeyPath("happened_on") as String
     happenedOn = NSDate(fromString: happenedOnString, withFormat: "yyyy-MM-dd")
+    duration = representation.valueForKeyPath("duration") as NSNumber
 
     // project
     if let projectID = representation.valueForKeyPath("project_id") as? NSNumber {

@@ -16,6 +16,9 @@
 		4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */; };
 		4319E0E21ABA8515006BFA40 /* EntryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E11ABA8515006BFA40 /* EntryStore.swift */; };
 		4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */; };
+		432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */; };
+		432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */; };
+		432B08271ABBE0E400DBDF72 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08261ABBE0E400DBDF72 /* EntryViewController.swift */; };
 		4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0431A9D6F3D008896D3 /* Alamofire+.swift */; };
 		4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0471A9D9F86008896D3 /* SwipeView.m */; };
 		4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4345E04A1A9DA080008896D3 /* TimerEntryView.xib */; };
@@ -70,6 +73,9 @@
 		4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesList.swift; sourceTree = "<group>"; };
 		4319E0E11ABA8515006BFA40 /* EntryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryStore.swift; path = Stores/EntryStore.swift; sourceTree = "<group>"; };
 		4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
+		432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryTableViewCell.swift; path = Views/EntryTableViewCell.swift; sourceTree = "<group>"; };
+		432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EntryTableViewCell.xib; path = Views/EntryTableViewCell.xib; sourceTree = "<group>"; };
+		432B08261ABBE0E400DBDF72 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		4345E0431A9D6F3D008896D3 /* Alamofire+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+.swift"; path = "Extensions/Alamofire+.swift"; sourceTree = "<group>"; };
 		4345E0461A9D9F86008896D3 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		4345E0471A9D9F86008896D3 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 				43E012401A993E9800647961 /* EntriesViewController.swift */,
 				43E012421A993E9800647961 /* ReportsViewController.swift */,
 				43E012971A99A57D00647961 /* SettingsViewController.swift */,
+				432B08261ABBE0E400DBDF72 /* EntryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -203,6 +210,8 @@
 				4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */,
 				4345E04E1A9EB409008896D3 /* DurationSliderView.swift */,
 				43BC26091AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift */,
+				432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */,
+				432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -421,6 +430,7 @@
 			files = (
 				43E012461A993E9800647961 /* Main.storyboard in Resources */,
 				43E0124B1A993E9800647961 /* LaunchScreen.xib in Resources */,
+				432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */,
 				4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */,
 				43E012481A993E9800647961 /* Images.xcassets in Resources */,
 			);
@@ -536,6 +546,7 @@
 				4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */,
 				43E589E61ABB0F7F00655DDD /* ProjectStore.swift in Sources */,
 				4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */,
+				432B08271ABBE0E400DBDF72 /* EntryViewController.swift in Sources */,
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
 				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
 				43E012431A993E9800647961 /* ReportsViewController.swift in Sources */,
@@ -554,6 +565,7 @@
 				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
+				432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */,
 				4319E0CF1ABA5A66006BFA40 /* Caret.swift in Sources */,
 				4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
