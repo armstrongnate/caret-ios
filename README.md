@@ -38,5 +38,5 @@ Core Data | storage layer
 * Custom reports
 * Today Widget
 * Merge and split entries
-* mac app
+* mac menu bar app
 * watchkit
