@@ -102,7 +102,8 @@ class DurationSliderView: UIControl {
     }
     var count: Double = 0
     while count <= maximumValue {
-      let x = whereIs(count, of: (minimumValue, maximumValue), within: (Double(pixelMin), Double(pixelMax)))
+      let x = whereIs(count, of: (minimumValue, maximumValue), within: (Double(pixelMin), Double(pixelMax))) +
+        Double(CGRectGetWidth(pin.frame) / 2)
       if count % 2 == 0 {
         let line = tallLineAt(CGFloat(x))
         insertSubview(line, atIndex: 0)
