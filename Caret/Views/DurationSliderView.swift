@@ -25,7 +25,7 @@ class DurationSliderView: UIControl {
     }
   }
   var pixelMin: CGFloat {
-    return 0 + padding
+    return 0 + padding - (CGRectGetWidth(pin.frame) / 2)
   }
   var pixelMax: CGFloat {
     return CGRectGetWidth(bounds) - padding
