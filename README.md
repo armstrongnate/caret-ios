@@ -13,8 +13,8 @@ that I am interested in.
   * Today Widget
   * notifications
   * sync challenge
-2. get on the mac app store
-3. build a watchkit app
+2. avoid building a web backend
+3. play with watchkit
 
 ## Platforms
 
