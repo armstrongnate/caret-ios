@@ -11,8 +11,15 @@ import UIKit
 class EntriesViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
+  @IBOutlet weak var entriesData: EntriesList!
 
   var date = NSDate()
+
+  override var editing: Bool {
+    didSet {
+      entriesData.editing = editing
+    }
+  }
 
 
   required init(coder aDecoder: NSCoder) {
@@ -28,6 +35,8 @@ class EntriesViewController: UIViewController {
       Caret.api.getEntries(self.date)
     }
     weeklyCalendarView.delegate = self
+    navigationItem.leftBarButtonItem = editButtonItem()
+    entriesData.delegate = self
 
     // styles
     view.backgroundColor = UIColor.primaryColor()

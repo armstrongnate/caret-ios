@@ -41,6 +41,25 @@ extension Entry: ResponseObjectSerializable {
     }
   }
 
+  func toJSON() -> [String : AnyObject] {
+    var json: [String: AnyObject] = [:]
+    if let entryID = entryID {
+      json["id"] = entryID
+    }
+    json["notes"] = notes ?? ""
+    json["duration"] = duration
+    if let projectID = projectID {
+      json["project_id"] = projectID
+    } else {
+      json["project_id"] = ""
+    }
+    return ["entry": json]
+  }
+
+  func resourceID() -> NSNumber? {
+    return entryID
+  }
+
 }
 
 extension Entry: ResponseCollectionSerializable {

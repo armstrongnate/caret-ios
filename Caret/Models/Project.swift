@@ -32,6 +32,14 @@ extension Project: ResponseObjectSerializable {
     color = representation.valueForKeyPath("color") as? String
   }
 
+  func toJSON() -> [String : AnyObject] {
+    return [:]
+  }
+
+  func resourceID() -> NSNumber? {
+    return projectID
+  }
+
 }
 
 extension Project: ResponseCollectionSerializable {

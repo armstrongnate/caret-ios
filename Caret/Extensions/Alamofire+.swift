@@ -11,6 +11,8 @@ import Alamofire
 
 @objc public protocol ResponseObjectSerializable {
   init?(response: NSHTTPURLResponse, representation: AnyObject)
+  func toJSON() -> [String: AnyObject]
+  func resourceID() -> NSNumber?
 }
 
 extension Alamofire.Request {

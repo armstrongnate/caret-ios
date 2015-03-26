@@ -33,6 +33,18 @@ class EntryStore: EventEmitter {
     return sorted(entries.values) { $0.happenedOn.isEarlierThanDate($1.happenedOn) }
   }
 
+  func update(entry: Entry) {
+    if entries[entry.entryID!] != nil {
+      entries[entry.entryID!] = entry
+    }
+    emitChange()
+  }
+
+  func remove(entry: Entry) {
+    entries.removeValueForKey(entry.entryID!)
+    emitChange()
+  }
+
   func clear() {
     entries = [:]
     emitChange()

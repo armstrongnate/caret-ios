@@ -21,8 +21,8 @@ class CaretAPI: NSObject {
     set { Static.sharedInstance = newValue }
   }
 
-  lazy var entries = Resource<Entry>(name: "entries")
-  lazy var projects = Resource<Project>(name: "projects")
+  private lazy var entries = Resource<Entry>(name: "entries")
+  private lazy var projects = Resource<Project>(name: "projects")
 
 
   // MARK: - Entries
@@ -41,6 +41,32 @@ class CaretAPI: NSObject {
   func getEntries(date: NSDate, completion: Resource<Entry>.CollectionResponse? = nil) {
     getEntries(date, to: date)
   }
+
+  func updateEntry(entry: Entry, completion: Resource<Entry>.ObjectResponse? = nil) {
+    entries.update(entry, parameters: nil) { (entry, error) in
+      if error == nil {
+        if let entry = entry {
+          Caret.stores.entries.update(entry)
+        }
+      }
+      completion?(object: entry, error: error)
+    }
+  }
+
+  func deleteEntry(entry: Entry, completion: Resource<Entry>.ObjectResponse? = nil) {
+    if let id = entry.entryID {
+      entries.destroy(id, parameters: nil) { (entry, error) in
+        if error == nil {
+          if let entry = entry {
+            Caret.stores.entries.remove(entry)
+          }
+        }
+        completion?(object: entry, error: error)
+      }
+    }
+  }
+
+  // MARK: - Projects
 
   func getProjects(completion: Resource<Project>.CollectionResponse? = nil) {
     projects.all(parameters: nil) { (projects) in

@@ -28,7 +28,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="UgG-JM-7ib" id="omv-Mr-WfA"/>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="eYm-ch-DTK"/>
+                                    <outlet property="delegate" destination="UgG-JM-7ib" id="qZB-ZL-DOK"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -51,6 +51,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ds4-pP-NkZ"/>
                     <connections>
+                        <outlet property="entriesData" destination="UgG-JM-7ib" id="OT5-7M-Myj"/>
                         <outlet property="weeklyCalendarView" destination="qI5-Cc-D56" id="2kg-R5-7ba"/>
                         <segue destination="GNl-mK-vhG" kind="presentation" identifier="editEntry" id="t1y-yp-Oo0"/>
                     </connections>
