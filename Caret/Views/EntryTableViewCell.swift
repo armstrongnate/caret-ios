@@ -47,7 +47,7 @@ class EntryTableViewCell: UITableViewCell {
   }
 
   func onMergeable(notification: NSNotification) {
-    if notification.object as? EntryTableViewCell != self {
+    if (notification.object as? EntryTableViewCell) != self {
       mergeable = false
     }
   }

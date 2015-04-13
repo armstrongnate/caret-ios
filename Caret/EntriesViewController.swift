@@ -37,6 +37,9 @@ class EntriesViewController: UIViewController {
     weeklyCalendarView.delegate = self
     navigationItem.leftBarButtonItem = editButtonItem()
     entriesData.delegate = self
+    entriesData.tableView.estimatedRowHeight = 70.0
+    entriesData.tableView.rowHeight = UITableViewAutomaticDimension
+    entriesData.tableView.keyboardDismissMode = .Interactive
 
     // styles
     view.backgroundColor = UIColor.primaryColor()
@@ -54,7 +57,7 @@ class EntriesViewController: UIViewController {
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "editEntry" {
-      let indexPath = sender as NSIndexPath
+      let indexPath = sender as! NSIndexPath
       let entry = Caret.stores.entries.getAllSorted()[indexPath.row]
       let entryForm = segue.destinationViewController.topViewController as UIViewController
     }
@@ -96,4 +99,9 @@ extension EntriesViewController: UITableViewDelegate {
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     performSegueWithIdentifier("editEntry", sender: indexPath)
   }
+}
+
+// MARK: - Text field delegate
+extension EntriesViewController: UITextViewDelegate {
+
 }

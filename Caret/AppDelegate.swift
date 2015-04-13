@@ -17,15 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Custom nav bar color
     let navigationBarAppearance = UINavigationBar.appearance()
-    navigationBarAppearance.barTintColor = UIColor.primaryColor()
-    navigationBarAppearance.tintColor = UIColor.whiteColor()
-    navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-    UIApplication.sharedApplication().statusBarStyle = .LightContent
+    navigationBarAppearance.tintColor = UIColor.secondaryColor()
+    navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.secondaryColor()]
 
-    // Custom tab bar colors
-    let tabBarAppearance = UITabBar.appearance()
-    tabBarAppearance.tintColor = UIColor.grayColor()
-    tabBarAppearance.backgroundColor = UIColor.whiteColor()
+    window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+    let dashboard = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
+    let nav = UINavigationController(rootViewController: dashboard)
+    nav.toolbarHidden = false
+    window!.rootViewController = nav
+    window!.makeKeyAndVisible()
 
     return true
   }

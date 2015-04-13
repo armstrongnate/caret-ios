@@ -30,9 +30,9 @@ extension Entry: ResponseObjectSerializable {
     self.init()
     entryID = representation.valueForKeyPath("id") as? NSNumber
     notes = representation.valueForKeyPath("description") as? String
-    let happenedOnString = representation.valueForKeyPath("happened_on") as String
+    let happenedOnString = representation.valueForKeyPath("happened_on") as! String
     happenedOn = NSDate(fromString: happenedOnString, withFormat: "yyyy-MM-dd")
-    duration = representation.valueForKeyPath("duration") as NSNumber
+    duration = representation.valueForKeyPath("duration") as! NSNumber
 
     // project
     if let projectID = representation.valueForKeyPath("project_id") as? NSNumber {
@@ -66,8 +66,8 @@ extension Entry: ResponseCollectionSerializable {
 
   class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Entry] {
     var entries: [Entry] = []
-    for dict in representation as NSArray {
-      if let entry = Entry(response: response, representation: dict as NSObject) {
+    for dict in representation as! NSArray {
+      if let entry = Entry(response: response, representation: dict as! NSObject) {
         entries.append(entry)
       }
     }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimerEntryView" customModule="Caret" customModuleProvider="target">
             <connections>
+                <outlet property="descriptionTextView" destination="p2c-Rd-Yr5" id="QPp-cp-hgs"/>
                 <outlet property="durationLabel" destination="hcn-d3-oU8" id="50C-Uz-oWz"/>
-                <outlet property="durationSlider" destination="LRY-xn-Wn1" id="d9z-MH-G1g"/>
                 <outlet property="timerContainerView" destination="oYG-ZX-ER0" id="OOb-W1-Mvh"/>
                 <outlet property="view" destination="1I1-m8-Hbl" id="Fbf-Ed-mO0"/>
             </connections>
@@ -62,11 +62,23 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRY-xn-Wn1" customClass="DurationSliderView" customModule="Caret" customModuleProvider="target">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRY-xn-Wn1">
                             <rect key="frame" x="0.0" y="256" width="600" height="44"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2c-Rd-Yr5">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                            </subviews>
                             <color key="backgroundColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
+                                <constraint firstItem="p2c-Rd-Yr5" firstAttribute="leading" secondItem="LRY-xn-Wn1" secondAttribute="leading" id="6p0-fa-hOr"/>
+                                <constraint firstAttribute="trailing" secondItem="p2c-Rd-Yr5" secondAttribute="trailing" id="P3X-JA-HlP"/>
                                 <constraint firstAttribute="height" constant="44" id="SCc-kt-R82"/>
+                                <constraint firstAttribute="bottom" secondItem="p2c-Rd-Yr5" secondAttribute="bottom" id="Uan-Fv-HYk"/>
+                                <constraint firstItem="p2c-Rd-Yr5" firstAttribute="top" secondItem="LRY-xn-Wn1" secondAttribute="top" id="e7m-Er-vcD"/>
                             </constraints>
                         </view>
                     </subviews>

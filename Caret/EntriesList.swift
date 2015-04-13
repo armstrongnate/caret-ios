@@ -45,7 +45,7 @@ extension EntriesList: UITableViewDataSource {
       tableView.registerNib(UINib(nibName: "EntryTableViewCell",
         bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "entryCell")
     }
-    let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as EntryTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as! EntryTableViewCell
     let entry = entries[indexPath.row]
     cell.projectLabel.text = entry.project?.name
     cell.entryDurationLabel.text = secondsToTime(entry.duration.integerValue)
@@ -60,7 +60,7 @@ extension EntriesList: UITableViewDataSource {
     let loc = gesture.locationInView(tableView.superview)
     let y = loc.y
     if gesture.state == .Began {
-      let cell = gesture.view as EntryTableViewCell
+      let cell = gesture.view as! EntryTableViewCell
       mergingCell = MergingCellImageView(image: imageWithView(cell))
       mergingCell.cell = cell
       mergingCell.alpha = 0.75

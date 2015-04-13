@@ -28,7 +28,7 @@ extension Project: ResponseObjectSerializable {
     self.init()
     projectID = representation.valueForKeyPath("id") as? NSNumber
     clientID = representation.valueForKeyPath("client_id") as? NSNumber
-    name = representation.valueForKeyPath("name") as String
+    name = representation.valueForKeyPath("name") as! String
     color = representation.valueForKeyPath("color") as? String
   }
 
@@ -46,8 +46,8 @@ extension Project: ResponseCollectionSerializable {
 
   class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Project] {
     var projects: [Project] = []
-    for dict in representation as NSArray {
-      if let project = Project(response: response, representation: dict as NSObject) {
+    for dict in representation as! NSArray {
+      if let project = Project(response: response, representation: dict as! NSObject) {
         projects.append(project)
       }
     }

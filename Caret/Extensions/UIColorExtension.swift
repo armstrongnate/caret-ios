@@ -11,11 +11,11 @@ import Foundation
 extension UIColor {
 
   class func primaryColor() -> UIColor {
-    return UIColor(red:44/255.0, green:62/255.0, blue:80/255.0, alpha:1.0)
+    return UIColor(red:44.0/255.0, green:62.0/255.0, blue:80.0/255.0, alpha:1.0)
   }
 
   class func secondaryColor() -> UIColor {
-    return UIColor(red:239/255.0, green:100/255.0, blue:46/255.0, alpha:1.0)
+    return UIColor(red: 239.0/255.0, green: 100.0/255.0, blue: 46.0/255.0, alpha: 1.0)
   }
 
 }

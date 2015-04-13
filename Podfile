@@ -1,7 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '8.3'
 use_frameworks!
 
-pod 'Alamofire', '~> 1.1'
+pod 'Alamofire'
+pod 'SwiftMoment'
+pod 'Charts'
 
 link_with 'Caret', 'CaretTests'
