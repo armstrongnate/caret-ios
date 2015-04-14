@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,23 +15,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhZ-yE-hgL">
-                        <rect key="frame" x="8" y="8" width="50" height="18"/>
+                        <rect key="frame" x="8" y="16" width="52" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="5yF-8m-ING"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:30" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhF-og-Ad8">
-                        <rect key="frame" x="377" y="8" width="30" height="18"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <rect key="frame" x="375" y="16" width="32" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5E-Cc-Gyf">
-                        <rect key="frame" x="8" y="34" width="43" height="19"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <rect key="frame" x="8" y="36" width="31" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -39,9 +39,9 @@
                 <constraints>
                     <constraint firstItem="QhF-og-Ad8" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2GE-BX-xvh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="S5E-Cc-Gyf" secondAttribute="bottom" constant="8" id="4u1-co-NZK"/>
-                    <constraint firstItem="S5E-Cc-Gyf" firstAttribute="top" secondItem="HhZ-yE-hgL" secondAttribute="bottom" constant="8" id="BdU-b1-DbO"/>
-                    <constraint firstItem="QhF-og-Ad8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Ezs-jG-Z31"/>
-                    <constraint firstItem="HhZ-yE-hgL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GNS-uQ-hYt"/>
+                    <constraint firstItem="S5E-Cc-Gyf" firstAttribute="top" secondItem="HhZ-yE-hgL" secondAttribute="bottom" constant="2" id="BdU-b1-DbO"/>
+                    <constraint firstItem="QhF-og-Ad8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="Ezs-jG-Z31"/>
+                    <constraint firstItem="HhZ-yE-hgL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="GNS-uQ-hYt"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="S5E-Cc-Gyf" secondAttribute="trailing" constant="8" id="P3n-sn-Zgw"/>
                     <constraint firstItem="QhF-og-Ad8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HhZ-yE-hgL" secondAttribute="trailing" constant="8" id="PkP-3N-TDX"/>
                     <constraint firstItem="HhZ-yE-hgL" firstAttribute="leading" secondItem="S5E-Cc-Gyf" secondAttribute="leading" id="dCm-Id-1VM"/>

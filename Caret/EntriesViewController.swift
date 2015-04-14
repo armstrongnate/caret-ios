@@ -35,19 +35,10 @@ class EntriesViewController: UIViewController {
       Caret.api.getEntries(self.date)
     }
     weeklyCalendarView.delegate = self
-    navigationItem.leftBarButtonItem = editButtonItem()
     entriesData.delegate = self
     entriesData.tableView.estimatedRowHeight = 70.0
     entriesData.tableView.rowHeight = UITableViewAutomaticDimension
     entriesData.tableView.keyboardDismissMode = .Interactive
-
-    // styles
-    view.backgroundColor = UIColor.primaryColor()
-    let navBar = navigationController!.navigationBar
-    navBar.titleTextAttributes = [
-      NSFontAttributeName: UIFont.systemFontOfSize(14.0),
-      NSForegroundColorAttributeName: UIColor.whiteColor()
-    ]
   }
 
   @IBAction func unwindFromEditEntry(segue: UIStoryboardSegue) {
@@ -59,7 +50,8 @@ class EntriesViewController: UIViewController {
     if segue.identifier == "editEntry" {
       let indexPath = sender as! NSIndexPath
       let entry = Caret.stores.entries.getAllSorted()[indexPath.row]
-      let entryForm = segue.destinationViewController.topViewController as UIViewController
+      let entryForm = segue.destinationViewController.topViewController as! EntryViewController
+      entryForm.entry = entry
     }
   }
 
@@ -77,7 +69,7 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 
   func dailyCalendarViewDidSelect(date: NSDate!) {
     self.date = date
-    var strDate = date.stringWithFormat("EEE, d MMM yyy")
+    var strDate = date.stringWithFormat("d MMM yyy")
     if date.isToday() {
       strDate = "Today, \(strDate)"
     }

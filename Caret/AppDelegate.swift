@@ -20,11 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     navigationBarAppearance.tintColor = UIColor.secondaryColor()
     navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.secondaryColor()]
 
+    let toolbarAppearance = UIToolbar.appearance()
+    toolbarAppearance.tintColor = UIColor.secondaryColor()
+
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
     let dashboard = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
     let nav = UINavigationController(rootViewController: dashboard)
     nav.toolbarHidden = false
+    nav.delegate = self
+
     window!.rootViewController = nav
     window!.makeKeyAndVisible()
 
@@ -53,6 +58,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-
 }
 
+extension AppDelegate: UINavigationControllerDelegate {
+
+  func navigationController(navigationController: UINavigationController,
+    willShowViewController viewController: UIViewController,
+    animated: Bool) {
+    let btn = UIBarButtonItem(title: "Clock in", style: .Plain, target: self, action: "")
+    let btn2 = UIBarButtonItem(title: "00:00:00", style: .Plain, target: self, action: "")
+
+    // if clocked out
+    btn2.tintColor = UIColor.grayColor()
+
+    let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+    viewController.setToolbarItems([btn, flex, btn2], animated: false)
+  }
+
+}

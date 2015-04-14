@@ -14,24 +14,24 @@ class DashboardViewController: UIViewController {
   struct ListItem {
     let title: String
     let subtitle: String
-    let controller: UIViewController.Type
+    let storyboard: String
+    let identifier: String
   }
 
   @IBOutlet weak var chartView: BarChartView!
   @IBOutlet weak var tableView: UITableView!
 
   var items: [ListItem] = [
-    ListItem(title: "Time Clock", subtitle: "Your current running timer.", controller: EntriesViewController.self),
-    ListItem(title: "Reports", subtitle: "Description of what's behind this curtain.", controller: ReportsViewController.self),
-    ListItem(title: "Clients", subtitle: "Edit Clients here.", controller: ReportsViewController.self),
-    ListItem(title: "Projects", subtitle: "Edit Projects here.", controller: ReportsViewController.self),
-    ListItem(title: "Users", subtitle: "Edit Users here.", controller: ReportsViewController.self),
-    ListItem(title: "Invoices", subtitle: "View invoices here.", controller: ReportsViewController.self),
+    ListItem(title: "Time Clock", subtitle: "Your current running timer.", storyboard: "Main", identifier: "entries"),
+    ListItem(title: "Reports", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
+    ListItem(title: "Clients", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
+    ListItem(title: "Projects", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
+    ListItem(title: "Users", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
+    ListItem(title: "Invoices", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
   ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Dashboard"
     tableView.dataSource = self
     tableView.delegate = self
 
@@ -64,6 +64,12 @@ class DashboardViewController: UIViewController {
     setData()
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    title = "Dashboard"
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+  }
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
@@ -71,7 +77,7 @@ class DashboardViewController: UIViewController {
 
   func setData() {
     var days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
-    var hours: [Float] = [0.0, 6.2, 5.57, 3.0, 5.16, 6.0, 0.0]
+    var hours: [Float] = [0.0, 6.18, 0.0, 0.0, 0.0, 0.0, 0.0]
     var yVals = [BarChartDataEntry]()
 
     for (index, h) in enumerate(hours) {
@@ -125,6 +131,14 @@ extension DashboardViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 70
+  }
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let item = items[indexPath.row]
+    let storyboard = UIStoryboard(name: item.storyboard, bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier(item.identifier) as! UIViewController
+    navigationController!.pushViewController(vc, animated: true)
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
 
 }

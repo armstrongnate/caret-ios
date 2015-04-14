@@ -58,6 +58,8 @@
 		43E589E81ABB0FB700655DDD /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E589E71ABB0FB700655DDD /* Project.swift */; };
 		43EB3D881ADB090E00111563 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB3D861ADB090E00111563 /* DashboardViewController.swift */; };
 		43EB3D891ADB090E00111563 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB3D871ADB090E00111563 /* DashboardViewController.xib */; };
+		43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */; };
+		43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */; };
 		50F4A046D2E4FFA390D4DAC8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9EA35E48B42C9AEBB867C70F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CAA88A4407C3A9A7A6F8A95A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -139,6 +141,8 @@
 		43E589E71ABB0FB700655DDD /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
 		43EB3D861ADB090E00111563 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardViewController.swift; path = Controllers/DashboardViewController.swift; sourceTree = "<group>"; };
 		43EB3D871ADB090E00111563 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController.xib; path = Controllers/DashboardViewController.xib; sourceTree = "<group>"; };
+		43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentEntryNavigationController.swift; path = Controllers/CurrentEntryNavigationController.swift; sourceTree = "<group>"; };
+		43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrentEntryNavigationController.xib; path = Controllers/CurrentEntryNavigationController.xib; sourceTree = "<group>"; };
 		522EB100A18F94DE90C6F40F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF3B173D9B7891209ECB5DA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F83930592AAB2992D6283784 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				43CD64BE1AC3C77A00BBD68F /* MergeTableViewController.swift */,
 				43EB3D861ADB090E00111563 /* DashboardViewController.swift */,
 				43EB3D871ADB090E00111563 /* DashboardViewController.xib */,
+				43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */,
+				43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				431166FF1ACE123D00ED78BA /* EntryAccessoryView.xib in Resources */,
 				432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */,
 				4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */,
+				43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */,
 				43E012481A993E9800647961 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +607,7 @@
 				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
 				43D587051ACCD0200083F079 /* WeekView.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
+				43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */,
 				43D587041ACCD0200083F079 /* MonthView.swift in Sources */,
 				43D587011ACCD0200083F079 /* ContentView.swift in Sources */,
 				4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */,

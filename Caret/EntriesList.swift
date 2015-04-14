@@ -10,12 +10,29 @@ import UIKit
 
 class EntriesList: NSObject {
 
-  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableView: UITableView! {
+    didSet {
+      setupRefreshControl()
+    }
+  }
 
   var mergingCell: MergingCellImageView!
   var entries: [Entry] = []
   var editing: Bool
   var delegate: UITableViewDelegate?
+  lazy var weekTotal: UILabel = {
+    let label = UILabel(frame: CGRectZero)
+    label.font = UIFont.boldSystemFontOfSize(16)
+    label.textAlignment = .Right
+    label.textColor = UIColor.darkGrayColor()
+    return label
+  }()
+  var refreshControl: UIRefreshControl {
+    let refreshControl = UIRefreshControl()
+    refreshControl.backgroundColor = UIColor.primaryColor()
+    refreshControl.tintColor = UIColor.whiteColor()
+    return refreshControl
+  }
 
   override init() {
     editing = false
@@ -27,6 +44,14 @@ class EntriesList: NSObject {
     entries = Caret.stores.entries.getAllSorted()
     tableView.reloadData()
   }
+
+  func setupRefreshControl() {
+    let refreshControlTableViewController = UITableViewController(style: tableView.style)
+    refreshControlTableViewController.tableView = tableView
+    refreshControlTableViewController.refreshControl = refreshControl
+//    refreshControl.addTarget(self, action: "fetchHole", forControlEvents: .ValueChanged)
+  }
+
 }
 
 extension EntriesList: UITableViewDataSource {
@@ -138,6 +163,31 @@ extension EntriesList: UITableViewDelegate {
 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     delegate?.tableView!(tableView, didSelectRowAtIndexPath: indexPath)
+  }
+
+  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 50
+  }
+
+  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let v = UIView()
+    v.backgroundColor = UIColor.whiteColor()
+    let button = UIButton.buttonWithType(.System) as! UIButton
+    button.titleLabel?.font = UIFont.systemFontOfSize(16)
+    button.setTitle("New Entry", forState: .Normal)
+    button.setTitleColor(UIColor.secondaryColor(), forState: .Normal)
+    button.setTitleColor(UIColor.grayColor(), forState: .Selected)
+    button.center = v.center
+    button.sizeToFit()
+    button.frame.origin.x = 10
+    button.frame.origin.y = 10
+
+    weekTotal.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame) - 15, 50)
+    weekTotal.text = "00:00"
+
+    v.addSubview(button)
+    v.addSubview(weekTotal)
+    return v
   }
 
 }

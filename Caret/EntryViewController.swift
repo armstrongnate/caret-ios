@@ -8,36 +8,63 @@
 
 import UIKit
 
-class EntryViewController: UIViewController {
-
-  let minAccessoryViewHeight: CGFloat = 52
+class EntryViewController: UITableViewController {
 
   var entry: Entry!
-  @IBOutlet weak var timerEntryView: TimerEntryView!
-  lazy var entryAccessoryView: EntryAccessoryView = {
-    let view = EntryAccessoryView(frame: CGRectMake(0, 0, 0, self.minAccessoryViewHeight))
-    view.backgroundColor = UIColor.primaryColor()
-    view.durationSlider.minimumValue = 0.0
-    view.durationSlider.maximumValue = 12.0
-
-    // TODO: this smells, use a protocol or something.
-    view.durationSlider.addTarget(self.timerEntryView, action: "durationValueChanged:", forControlEvents: .ValueChanged)
-    view.durationSlider.addTarget(self.timerEntryView, action: "zoomDurationSlider:", forControlEvents: .ApplicationReserved)
-    view.durationSlider.addTarget(self.timerEntryView, action: "unzoomDurationSlider:", forControlEvents: .EditingDidEnd)
-    return view
+  lazy var durationSlider: DurationSliderView = {
+    let slider = DurationSliderView()
+    slider.addTarget(self, action: "durationValueChanged:", forControlEvents: .ValueChanged)
+    return slider
+  }()
+  lazy var durationLabel: UILabel = {
+    let label = UILabel(frame: CGRectZero)
+    label.font = UIFont.systemFontOfSize(60)
+    label.textColor = UIColor.whiteColor()
+    label.textAlignment = .Center
+    return label
   }()
 
-  override var inputAccessoryView: UIView? {
-    return entryAccessoryView
-  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    title = "Edit Entry"
+    tableView.keyboardDismissMode = .Interactive
   }
 
-  override func canBecomeFirstResponder() -> Bool {
-    return true
+  func durationValueChanged(durationSlider: DurationSliderView) {
+    durationLabel.text = decimalMinutesToTime(durationSlider.value)
+  }
+
+}
+
+// MARK: - Table view delegate
+
+let durationHeaderHeight: CGFloat = 190
+extension EntryViewController: UITableViewDelegate {
+
+  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    if section == 0 {
+      return durationHeaderHeight
+    }
+    return 35
+  }
+
+  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    if section == 0 {
+      let view = UIView()
+      view.backgroundColor = UIColor.primaryColor()
+      let width = CGRectGetWidth(tableView.frame)
+      let labelHeight = durationHeaderHeight - 44
+      durationLabel.frame = CGRectMake(0, 0, width, labelHeight)
+      durationLabel.text = "00:00"
+      durationSlider.frame = CGRectMake(0, labelHeight, width, 44)
+      durationSlider.minimumValue = 0
+      durationSlider.maximumValue = 12
+      view.addSubview(durationSlider)
+      view.addSubview(durationLabel)
+      return view
+    }
+    return nil
   }
 
 }

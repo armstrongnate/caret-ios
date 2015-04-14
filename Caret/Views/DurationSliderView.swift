@@ -12,15 +12,21 @@ class DurationSliderView: UIControl {
 
   var phase = 0
   var numberOfPhases = 2
+  var zoomedLengthInMinutes: Double = 2
   var value: Double = 0.0
-  var padding: CGFloat = 44
+  var padding: CGFloat = 60
+  let pinColor = UIColor.secondaryColor()
+  let durationColor = UIColor.secondaryColor().colorWithAlphaComponent(0.80)
+  let bgColor = UIColor.whiteColor()
   var minimumValue: Double = 0.0 {
     didSet {
+      minLabel.text = decimalMinutesToTime(minimumValue)
       setNeedsLayout()
     }
   }
-  var maximumValue: Double = 1.0 {
+  var maximumValue: Double = 12.0 {
     didSet {
+      maxLabel.text = decimalMinutesToTime(maximumValue)
       setNeedsLayout()
     }
   }
@@ -30,15 +36,14 @@ class DurationSliderView: UIControl {
   var pixelMax: CGFloat {
     return CGRectGetWidth(bounds) - padding
   }
+
   lazy var panGesture: PanPauseGestureRecognizer = {
     return PanPauseGestureRecognizer(target: self, action: "didPan:")
   }()
 
   lazy var pin: UIView = {
-    let view = UIView(frame: CGRectMake(0, 0, 6.0, CGRectGetHeight(self.bounds)))
-    view.layer.cornerRadius = 5.0
-    view.layer.masksToBounds = true
-    view.backgroundColor = UIColor.secondaryColor()
+    let view = UIView(frame: CGRectMake(0, 0, 13.0, CGRectGetHeight(self.bounds)))
+    view.backgroundColor = self.pinColor
     return view
   }()
 
@@ -50,24 +55,47 @@ class DurationSliderView: UIControl {
 
   lazy var bottomBorder: UIView = {
     let view = UIView(frame: self.frame)
-    view.backgroundColor = UIColor.primaryColor()
+    view.backgroundColor = UIColor.whiteColor()
     return view
   }()
 
   lazy var topBorder: UIView = {
     let view = UIView(frame: self.frame)
-    view.backgroundColor = UIColor.primaryColor()
+    view.backgroundColor = UIColor.whiteColor()
     return view
   }()
 
+  lazy var growView: UIView = {
+    let view = UIView(frame: self.frame)
+    view.backgroundColor = self.durationColor
+    view.alpha = 0.4
+    return view
+  }()
+
+  lazy var minLabel: UILabel = {
+    let label = UILabel(frame: CGRectZero)
+    label.font = UIFont.boldSystemFontOfSize(13)
+    label.textColor = UIColor.whiteColor()
+    label.textAlignment = .Center
+    return label
+  }()
+
+  lazy var maxLabel: UILabel = {
+    let label = UILabel(frame: CGRectZero)
+    label.font = UIFont.boldSystemFontOfSize(13)
+    label.textColor = UIColor.grayColor()
+    label.textAlignment = .Center
+    return label
+  }()
 
   func setup() {
-    backgroundColor = UIColor.primaryColor()
-    addSubview(bottomBorder)
-    addSubview(topBorder)
+    backgroundColor = UIColor.whiteColor()
     addSubview(pin)
+    addSubview(growView)
     gestureView.addGestureRecognizer(panGesture)
     addSubview(gestureView)
+    addSubview(minLabel)
+    addSubview(maxLabel)
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -80,21 +108,37 @@ class DurationSliderView: UIControl {
     setup()
   }
 
-  override func drawRect(rect: CGRect) {
-    super.drawRect(rect)
-  }
-
   override func layoutSubviews() {
-    drawLines()
+    // pin
+    pin.frame.origin.x = CGFloat(whereIs(value, of: (minimumValue, maximumValue), within: (Double(pixelMin), Double(pixelMax))))
+    pin.frame.size.height = bounds.size.height
+    var x: CGFloat = 3
+    for i in 1...3 {
+      var inner = UIView(frame: CGRectMake(x, 4, 1, bounds.size.height - 8))
+      inner.backgroundColor = UIColor(red: 255.0/255.0, green: 186.0/255.0, blue: 143.0/255.0, alpha: 1.0)
+      pin.addSubview(inner)
+      x = CGRectGetMaxX(inner.frame) + 2
+    }
+
+    // growView
+    growView.frame = bounds
+    growView.frame.size.width = CGRectGetMinX(pin.frame)
     gestureView.frame = bounds
-    let height: CGFloat = 2
-    bottomBorder.frame = CGRectMake(0, CGRectGetHeight(bounds) - height, CGRectGetWidth(bounds), height)
-    topBorder.frame = CGRectMake(0, 0, CGRectGetWidth(bounds), height)
+
+    // min/max labels
+    let labelPad = CGRectGetWidth(pin.frame) / 2 + 5
+    minLabel.frame = CGRectMake(0, 0, padding - labelPad, bounds.size.height)
+    minLabel.adjustsFontSizeToFitWidth = true
+    maxLabel.frame = CGRectMake(CGRectGetWidth(bounds) - padding + labelPad, 0, padding - labelPad, bounds.size.height)
+    maxLabel.adjustsFontSizeToFitWidth = true
+
+    // borders
+    let borderHeight: CGFloat = 2
+    bottomBorder.frame = CGRectMake(0, CGRectGetHeight(bounds) - borderHeight, CGRectGetWidth(bounds), borderHeight)
+    topBorder.frame = CGRectMake(0, 0, CGRectGetWidth(bounds), borderHeight)
   }
 
   func drawLines() {
-    pin.frame.origin.x = CGFloat(whereIs(value, of: (minimumValue, maximumValue), within: (Double(pixelMin), Double(pixelMax))))
-    pin.frame.size.height = bounds.size.height
     for view in subviews {
       let v = view as! UIView
       if v != pin && v != gestureView && v != bottomBorder && v != topBorder {
@@ -138,14 +182,14 @@ class DurationSliderView: UIControl {
   func didPan(gestureRecognizer: UIGestureRecognizer) {
     if gestureRecognizer.state == .Changed || gestureRecognizer.state == .Began {
       let panPauseGesture = gestureRecognizer as! PanPauseGestureRecognizer
+      let x = gestureRecognizer.locationInView(self).x
       if panPauseGesture.paused {
         if phase++ < numberOfPhases - 1 {
-          sendActionsForControlEvents(.ApplicationReserved)
+          zoom(Double(x))
           panPauseGesture.paused = false
           panPauseGesture.startTimer()
         }
       }
-      let x = gestureRecognizer.locationInView(self).x
       if x >= 0 && x <= CGRectGetWidth(bounds) {
         var loc = gestureRecognizer.locationInView(self).x
         if loc > pixelMax {
@@ -153,14 +197,35 @@ class DurationSliderView: UIControl {
         } else if loc < pixelMin {
           loc = pixelMin
         }
-        pin.frame.origin.x = loc
+        pin.frame.origin.x = loc - CGRectGetWidth(pin.frame) / 2
+        growView.frame.size.width = CGRectGetMinX(pin.frame)
         setValueForLocation(loc)
         sendActionsForControlEvents(.ValueChanged)
       }
     } else if gestureRecognizer.state == .Ended || gestureRecognizer.state == .Cancelled {
       phase = 0
-      sendActionsForControlEvents(.EditingDidEnd)
+      unzoom()
     }
+  }
+
+  private func zoom(at: Double) {
+    minimumValue = calcMin(from: value, at: at)
+    maximumValue = calcMax(from: value, at: at)
+  }
+
+  private func unzoom() {
+    minimumValue = 0.0
+    maximumValue = 12.0
+  }
+
+  private func calcMin(#from: Double, at: Double) -> Double {
+    let width = Double(pixelMax)
+    return whereIs(Double(pixelMin), of: (at - width, at), within: (from-zoomedLengthInMinutes, from))
+  }
+
+  private func calcMax(#from: Double, at: Double) -> Double {
+    let width = Double(pixelMax)
+    return whereIs(width, of: (at, width + at), within: (from, from+zoomedLengthInMinutes))
   }
 
   private func setValueForLocation(loc: CGFloat) {
