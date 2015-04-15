@@ -35,6 +35,11 @@ class EntryViewController: UITableViewController {
     durationLabel.text = decimalMinutesToTime(durationSlider.value)
   }
 
+  override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    tableView.reloadData()
+  }
+
 }
 
 // MARK: - Table view delegate
