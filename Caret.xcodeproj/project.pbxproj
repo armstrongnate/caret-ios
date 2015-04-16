@@ -21,6 +21,7 @@
 		432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */; };
 		432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */; };
 		432B08271ABBE0E400DBDF72 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08261ABBE0E400DBDF72 /* EntryViewController.swift */; };
+		43313E401ADF729F006FAF8E /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43313E3F1ADF729F006FAF8E /* PersistenceController.swift */; };
 		4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0431A9D6F3D008896D3 /* Alamofire+.swift */; };
 		4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4345E0471A9D9F86008896D3 /* SwipeView.m */; };
 		4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4345E04A1A9DA080008896D3 /* TimerEntryView.xib */; };
@@ -60,6 +61,12 @@
 		43EB3D891ADB090E00111563 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB3D871ADB090E00111563 /* DashboardViewController.xib */; };
 		43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */; };
 		43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */; };
+		43F9DA0B1ADF26FA005ED457 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */; };
+		43F9DA0D1ADF3917005ED457 /* ClientEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA0C1ADF3917005ED457 /* ClientEntity.swift */; };
+		43F9DA0F1ADF39B3005ED457 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA0E1ADF39B3005ED457 /* Client.swift */; };
+		43F9DA131ADF543A005ED457 /* Client.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43F9DA121ADF543A005ED457 /* Client.storyboard */; };
+		43F9DA151ADF5473005ED457 /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA141ADF5473005ED457 /* ClientsViewController.swift */; };
+		43F9DA171ADF60D1005ED457 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA161ADF60D1005ED457 /* ClientViewController.swift */; };
 		50F4A046D2E4FFA390D4DAC8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9EA35E48B42C9AEBB867C70F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CAA88A4407C3A9A7A6F8A95A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -91,6 +98,7 @@
 		432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryTableViewCell.swift; path = Views/EntryTableViewCell.swift; sourceTree = "<group>"; };
 		432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EntryTableViewCell.xib; path = Views/EntryTableViewCell.xib; sourceTree = "<group>"; };
 		432B08261ABBE0E400DBDF72 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		43313E3F1ADF729F006FAF8E /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceController.swift; path = Utils/PersistenceController.swift; sourceTree = "<group>"; };
 		4345E0431A9D6F3D008896D3 /* Alamofire+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+.swift"; path = "Extensions/Alamofire+.swift"; sourceTree = "<group>"; };
 		4345E0461A9D9F86008896D3 /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		4345E0471A9D9F86008896D3 /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
@@ -143,6 +151,12 @@
 		43EB3D871ADB090E00111563 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController.xib; path = Controllers/DashboardViewController.xib; sourceTree = "<group>"; };
 		43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentEntryNavigationController.swift; path = Controllers/CurrentEntryNavigationController.swift; sourceTree = "<group>"; };
 		43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrentEntryNavigationController.xib; path = Controllers/CurrentEntryNavigationController.xib; sourceTree = "<group>"; };
+		43F9DA0A1ADF26FA005ED457 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		43F9DA0C1ADF3917005ED457 /* ClientEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientEntity.swift; path = Models/ClientEntity.swift; sourceTree = "<group>"; };
+		43F9DA0E1ADF39B3005ED457 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Models/Client.swift; sourceTree = "<group>"; };
+		43F9DA121ADF543A005ED457 /* Client.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Client.storyboard; sourceTree = "<group>"; };
+		43F9DA141ADF5473005ED457 /* ClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientsViewController.swift; path = Controllers/ClientsViewController.swift; sourceTree = "<group>"; };
+		43F9DA161ADF60D1005ED457 /* ClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientViewController.swift; path = Controllers/ClientViewController.swift; sourceTree = "<group>"; };
 		522EB100A18F94DE90C6F40F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF3B173D9B7891209ECB5DA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F83930592AAB2992D6283784 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,9 +195,11 @@
 		4319E0D01ABA5AC5006BFA40 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				43F9DA0C1ADF3917005ED457 /* ClientEntity.swift */,
 				4351B99E1A9AAB440008E8CD /* Resource.swift */,
 				4319E0D11ABA5ADB006BFA40 /* Entry.swift */,
 				43E589E71ABB0FB700655DDD /* Project.swift */,
+				43F9DA0E1ADF39B3005ED457 /* Client.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -200,6 +216,8 @@
 				43EB3D871ADB090E00111563 /* DashboardViewController.xib */,
 				43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */,
 				43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */,
+				43F9DA141ADF5473005ED457 /* ClientsViewController.swift */,
+				43F9DA161ADF60D1005ED457 /* ClientViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +274,7 @@
 				43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */,
 				43BC26101AA6C5CD00CA1E53 /* whereIs.swift */,
 				4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */,
+				43313E3F1ADF729F006FAF8E /* PersistenceController.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -310,6 +329,8 @@
 				43E012471A993E9800647961 /* Images.xcassets */,
 				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
 				43E0123C1A993E9800647961 /* Supporting Files */,
+				43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */,
+				43F9DA121ADF543A005ED457 /* Client.storyboard */,
 			);
 			path = Caret;
 			sourceTree = "<group>";
@@ -483,6 +504,7 @@
 				4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */,
 				43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */,
 				43E012481A993E9800647961 /* Images.xcassets in Resources */,
+				43F9DA131ADF543A005ED457 /* Client.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +627,7 @@
 				431167011ACE125A00ED78BA /* EntryAccessoryView.swift in Sources */,
 				4319E0DB1ABA7CE2006BFA40 /* UIViewController+.swift in Sources */,
 				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
+				43F9DA0D1ADF3917005ED457 /* ClientEntity.swift in Sources */,
 				43D587051ACCD0200083F079 /* WeekView.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
 				43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */,
@@ -615,11 +638,13 @@
 				4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */,
 				43D587001ACCD0200083F079 /* CalendarView.swift in Sources */,
 				43E0128F1A994A0B00647961 /* DailyCalendarView.m in Sources */,
+				43F9DA0B1ADF26FA005ED457 /* Data.xcdatamodeld in Sources */,
 				4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */,
 				43D587031ACCD0200083F079 /* EasyCast.swift in Sources */,
 				43E0128E1A994A0B00647961 /* CLWeeklyCalendarView.m in Sources */,
 				4319E0E21ABA8515006BFA40 /* EntryStore.swift in Sources */,
 				4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */,
+				43F9DA171ADF60D1005ED457 /* ClientViewController.swift in Sources */,
 				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
@@ -630,13 +655,16 @@
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
 				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
 				43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */,
+				43F9DA151ADF5473005ED457 /* ClientsViewController.swift in Sources */,
 				43E012911A994A0B00647961 /* NSDate+CL.m in Sources */,
+				43F9DA0F1ADF39B3005ED457 /* Client.swift in Sources */,
 				4319E0CD1ABA59CE006BFA40 /* CaretAPI.swift in Sources */,
 				43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */,
 				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,
 				43E589E81ABB0FB700655DDD /* Project.swift in Sources */,
 				43D587021ACCD0200083F079 /* DayView.swift in Sources */,
+				43313E401ADF729F006FAF8E /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +885,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				43F9DA0A1ADF26FA005ED457 /* Data.xcdatamodel */,
+			);
+			currentVersion = 43F9DA0A1ADF26FA005ED457 /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 43E012311A993E9800647961 /* Project object */;
 }

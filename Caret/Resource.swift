@@ -19,7 +19,7 @@ struct Resource<T where T: ResponseObjectSerializable, T: ResponseCollectionSeri
   func all(parameters: [String:AnyObject]? = nil, completion: CollectionResponse? = nil) {
     var params = parameters ?? [:]
     params["api_key"] = kMyAPIKey
-    Alamofire.request(.GET, "http://api.gocaret.com/\(name)", parameters: params)
+    Alamofire.request(.GET, "\(kApiURL)/\(name)", parameters: params)
       .responseCollection { (_, _, collection: [T]?, _) in
         println("get all \(self.name) (xcode bug)")
         completion?(collection: collection)
@@ -29,7 +29,7 @@ struct Resource<T where T: ResponseObjectSerializable, T: ResponseCollectionSeri
   func destroy(resourceID: NSNumber, parameters: [String:AnyObject]? = nil, completion: ObjectResponse? = nil) {
     var params = parameters ?? [:]
     params["api_key"] = kMyAPIKey
-    Alamofire.request(.DELETE, "http://api.gocaret.com/\(name)/\(resourceID)", parameters: params)
+    Alamofire.request(.DELETE, "\(kApiURL)//\(name)/\(resourceID)", parameters: params)
       .responseObject { (_, _, object: T?, error) in
         if error != nil {
           println("error: \(error)")
@@ -42,7 +42,7 @@ struct Resource<T where T: ResponseObjectSerializable, T: ResponseCollectionSeri
     var params = parameters ?? [:]
     params["api_key"] = kMyAPIKey
     params += object.toJSON()
-    Alamofire.request(.PATCH, "http://api.gocaret.com/\(name)/\(object.resourceID()!)", parameters: params)
+    Alamofire.request(.PATCH, "\(kApiURL)/\(name)/\(object.resourceID()!)", parameters: params)
       .responseObject { (_, _, object: T?, error) in
         if error != nil {
           println("error: \(error)")

@@ -9,6 +9,12 @@
 import UIKit
 import Charts
 
+protocol PersistenceViewController {
+
+  var persistenceController: PersistenceController { get set }
+
+}
+
 class DashboardViewController: UIViewController {
 
   struct ListItem {
@@ -18,17 +24,20 @@ class DashboardViewController: UIViewController {
     let identifier: String
   }
 
+  var persistenceController: PersistenceController!
+
   @IBOutlet weak var chartView: BarChartView!
   @IBOutlet weak var tableView: UITableView!
 
   var items: [ListItem] = [
     ListItem(title: "Time Clock", subtitle: "Your current running timer.", storyboard: "Main", identifier: "entries"),
     ListItem(title: "Reports", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
-    ListItem(title: "Clients", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
+    ListItem(title: "Clients", subtitle: "Description of what's behind this curtain.", storyboard: "Client", identifier: "clients"),
     ListItem(title: "Projects", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
     ListItem(title: "Users", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
     ListItem(title: "Invoices", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
   ]
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -135,8 +144,12 @@ extension DashboardViewController: UITableViewDelegate {
 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let item = items[indexPath.row]
+    let identifier = item.identifier
     let storyboard = UIStoryboard(name: item.storyboard, bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier(item.identifier) as! UIViewController
+    if identifier == "clients" {
+      (vc as! ClientsViewController).persistenceController = persistenceController
+    }
     navigationController!.pushViewController(vc, animated: true)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }

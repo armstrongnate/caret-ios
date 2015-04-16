@@ -8,7 +8,8 @@
 
 import UIKit
 
-let kMyAPIKey = "CLKcJvMU-faDZBBEgC_74Q"
+let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
+let kApiURL = "http://192.168.1.18"
 
 class CaretAPI: NSObject {
 
