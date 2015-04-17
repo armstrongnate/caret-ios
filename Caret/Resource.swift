@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import Alamofire
+import CoreData
 
 struct Resource<T where T: ResponseObjectSerializable, T: ResponseCollectionSerializable> {
 

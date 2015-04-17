@@ -100,14 +100,12 @@ extension EntriesList: UITableViewDataSource {
     else if gesture.state == .Ended {
       mergingCell.removeFromSuperview()
 
-      if let cellToKeep = cellAtPoint(gesture.locationInView(tableView)) {
-        if let cellToMerge = mergingCell.cell {
-          let entryToKeep = entries[tableView.indexPathForCell(cellToKeep)!.row]
-          let entryToMerge = entries[tableView.indexPathForCell(cellToMerge)!.row]
-          entryToKeep.duration = entryToKeep.duration.integerValue + entryToMerge.duration.integerValue
-          Caret.api.updateEntry(entryToKeep)
-          Caret.api.deleteEntry(entryToMerge)
-        }
+      if let cellToKeep = cellAtPoint(gesture.locationInView(tableView)), cellToMerge = mergingCell.cell {
+        let entryToKeep = entries[tableView.indexPathForCell(cellToKeep)!.row]
+        let entryToMerge = entries[tableView.indexPathForCell(cellToMerge)!.row]
+        entryToKeep.duration = entryToKeep.duration.integerValue + entryToMerge.duration.integerValue
+        Caret.api.updateEntry(entryToKeep)
+        Caret.api.deleteEntry(entryToMerge)
       }
 
       (mergingCell.cell as? EntryTableViewCell)?.dragging = false

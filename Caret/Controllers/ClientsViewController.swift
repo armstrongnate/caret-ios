@@ -8,13 +8,15 @@
 
 import UIKit
 import CoreData
+import SwiftMoment
 
 class ClientsViewController: UITableViewController {
 
   var persistenceController: PersistenceController!
+  var syncController: SyncController!
   lazy var fetchedResultsController: NSFetchedResultsController = {
     let fetchRequest = NSFetchRequest()
-    let entity = NSEntityDescription.entityForName("ClientEntity", inManagedObjectContext: self.persistenceController.managedObjectContext)
+    let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: self.persistenceController.managedObjectContext)
     fetchRequest.entity = entity
     let sort = NSSortDescriptor(key: "updated_at", ascending: false)
     fetchRequest.sortDescriptors = [sort]
@@ -34,6 +36,15 @@ class ClientsViewController: UITableViewController {
     if !fetchedResultsController.performFetch(&error) {
       println("fetch error \(error)")
     }
+
+    let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    syncContext.parentContext = persistenceController.managedObjectContext
+    syncController = SyncController(context: syncContext)
+
+    refreshControl = UIRefreshControl()
+    refreshControl!.backgroundColor = UIColor.primaryColor()
+    refreshControl!.tintColor = UIColor.whiteColor()
+    refreshControl!.addTarget(self, action: "sync", forControlEvents: .ValueChanged)
   }
 
   override func didReceiveMemoryWarning() {
@@ -50,8 +61,9 @@ class ClientsViewController: UITableViewController {
   }
 
   func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-    let client = self.fetchedResultsController.objectAtIndexPath(indexPath) as! ClientEntity
+    let client = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Client
     cell.textLabel!.text = client.name
+    cell.detailTextLabel!.text = client.updated_at?.description ?? "Not synced"
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -59,12 +71,19 @@ class ClientsViewController: UITableViewController {
       let controller = segue.destinationViewController.topViewController as! ClientViewController
       let childContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
       childContext.parentContext = persistenceController.managedObjectContext
-      let newClient = NSEntityDescription.insertNewObjectForEntityForName("ClientEntity",
-        inManagedObjectContext: childContext) as! ClientEntity
+      let newClient = NSEntityDescription.insertNewObjectForEntityForName("Client",
+        inManagedObjectContext: childContext) as! Client
+      newClient.guid = NSUUID().UUIDString
       controller.title = "New Client"
       controller.client = newClient
       controller.context = childContext
+      controller.syncController = syncController
     }
+  }
+
+  func sync() {
+    let date = moment(NSDate()).substract(1, .Years).toNSDate()!.description
+    syncController.sync(["clients": []], lastUpdatedAt: date)
   }
 
 }
@@ -96,6 +115,7 @@ extension ClientsViewController: NSFetchedResultsControllerDelegate {
 
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
     tableView.endUpdates()
+    refreshControl?.endRefreshing()
   }
 
   func controller(controller: NSFetchedResultsController,
@@ -103,6 +123,7 @@ extension ClientsViewController: NSFetchedResultsControllerDelegate {
     atIndexPath indexPath: NSIndexPath?,
     forChangeType type: NSFetchedResultsChangeType,
     newIndexPath: NSIndexPath?) {
+    println("did change object")
     switch type {
       case .Insert:
         tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)

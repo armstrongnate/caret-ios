@@ -5,5 +5,6 @@ use_frameworks!
 pod 'Alamofire'
 pod 'SwiftMoment'
 pod 'Charts'
+pod 'SwiftyJSON', '>= 2.2'
 
 link_with 'Caret', 'CaretTests'

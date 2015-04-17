@@ -2,23 +2,21 @@
 //  Client.swift
 //  Caret
 //
-//  Created by Nate Armstrong on 4/15/15.
+//  Created by Nate Armstrong on 4/16/15.
 //  Copyright (c) 2015 Nate Armstrong. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreData
 
-extension ClientEntity {
+class Client: NSManagedObject {
 
-  enum SyncStatus: NSNumber {
-    case NoChanges = 0
-    case Changed = 1
-    case Temporary = 2
-  }
-
-  var syncStatus: SyncStatus {
-    get { return SyncStatus(rawValue: sync_status) ?? .Temporary }
-    set { sync_status = newValue.rawValue }
-  }
+    @NSManaged var archived: NSNumber
+    @NSManaged var guid: String
+    @NSManaged var hourly_rate: NSNumber
+    @NSManaged var name: String
+    @NSManaged var sync_status: NSNumber
+    @NSManaged var updated_at: NSDate?
+    @NSManaged var apiID: NSNumber?
 
 }

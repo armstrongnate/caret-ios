@@ -11,8 +11,9 @@ import CoreData
 
 class ClientViewController: UITableViewController {
 
-  var client: ClientEntity!
+  var client: Client!
   var context: NSManagedObjectContext!
+  var syncController: SyncController!
 
   @IBOutlet weak var nameTextField: UITextField!
 
@@ -34,7 +35,7 @@ class ClientViewController: UITableViewController {
     var error: NSError?
     if context.save(&error) {
       performSegueWithIdentifier("unwindFromSaveClient", sender: self)
-      // TODO: save client to api with context
+      syncController.sync(["clients": [client]], lastUpdatedAt: NSDate().description)
     }
   }
 
