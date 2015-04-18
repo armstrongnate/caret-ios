@@ -16,9 +16,13 @@ class ClientViewController: UITableViewController {
   var syncController: SyncController!
 
   @IBOutlet weak var nameTextField: UITextField!
+  @IBOutlet weak var hourlyRateTextField: UITextField!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    syncController = SyncController(context: context)
+    nameTextField.text = client.name
+    hourlyRateTextField.text = client.hourly_rate.description
   }
 
   override func didReceiveMemoryWarning() {
@@ -28,7 +32,7 @@ class ClientViewController: UITableViewController {
 
   @IBAction func save(sender: AnyObject) {
     client.name = nameTextField.text
-    client.hourly_rate = 85
+    client.hourly_rate = NSNumber(double: (hourlyRateTextField.text as NSString).doubleValue)
     client.syncStatus = .Changed
     client.archived = false
     var error: NSError?

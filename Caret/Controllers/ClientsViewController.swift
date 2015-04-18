@@ -18,7 +18,7 @@ class ClientsViewController: UITableViewController {
     let fetchRequest = NSFetchRequest()
     let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: self.persistenceController.managedObjectContext)
     fetchRequest.entity = entity
-    let sort = NSSortDescriptor(key: "updated_at", ascending: false)
+    let sort = NSSortDescriptor(key: "name", ascending: true)
     fetchRequest.sortDescriptors = [sort]
     let controller = NSFetchedResultsController(
       fetchRequest: fetchRequest,
@@ -62,23 +62,34 @@ class ClientsViewController: UITableViewController {
   }
 
   func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-    let client = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Client
+    let client = fetchedResultsController.objectAtIndexPath(indexPath) as! Client
     cell.textLabel!.text = client.name
-    cell.detailTextLabel!.text = client.updated_at?.description ?? "Not synced"
+    cell.detailTextLabel!.text = "$\(client.hourly_rate.description)/hr"
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "newClient" {
+    if segue.identifier == "newClient" || segue.identifier == "editClient" {
       let controller = segue.destinationViewController.topViewController as! ClientViewController
       let childContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
       childContext.parentContext = persistenceController.managedObjectContext
-      let newClient = NSEntityDescription.insertNewObjectForEntityForName("Client",
-        inManagedObjectContext: childContext) as! Client
-      newClient.guid = NSUUID().UUIDString
-      controller.title = "New Client"
-      controller.client = newClient
+
+      let client: Client
+      if segue.identifier == "newClient" {
+        controller.title = "New Client"
+        client = NSEntityDescription.insertNewObjectForEntityForName("Client",
+          inManagedObjectContext: childContext) as! Client
+        client.guid = NSUUID().UUIDString
+        client.name = ""
+        client.hourly_rate = 100 // TODO: use settings hourly rate
+      } else {
+        controller.title = "Edit Client"
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)!
+        client = fetchedResultsController.objectAtIndexPath(indexPath) as! Client
+      }
+
+      controller.client = client
       controller.context = childContext
-      controller.syncController = syncController
     }
   }
 
@@ -157,4 +168,5 @@ extension ClientsViewController: SyncControllerDelegate {
   func syncFinished() {
     refreshControl?.endRefreshing()
   }
+
 }

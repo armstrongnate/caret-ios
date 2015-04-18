@@ -96,6 +96,7 @@ class SyncController: NSObject {
         if !self.context.save(&error) {
           println("error saving sync context \(error)") // TODO: handle error
         } else {
+          self.delegate?.syncFinished()
           println("success saving sync context")
         }
       } else {
