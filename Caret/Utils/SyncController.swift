@@ -11,12 +11,28 @@ import CoreData
 import Alamofire
 import SwiftyJSON
 
+let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
+let kApiURL = "http://192.168.1.18"
+
 typealias JSONObject = [String: AnyObject]
 typealias SyncDictionary = [String: [NSManagedObject]]
 
+protocol SyncControllerDelegate {
+
+  func syncFinished()
+
+}
+
 class SyncController: NSObject {
 
+  enum SyncStatus: NSNumber {
+    case NoChanges = 0
+    case Changed = 1
+    case Temporary = 2
+  }
+
   var context: NSManagedObjectContext
+  var delegate: SyncControllerDelegate?
   lazy var dateFormatter: NSDateFormatter = {
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
@@ -30,26 +46,28 @@ class SyncController: NSObject {
     self.context = context
   }
 
-  func sync(toSync: SyncDictionary, lastUpdatedAt: String) {
-    context.performBlockAndWait {
-      var params = JSONObject()
-      for (name, objects) in toSync {
-        let jsonObjects = objects.map{ $0.toJSON() }
-        var params: JSONObject = [name: jsonObjects]
-        params["api_key"] = kMyAPIKey
-        params["updated_at"] = lastUpdatedAt
-        self.post(name, params: params)
-      }
+  func sync(classes: [String]) {
+    var params = JSONObject()
+    for name in classes {
+      if self.names[name] == nil { continue }
+      let objects = self.managedObjectsForClass(self.names[name]!, withSyncStatus: .Changed)
+      let jsonObjects = objects.map{ $0.toJSON() }
+      var params: JSONObject = [name: jsonObjects]
+      params["api_key"] = kMyAPIKey
+      let lastUpdate = self.mostRecentUpdatedAtDateForClass(self.names[name]!) ?? NSDate(timeIntervalSince1970: 0)
+      params["updated_at"] = lastUpdate
+      self.post(name, params: params)
     }
   }
 
   private func post(name: String, params: JSONObject) {
     Alamofire.request(.POST, "\(kApiURL)/\(name)/sync", parameters: params)
       .responseJSON { (_, _, json, error) in
-        println("JSON: \(json)")
         if error == nil {
           let j = JSON(json!)
           self.handleResponse(j, name: name)
+        } else {
+          println("sync error \(error)")
         }
       }
   }
@@ -60,28 +78,33 @@ class SyncController: NSObject {
   // I guess we could do it in batches.
   // Of course, it probably won't make much of a difference after the first sync.
   private func handleResponse(response: JSON, name: String) {
-    if let objects = response.array {
-      for json in objects {
-        if let object = findOrInitializeClass(name, guid: json["guid"].string!) {
-          if let jsonObject = json.object as? JSONObject {
-            println("should convert! YAY!")
-            object.fromJSON(jsonObject, formatter: dateFormatter)
+    context.performBlock {
+      if let objects = response.array {
+        for json in objects {
+          var object: NSManagedObject?
+          object = self.findOrInitializeClass(self.names[name]!, guid: json["guid"].string!)
+          if let object = object {
+            if let jsonObject = json.object as? JSONObject {
+              object.fromJSON(jsonObject, formatter: self.dateFormatter)
+              object.syncStatus = .NoChanges
+            }
+          } else {
+            println("failed to find or init class \(json)")
           }
-        } else {
-          println("failed to find or init class \(json)")
         }
+        var error: NSError?
+        if !self.context.save(&error) {
+          println("error saving sync context \(error)") // TODO: handle error
+        } else {
+          println("success saving sync context")
+        }
+      } else {
+        println("json is not an array \(response)") // TODO: handle error
       }
-      var error: NSError?
-      if !context.save(&error) {
-        println("error saving sync context \(error)") // TODO: handle error
-      }
-    } else {
-      println("json is not an array \(response)") // TODO: handle error
     }
   }
 
-  private func findOrInitializeClass(name: String, guid: String) -> NSManagedObject? {
-    let className = names[name]!
+  func findOrInitializeClass(className: String, guid: String) -> NSManagedObject? {
     var object: NSManagedObject? = nil
     let fetchRequest = NSFetchRequest(entityName: className)
     let predicate = NSPredicate(format: "guid = %@", guid)
@@ -103,9 +126,35 @@ class SyncController: NSObject {
     return object
   }
 
+  func mostRecentUpdatedAtDateForClass(className: String) -> NSDate? {
+    let fetchRequest = NSFetchRequest(entityName: className)
+    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "updated_at", ascending: false)]
+    fetchRequest.fetchLimit = 1
+    var error: NSError?
+    let results = self.context.executeFetchRequest(fetchRequest, error: &error)
+    return results?.last?.valueForKey("updated_at") as? NSDate
+  }
+
+  func managedObjectsForClass(className: String, withSyncStatus syncStatus: SyncStatus) -> [NSManagedObject] {
+    let fetchRequest = NSFetchRequest(entityName: className)
+    let predicate = NSPredicate(format: "sync_status = %@", syncStatus.rawValue)
+    fetchRequest.predicate = predicate
+
+    var error: NSError?
+    return context.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject] ?? []
+  }
+
 }
 
 extension NSManagedObject {
+
+  var syncStatus: SyncController.SyncStatus {
+    get {
+      let status = valueForKey("sync_status") as! NSNumber
+      return SyncController.SyncStatus(rawValue: status) ?? .Temporary
+    }
+    set { setValue(newValue.rawValue, forKey: "sync_status") }
+  }
 
   func toJSON() -> JSONObject {
     fatalError("Method unimplemented")

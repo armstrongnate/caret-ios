@@ -29,7 +29,13 @@
 		4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4345E04A1A9DA080008896D3 /* TimerEntryView.xib */; };
 		4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */; };
 		4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345E04E1A9EB409008896D3 /* DurationSliderView.swift */; };
+		434AC9C01AE17742001D7BF2 /* CoreDataTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AC9BF1AE17742001D7BF2 /* CoreDataTestCase.swift */; };
+		434AC9C21AE17793001D7BF2 /* ClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AC9C11AE17793001D7BF2 /* ClientTestCase.swift */; };
+		434AC9C31AE17806001D7BF2 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43313E451AE050EC006FAF8E /* Client.swift */; };
+		434AC9C51AE17806001D7BF2 /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43313E411AE03FD4006FAF8E /* SyncController.swift */; };
 		4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351B99E1A9AAB440008E8CD /* Resource.swift */; };
+		439FC9411AE184D30079D10F /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */; };
+		439FC9431AE1BB4D0079D10F /* SyncControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC9421AE1BB4D0079D10F /* SyncControllerTestCase.swift */; };
 		43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC26091AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift */; };
 		43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */; };
 		43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC26101AA6C5CD00CA1E53 /* whereIs.swift */; };
@@ -108,7 +114,10 @@
 		4345E04A1A9DA080008896D3 /* TimerEntryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimerEntryView.xib; path = Views/TimerEntryView.xib; sourceTree = "<group>"; };
 		4345E04C1A9DB1CD008896D3 /* TimerEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimerEntryView.swift; path = Views/TimerEntryView.swift; sourceTree = "<group>"; };
 		4345E04E1A9EB409008896D3 /* DurationSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DurationSliderView.swift; path = Views/DurationSliderView.swift; sourceTree = "<group>"; };
+		434AC9BF1AE17742001D7BF2 /* CoreDataTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestCase.swift; sourceTree = "<group>"; };
+		434AC9C11AE17793001D7BF2 /* ClientTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTestCase.swift; sourceTree = "<group>"; };
 		4351B99E1A9AAB440008E8CD /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		439FC9421AE1BB4D0079D10F /* SyncControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncControllerTestCase.swift; sourceTree = "<group>"; };
 		43BC26091AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PanPauseGestureRecognizer.swift; path = Views/PanPauseGestureRecognizer.swift; sourceTree = "<group>"; };
 		43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = decimalMinutesToTime.swift; path = Utils/decimalMinutesToTime.swift; sourceTree = "<group>"; };
 		43BC26101AA6C5CD00CA1E53 /* whereIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = whereIs.swift; sourceTree = "<group>"; };
@@ -350,7 +359,10 @@
 			isa = PBXGroup;
 			children = (
 				43E012561A993E9800647961 /* CaretTests.swift */,
+				434AC9BF1AE17742001D7BF2 /* CoreDataTestCase.swift */,
+				434AC9C11AE17793001D7BF2 /* ClientTestCase.swift */,
 				43E012541A993E9800647961 /* Supporting Files */,
+				439FC9421AE1BB4D0079D10F /* SyncControllerTestCase.swift */,
 			);
 			path = CaretTests;
 			sourceTree = "<group>";
@@ -676,7 +688,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439FC9431AE1BB4D0079D10F /* SyncControllerTestCase.swift in Sources */,
+				439FC9411AE184D30079D10F /* ClientHelper.swift in Sources */,
+				434AC9C31AE17806001D7BF2 /* Client.swift in Sources */,
+				434AC9C51AE17806001D7BF2 /* SyncController.swift in Sources */,
+				434AC9C01AE17742001D7BF2 /* CoreDataTestCase.swift in Sources */,
 				43E012571A993E9800647961 /* CaretTests.swift in Sources */,
+				434AC9C21AE17793001D7BF2 /* ClientTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,7 +852,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = CaretTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caret.app/Caret";
@@ -851,7 +869,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = CaretTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caret.app/Caret";

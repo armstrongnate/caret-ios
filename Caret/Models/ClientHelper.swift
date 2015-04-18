@@ -11,17 +11,6 @@ import SwiftyJSON
 
 extension Client {
 
-  enum SyncStatus: NSNumber {
-    case NoChanges = 0
-    case Changed = 1
-    case Temporary = 2
-  }
-
-  var syncStatus: SyncStatus {
-    get { return SyncStatus(rawValue: sync_status) ?? .Temporary }
-    set { sync_status = newValue.rawValue }
-  }
-
   override func toJSON() -> JSONObject {
     return [
       "id": apiID ?? "",
@@ -40,7 +29,6 @@ extension Client {
     if let updated_at = json["updated_at"].string {
       self.updated_at = formatter.dateFromString(updated_at)
     }
-    syncStatus = .NoChanges
   }
 
   override func fromJSON(json: JSONObject, formatter: NSDateFormatter) {

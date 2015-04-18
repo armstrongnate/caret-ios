@@ -31,11 +31,10 @@ class ClientViewController: UITableViewController {
     client.hourly_rate = 85
     client.syncStatus = .Changed
     client.archived = false
-    client.guid = "guid"
     var error: NSError?
     if context.save(&error) {
       performSegueWithIdentifier("unwindFromSaveClient", sender: self)
-      syncController.sync(["clients": [client]], lastUpdatedAt: NSDate().description)
+      syncController.sync(["clients"])
     }
   }
 

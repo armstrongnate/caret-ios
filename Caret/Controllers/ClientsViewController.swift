@@ -40,6 +40,15 @@ class ClientsViewController: UITableViewController {
     let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
     syncContext.parentContext = persistenceController.managedObjectContext
     syncController = SyncController(context: syncContext)
+    syncController.delegate = self
+    NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification,
+      object: nil, queue: nil) { (notif) -> Void in
+      if let savedContext = notif.object as? NSManagedObjectContext {
+        if savedContext == syncContext {
+          self.persistenceController.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notif)
+        }
+      }
+    }
 
     refreshControl = UIRefreshControl()
     refreshControl!.backgroundColor = UIColor.primaryColor()
@@ -82,8 +91,7 @@ class ClientsViewController: UITableViewController {
   }
 
   func sync() {
-    let date = moment(NSDate()).substract(1, .Years).toNSDate()!.description
-    syncController.sync(["clients": []], lastUpdatedAt: date)
+    syncController.sync(["clients"])
   }
 
 }
@@ -123,7 +131,6 @@ extension ClientsViewController: NSFetchedResultsControllerDelegate {
     atIndexPath indexPath: NSIndexPath?,
     forChangeType type: NSFetchedResultsChangeType,
     newIndexPath: NSIndexPath?) {
-    println("did change object")
     switch type {
       case .Insert:
         tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
@@ -150,4 +157,12 @@ extension ClientsViewController: NSFetchedResultsControllerDelegate {
     }
   }
 
+}
+
+// MARK: - Sync controller delegate
+extension ClientsViewController: SyncControllerDelegate {
+
+  func syncFinished() {
+    refreshControl?.endRefreshing()
+  }
 }
