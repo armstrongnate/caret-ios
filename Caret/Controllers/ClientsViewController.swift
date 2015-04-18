@@ -41,14 +41,6 @@ class ClientsViewController: UITableViewController {
     syncContext.parentContext = persistenceController.managedObjectContext
     syncController = SyncController(context: syncContext)
     syncController.delegate = self
-    NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextDidSaveNotification,
-      object: nil, queue: nil) { (notif) -> Void in
-      if let savedContext = notif.object as? NSManagedObjectContext {
-        if savedContext == syncContext {
-          self.persistenceController.managedObjectContext?.mergeChangesFromContextDidSaveNotification(notif)
-        }
-      }
-    }
 
     refreshControl = UIRefreshControl()
     refreshControl!.backgroundColor = UIColor.primaryColor()
