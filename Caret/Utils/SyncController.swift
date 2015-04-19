@@ -17,13 +17,9 @@ let kApiURL = "http://192.168.1.18"
 typealias JSONObject = [String: AnyObject]
 typealias SyncDictionary = [String: [NSManagedObject]]
 
-protocol SyncControllerDelegate {
-
-  func syncFinished()
-
-}
-
 class SyncController: NSObject {
+
+  typealias SyncCallbackBlock = () -> Void
 
   enum SyncStatus: NSNumber {
     case NoChanges = 0
@@ -32,32 +28,44 @@ class SyncController: NSObject {
   }
 
   var context: NSManagedObjectContext
-  var delegate: SyncControllerDelegate?
+  var callback: SyncCallbackBlock?
+  var queue = [String]()
   lazy var dateFormatter: NSDateFormatter = {
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
     return formatter
   }()
   var names = [
-    "clients": "Client"
+    "clients": "Client",
+    "projects": "Project"
   ]
 
-  init(context: NSManagedObjectContext) {
+  init(context: NSManagedObjectContext, callback: SyncCallbackBlock? = nil) {
     self.context = context
+    self.callback = callback
+    super.init()
   }
 
   func sync(classes: [String]) {
-    var params = JSONObject()
-    for name in classes {
-      if self.names[name] == nil { continue }
-      let objects = self.managedObjectsForClass(self.names[name]!, withSyncStatus: .Changed)
-      let jsonObjects = objects.map{ $0.toJSON() }
-      var params: JSONObject = [name: jsonObjects]
-      params["api_key"] = kMyAPIKey
-      let lastUpdate = self.mostRecentUpdatedAtDateForClass(self.names[name]!) ?? NSDate(timeIntervalSince1970: 0)
-      params["updated_at"] = lastUpdate
-      self.post(name, params: params)
-    }
+    queue = classes.reverse()
+    dequeue()
+  }
+
+  func dequeue() {
+    if queue.count <= 0 { return }
+    syncClass(queue.last!)
+    queue.removeLast()
+  }
+
+  func syncClass(name: String) {
+    if self.names[name] == nil { return }
+    let objects = self.managedObjectsForClass(self.names[name]!, withSyncStatus: .Changed)
+    let jsonObjects = objects.map{ $0.toJSON() }
+    var params: JSONObject = [name: jsonObjects]
+    params["api_key"] = kMyAPIKey
+    let lastUpdate = self.mostRecentUpdatedAtDateForClass(self.names[name]!) ?? NSDate(timeIntervalSince1970: 0)
+    params["updated_at"] = lastUpdate
+    self.post(name, params: params)
   }
 
   private func post(name: String, params: JSONObject) {
@@ -66,26 +74,24 @@ class SyncController: NSObject {
         if error == nil {
           let j = JSON(json!)
           self.handleResponse(j, name: name)
+          self.dequeue()
         } else {
           println("sync error \(error)")
         }
       }
   }
 
-  // TODO: speed this up by avoiding a query on every incoming record.
-  // Maybe do one query with a map of the jsonObjects guids.
-  // What's worse, loading a gazillion into memory or performing a gazillion queries? Speed vs resources?
-  // I guess we could do it in batches.
-  // Of course, it probably won't make much of a difference after the first sync.
   private func handleResponse(response: JSON, name: String) {
-    context.performBlock {
-      if let objects = response.array {
+    if let objects = response.array {
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
         for json in objects {
           var object: NSManagedObject?
           object = self.findOrInitializeClass(self.names[name]!, guid: json["guid"].string!)
           if let object = object {
             if let jsonObject = json.object as? JSONObject {
-              object.fromJSON(jsonObject, formatter: self.dateFormatter)
+              object.fromJSON(jsonObject,
+                formatter: self.dateFormatter,
+                context: self.context)
               object.syncStatus = .NoChanges
             }
           } else {
@@ -96,12 +102,14 @@ class SyncController: NSObject {
         if !self.context.save(&error) {
           println("error saving sync context \(error)") // TODO: handle error
         } else {
-          self.delegate?.syncFinished()
           println("success saving sync context")
         }
-      } else {
-        println("json is not an array \(response)") // TODO: handle error
+        dispatch_async(dispatch_get_main_queue()) {
+          self.callback?()
+        }
       }
+    } else {
+      println("json is not an array \(response)") // TODO: handle error
     }
   }
 
@@ -161,7 +169,9 @@ extension NSManagedObject {
     fatalError("Method unimplemented")
   }
 
-  func fromJSON(json: JSONObject, formatter: NSDateFormatter) {
+  func fromJSON(json: JSONObject,
+    formatter: NSDateFormatter,
+    context: NSManagedObjectContext) {
     fatalError("Method unimplemented")
   }
 

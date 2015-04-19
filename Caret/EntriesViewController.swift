@@ -31,9 +31,6 @@ class EntriesViewController: UIViewController {
     super.viewDidLoad()
 
     // setup
-    Caret.api.getProjects() { (projects) in
-      Caret.api.getEntries(self.date)
-    }
     weeklyCalendarView.delegate = self
     entriesData.delegate = self
     entriesData.tableView.estimatedRowHeight = 70.0

@@ -72,7 +72,6 @@ extension EntriesList: UITableViewDataSource {
     }
     let cell = tableView.dequeueReusableCellWithIdentifier("entryCell", forIndexPath: indexPath) as! EntryTableViewCell
     let entry = entries[indexPath.row]
-    cell.projectLabel.text = entry.project?.name
     cell.entryDurationLabel.text = secondsToTime(entry.duration.integerValue)
     cell.entryNotesLabel.text = entry.notes
 

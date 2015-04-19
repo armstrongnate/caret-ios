@@ -20,7 +20,6 @@ class CaretAPI: NSObject {
   }
 
   private lazy var entries = Resource<Entry>(name: "entries")
-  private lazy var projects = Resource<Project>(name: "projects")
 
 
   // MARK: - Entries
@@ -61,15 +60,6 @@ class CaretAPI: NSObject {
         }
         completion?(object: entry, error: error)
       }
-    }
-  }
-
-  // MARK: - Projects
-
-  func getProjects(completion: Resource<Project>.CollectionResponse? = nil) {
-    projects.all(parameters: nil) { (projects) in
-      Caret.stores.projects.create(projects ?? [])
-      completion?(collection: projects)
     }
   }
 

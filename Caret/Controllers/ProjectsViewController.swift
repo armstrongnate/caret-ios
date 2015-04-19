@@ -1,5 +1,5 @@
 //
-//  ClientsViewController.swift
+//  ProjectsViewController.swift
 //  Caret
 //
 //  Created by Nate Armstrong on 4/15/15.
@@ -10,20 +10,20 @@ import UIKit
 import CoreData
 import SwiftMoment
 
-protocol ClientsViewControllerDelegate {
+protocol ProjectsViewControllerDelegate {
 
-  func didSelectClient(client: Client)
+  func didSelectProject(project: Project)
 
 }
 
-class ClientsViewController: UITableViewController {
+class ProjectsViewController: UITableViewController {
 
   var context: NSManagedObjectContext!
   var syncController: SyncController!
-  var delegate: ClientsViewControllerDelegate?
+  var delegate: ProjectsViewControllerDelegate?
   lazy var fetchedResultsController: NSFetchedResultsController = {
     let fetchRequest = NSFetchRequest()
-    let entity = NSEntityDescription.entityForName("Client", inManagedObjectContext: self.context)
+    let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: self.context)
     fetchRequest.entity = entity
     let sort = NSSortDescriptor(key: "name", ascending: true)
     fetchRequest.sortDescriptors = [sort]
@@ -35,7 +35,7 @@ class ClientsViewController: UITableViewController {
     )
     controller.delegate = self
     return controller
-  }()
+    }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -61,54 +61,59 @@ class ClientsViewController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
 
-  @IBAction func unwindFromCancelClient(segue: UIStoryboardSegue) {
+  @IBAction func unwindFromCancelProject(segue: UIStoryboardSegue) {
     dismissViewControllerAnimated(true, completion: nil)
   }
 
-  @IBAction func unwindFromSaveClient(segue: UIStoryboardSegue) {
+  @IBAction func unwindFromSaveProject(segue: UIStoryboardSegue) {
     dismissViewControllerAnimated(true, completion: nil)
   }
 
   func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-    let client = fetchedResultsController.objectAtIndexPath(indexPath) as! Client
-    cell.textLabel!.text = client.name
-    cell.detailTextLabel!.text = "$\(client.hourly_rate.description)/hr"
+    let project = fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+    cell.textLabel!.text = project.name
+    cell.detailTextLabel!.text = "$\(project.hourly_rate.description)/hr"
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "newClient" || segue.identifier == "editClient" {
-      let controller = segue.destinationViewController.topViewController as! ClientViewController
+    if segue.identifier == "newProject" || segue.identifier == "editProject" {
+      let controller = segue.destinationViewController.topViewController as! ProjectViewController
       let childContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
       childContext.parentContext = context
 
-      let client: Client
-      if segue.identifier == "newClient" {
-        controller.title = "New Client"
-        client = NSEntityDescription.insertNewObjectForEntityForName("Client",
-          inManagedObjectContext: childContext) as! Client
-        client.guid = NSUUID().UUIDString
-        client.name = ""
-        client.hourly_rate = 100 // TODO: use settings hourly rate
+      let project: Project
+      if segue.identifier == "newProject" {
+        controller.title = "New Project"
+        project = NSEntityDescription.insertNewObjectForEntityForName("Project",
+          inManagedObjectContext: childContext) as! Project
+        project.guid = NSUUID().UUIDString
+        project.name = ""
+        project.hourly_rate = 100 // TODO: use settings hourly rate
       } else {
-        controller.title = "Edit Client"
+        controller.title = "Edit Project"
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!
-        client = fetchedResultsController.objectAtIndexPath(indexPath) as! Client
+        project = fetchedResultsController.objectAtIndexPath(indexPath) as! Project
+        controller.client = project.client
       }
 
-      controller.client = client
+      controller.project = project
       controller.context = childContext
     }
   }
 
   func sync() {
-    syncController.sync(["clients"])
+    syncController.sync(["projects"])
   }
 
 }
 
 // MARK: - Table view data source
-extension ClientsViewController: UITableViewDataSource {
+extension ProjectsViewController: UITableViewDataSource {
+
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return fetchedResultsController.sections?.count ?? 0
+  }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let sectionInfo: AnyObject = fetchedResultsController.sections?[section] {
@@ -118,7 +123,7 @@ extension ClientsViewController: UITableViewDataSource {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("ClientCell", forIndexPath: indexPath) as! UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("ProjectCell", forIndexPath: indexPath) as! UITableViewCell
     configureCell(cell, atIndexPath: indexPath)
     return cell
   }
@@ -126,13 +131,13 @@ extension ClientsViewController: UITableViewDataSource {
 }
 
 // MARK: - Table view delegate
-extension ClientsViewController: UITableViewDelegate {
+extension ProjectsViewController: UITableViewDelegate {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let delegate = delegate {
-      delegate.didSelectClient(fetchedResultsController.objectAtIndexPath(indexPath) as! Client)
+      delegate.didSelectProject(fetchedResultsController.objectAtIndexPath(indexPath) as! Project)
     } else {
-      performSegueWithIdentifier("editClient", sender: tableView.cellForRowAtIndexPath(indexPath))
+      performSegueWithIdentifier("editProject", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
@@ -140,7 +145,7 @@ extension ClientsViewController: UITableViewDelegate {
 }
 
 // MARK: - Fetched results controller delegate
-extension ClientsViewController: NSFetchedResultsControllerDelegate {
+extension ProjectsViewController: NSFetchedResultsControllerDelegate {
 
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
     tableView.beginUpdates()
@@ -156,7 +161,7 @@ extension ClientsViewController: NSFetchedResultsControllerDelegate {
     atIndexPath indexPath: NSIndexPath?,
     forChangeType type: NSFetchedResultsChangeType,
     newIndexPath: NSIndexPath?) {
-    switch type {
+      switch type {
       case .Insert:
         tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
       case .Delete:
@@ -165,21 +170,21 @@ extension ClientsViewController: NSFetchedResultsControllerDelegate {
         self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
       default:
         return
-    }
+      }
   }
 
   func controller(controller: NSFetchedResultsController,
     didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
     atIndex sectionIndex: Int,
     forChangeType type: NSFetchedResultsChangeType) {
-    switch type {
+      switch type {
       case .Insert:
         self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
       case .Delete:
         self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
       default:
         return
-    }
+      }
   }
-
+  
 }

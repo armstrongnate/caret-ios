@@ -33,7 +33,7 @@ class DashboardViewController: UIViewController {
     ListItem(title: "Time Clock", subtitle: "Your current running timer.", storyboard: "Main", identifier: "entries"),
     ListItem(title: "Reports", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
     ListItem(title: "Clients", subtitle: "Description of what's behind this curtain.", storyboard: "Client", identifier: "clients"),
-    ListItem(title: "Projects", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
+    ListItem(title: "Projects", subtitle: "Description of what's behind this curtain.", storyboard: "Project", identifier: "projects"),
     ListItem(title: "Users", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
     ListItem(title: "Invoices", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
   ]
@@ -148,7 +148,10 @@ extension DashboardViewController: UITableViewDelegate {
     let storyboard = UIStoryboard(name: item.storyboard, bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier(item.identifier) as! UIViewController
     if identifier == "clients" {
-      (vc as! ClientsViewController).persistenceController = persistenceController
+      (vc as! ClientsViewController).context = persistenceController.managedObjectContext
+    }
+    else if identifier == "projects" {
+      (vc as! ProjectsViewController).context = persistenceController.managedObjectContext
     }
     navigationController!.pushViewController(vc, animated: true)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)

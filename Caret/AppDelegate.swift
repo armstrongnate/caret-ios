@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   var persistenceController: PersistenceController!
+  var syncController: SyncController!
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -24,9 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let toolbarAppearance = UIToolbar.appearance()
     toolbarAppearance.tintColor = UIColor.secondaryColor()
 
-    persistenceController = PersistenceController(callback: showDashboard)
+    persistenceController = PersistenceController(callback: sync)
 
     return true
+  }
+
+  func sync() {
+    syncController = SyncController(context: persistenceController.managedObjectContext, callback: showDashboard)
+    syncController.sync(["clients", "projects"])
   }
 
   func showDashboard() {

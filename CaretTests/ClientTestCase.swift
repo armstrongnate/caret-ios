@@ -82,7 +82,7 @@ class ClientTestCase: CoreDataTestCase {
       ]
       let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-      client.fromJSON(json, formatter: dateFormatter)
+      client.fromJSON(json, formatter: dateFormatter, context: managedObjectContext!)
       XCTAssertEqual(client.apiID!, 10, "apiID matches")
       XCTAssertEqual(client.name, "My Client", "name matches")
       XCTAssertEqual(client.hourly_rate, 85, "hourly_rate matches")

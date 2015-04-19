@@ -12,7 +12,6 @@ final class Entry: NSObject {
 
   var entryID: NSNumber?
   var projectID: NSNumber?
-  var project: Project?
   var notes: String?
   var happenedOn: NSDate!
   var duration: NSNumber!
@@ -37,7 +36,6 @@ extension Entry: ResponseObjectSerializable {
     // project
     if let projectID = representation.valueForKeyPath("project_id") as? NSNumber {
       self.projectID = projectID
-      project = Caret.stores.projects.get(projectID)
     }
   }
 
