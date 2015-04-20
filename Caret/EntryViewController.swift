@@ -17,10 +17,12 @@ class EntryViewController: UITableViewController {
 
   var entry: Entry!
   var project: Project?
-  var happenedOn: NSDate?
   var context: NSManagedObjectContext!
+  var syncController: SyncController!
+  var durationBackgroundView: UIView!
   lazy var durationSlider: DurationSliderView = {
     let slider = DurationSliderView()
+    slider.delegate = self
     slider.addTarget(self, action: "durationValueChanged:", forControlEvents: .ValueChanged)
     return slider
   }()
@@ -41,32 +43,30 @@ class EntryViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Edit Entry"
+    syncController = SyncController(context: context)
+    durationSlider.value = entry.duration.doubleValue / 60.0 / 60.0
+    notesTextView.text = entry.notes
     tableView.keyboardDismissMode = .Interactive
     projectLabel.text = project?.name ?? ""
-    happenedOnLabel.text = ""
-    if let happenedOn = happenedOn {
-      happenedOnLabel.text = dateFormatter.stringFromDate(happenedOn)
-    }
-  }
-
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    durationSlider.value = entry.duration.doubleValue / 60.0 / 60.0
+    happenedOnLabel.text = dateFormatter.stringFromDate(entry.happened_on)
   }
 
   @IBAction func save() {
-    if let project = project, happenedOn = happenedOn {
-      entry.duration = durationSlider.value * 60
+    if let project = project {
+      entry.duration = durationSlider.value * 60 * 60
       entry.notes = notesTextView.text
-      entry.happened_on = NSDate() // TODO: use date from form
+      entry.happened_on = entry.happened_on
       entry.project = project
+      entry.syncStatus = .Changed
       var error: NSError?
       if context.save(&error) {
         performSegueWithIdentifier("unwindFromSaveEntry", sender: self)
-//        syncController.sync(["entries"])
+        syncController.sync(["entries"])
+      } else {
+        println("save entry context error \(error)")
       }
     } else {
-      // TODO: show that project is required
+      println("needs project and happened_on")
     }
   }
 
@@ -77,6 +77,15 @@ class EntryViewController: UITableViewController {
   override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     tableView.reloadData()
+  }
+
+  func pickProject() {
+    let storyboard = UIStoryboard(name: "Project", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("projects") as! ProjectsViewController
+    vc.context = context.parentContext
+    vc.delegate = self
+    vc.navigationItem.rightBarButtonItem = nil
+    navigationController!.pushViewController(vc, animated: true)
   }
 
 }
@@ -105,9 +114,42 @@ extension EntryViewController: UITableViewDelegate {
       durationSlider.maximumValue = 12
       view.addSubview(durationSlider)
       view.addSubview(durationLabel)
+      durationBackgroundView = view
       return view
     }
     return nil
+  }
+
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if indexPath.section == 0 && indexPath.row == 0 {
+      pickProject()
+    }
+  }
+
+}
+
+// MARK: - Projects view controller delegate
+extension EntryViewController: ProjectsViewControllerDelegate {
+
+  func didSelectProject(project: Project) {
+    self.project = project
+    projectLabel.text = project.name
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))!.setNeedsLayout()
+    navigationController!.popViewControllerAnimated(true)
+  }
+
+}
+
+// MARK: - Duration slider delegate
+extension EntryViewController: DurationSliderViewDelegate {
+
+  func durationSlider(durationSlider: DurationSliderView, zoomed: Bool) {
+    let bgColor = zoomed ? UIColor(red: 66.0/255.0, green: 100.0/255.0, blue: 133.0/255.0, alpha: 1.0) : UIColor.primaryColor()
+    let font = zoomed ? UIFont(name: "HelveticaNeue-Light", size: 60) : UIFont.systemFontOfSize(60)
+    UIView.animateWithDuration(0.5) {
+      self.durationLabel.font = font
+      self.durationBackgroundView.backgroundColor = bgColor
+    }
   }
 
 }

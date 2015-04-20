@@ -108,7 +108,6 @@ class EntriesViewController: UIViewController {
         let indexPath = sender as! NSIndexPath
         entry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
         entryForm.project = entry.project
-        entryForm.happenedOn = entry.happened_on
       }
 
       entryForm.entry = entry
