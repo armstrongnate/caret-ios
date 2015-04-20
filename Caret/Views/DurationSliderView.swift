@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol DurationSliderViewDelegate {
+
+  func durationSlider(durationSlider: DurationSliderView, zoomed: Bool)
+
+}
+
 class DurationSliderView: UIControl {
 
   var phase = 0
+  var delegate: DurationSliderViewDelegate?
   var numberOfPhases = 2
   var zoomedLengthInMinutes: Double = 2
   var value: Double = 0.0 {
@@ -216,11 +223,13 @@ class DurationSliderView: UIControl {
   private func zoom(at: Double) {
     minimumValue = calcMin(from: value, at: at)
     maximumValue = calcMax(from: value, at: at)
+    delegate?.durationSlider(self, zoomed: true)
   }
 
   private func unzoom() {
     minimumValue = 0.0
     maximumValue = 12.0
+    delegate?.durationSlider(self, zoomed: false)
   }
 
   private func calcMin(#from: Double, at: Double) -> Double {
