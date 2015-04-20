@@ -31,11 +31,8 @@ class DashboardViewController: UIViewController {
 
   var items: [ListItem] = [
     ListItem(title: "Time Clock", subtitle: "Your current running timer.", storyboard: "Main", identifier: "entries"),
-    ListItem(title: "Reports", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
     ListItem(title: "Clients", subtitle: "Description of what's behind this curtain.", storyboard: "Client", identifier: "clients"),
     ListItem(title: "Projects", subtitle: "Description of what's behind this curtain.", storyboard: "Project", identifier: "projects"),
-    ListItem(title: "Users", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
-    ListItem(title: "Invoices", subtitle: "Description of what's behind this curtain.", storyboard: "", identifier: ""),
   ]
 
 

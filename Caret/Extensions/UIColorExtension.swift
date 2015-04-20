@@ -18,4 +18,8 @@ extension UIColor {
     return UIColor(red: 239.0/255.0, green: 100.0/255.0, blue: 46.0/255.0, alpha: 1.0)
   }
 
+  class func visualAidColor() -> UIColor {
+    return UIColor(red: 66.0/255.0, green: 100.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+  }
+
 }

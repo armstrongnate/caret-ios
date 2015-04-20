@@ -19,7 +19,14 @@ class EntriesViewController: UIViewController {
   @IBOutlet weak var doneButton: UIBarButtonItem!
 
   var context: NSManagedObjectContext!
-  var syncController: SyncController!
+  lazy var syncController: SyncController = {
+    let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    syncContext.parentContext = self.context
+    let syncController = SyncController(context: syncContext) {
+      self.refreshControl.endRefreshing()
+    }
+    return syncController
+  }()
   var date: NSDate!
   var mergingCell: MergingCellImageView!
   var entries: [Entry] = [] // TODO: remove this
@@ -62,12 +69,7 @@ class EntriesViewController: UIViewController {
     refreshControlTableViewController.refreshControl = refreshControl
     refreshControl.addTarget(self, action: "sync", forControlEvents: .ValueChanged)
 
-
-    let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-    syncContext.parentContext = context
-    syncController = SyncController(context: syncContext) {
-      self.refreshControl.endRefreshing()
-    }
+    sync()
 
     // setup
     weeklyCalendarView.delegate = self
@@ -82,12 +84,11 @@ class EntriesViewController: UIViewController {
   }
 
   @IBAction func unwindFromEditEntry(segue: UIStoryboardSegue) {
-    dismissViewControllerAnimated(true, completion: nil)
+    // noop
   }
 
   @IBAction func unwindFromSaveEntry(segue: UIStoryboardSegue) {
-    dismissViewControllerAnimated(true, completion: nil)
-    tableView.reloadData()
+    performFetch()
   }
 
   @IBAction func editButtonPressed(sender: UIBarButtonItem) {
@@ -143,7 +144,7 @@ class EntriesViewController: UIViewController {
   func performFetch() {
     let dayStart = moment(self.date).startOf(.Days).toNSDate()!
     let dayEnd = moment(self.date).endOf("d").toNSDate()!
-    let predicate = NSPredicate(format: "(happened_on >= %@) AND (happened_on <= %@)", dayStart, dayEnd)
+    let predicate = NSPredicate(format: "(archived == 0) AND (happened_on >= %@) AND (happened_on <= %@)", dayStart, dayEnd)
     self.fetchedResultsController.fetchRequest.predicate = predicate
     var error: NSError?
     if self.fetchedResultsController.performFetch(&error) {
@@ -154,6 +155,9 @@ class EntriesViewController: UIViewController {
   }
 
   func sync() {
+    let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    syncContext.parentContext = context
+    syncController.context = syncContext
     syncController.sync(["entries"])
   }
 
@@ -185,8 +189,11 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 extension EntriesViewController: UITableViewDelegate {
 
   func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-    if mergingCell.isDescendantOfView(tableView.superview!) {
-      pushScrollView(mergingCell.center)
+    if mergingCell == nil { return }
+    if let superview = tableView.superview {
+      if mergingCell.isDescendantOfView(superview) {
+        pushScrollView(mergingCell.center)
+      }
     }
   }
 
@@ -274,9 +281,15 @@ extension EntriesViewController: UITableViewDataSource {
       mergingCell.removeFromSuperview()
 
       if let cellToKeep = cellAtPoint(gesture.locationInView(tableView)), cellToMerge = mergingCell.cell {
-        let entryToKeep = entries[tableView.indexPathForCell(cellToKeep)!.row]
-        let entryToMerge = entries[tableView.indexPathForCell(cellToMerge)!.row]
-        entryToKeep.duration = entryToKeep.duration.integerValue + entryToMerge.duration.integerValue
+        let entryToKeep = fetchedResultsController.objectAtIndexPath(tableView.indexPathForCell(cellToKeep)!) as! Entry
+        let entryToMerge = fetchedResultsController.objectAtIndexPath(tableView.indexPathForCell(cellToMerge)!) as! Entry
+        if entryToKeep != entryToMerge {
+          entryToMerge.archived = true
+          entryToKeep.duration = entryToKeep.duration.integerValue + entryToMerge.duration.integerValue
+          entryToKeep.syncStatus = .Changed
+          entryToMerge.syncStatus = .Changed
+          sync()
+        }
       }
 
       (mergingCell.cell as? EntryTableViewCell)?.dragging = false
@@ -289,6 +302,8 @@ extension EntriesViewController: UITableViewDataSource {
       if mergableCell != mergingCell.cell {
         mergableCell.mergeable = true
       }
+    } else {
+      NSNotificationCenter.defaultCenter().postNotificationName(EntryBecameMergeableNotification, object: nil)
     }
   }
 
@@ -326,7 +341,6 @@ extension EntriesViewController: UITableViewDataSource {
 extension EntriesViewController: NSFetchedResultsControllerDelegate {
 
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
-    println("will change content!")
     tableView.beginUpdates()
   }
 
@@ -340,15 +354,14 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
     atIndexPath indexPath: NSIndexPath?,
     forChangeType type: NSFetchedResultsChangeType,
     newIndexPath: NSIndexPath?) {
-      println("did change object!")
       switch type {
       case .Insert:
         tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
       case .Delete:
         tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
       case .Update:
-        println("in update")
-        self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+        let cell = tableView.cellForRowAtIndexPath(indexPath!)!
+        tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
       default:
         return
       }
@@ -358,7 +371,6 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
     didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
     atIndex sectionIndex: Int,
     forChangeType type: NSFetchedResultsChangeType) {
-      println("did change section!")
       switch type {
       case .Insert:
         self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)

@@ -145,7 +145,7 @@ extension EntryViewController: ProjectsViewControllerDelegate {
 extension EntryViewController: DurationSliderViewDelegate {
 
   func durationSlider(durationSlider: DurationSliderView, zoomed: Bool) {
-    let bgColor = zoomed ? UIColor(red: 66.0/255.0, green: 100.0/255.0, blue: 133.0/255.0, alpha: 1.0) : UIColor.primaryColor()
+    let bgColor = zoomed ? UIColor.visualAidColor() : UIColor.primaryColor()
     let font = zoomed ? UIFont(name: "HelveticaNeue-Light", size: 60) : UIFont.systemFontOfSize(60)
     UIView.animateWithDuration(0.5) {
       self.durationLabel.font = font

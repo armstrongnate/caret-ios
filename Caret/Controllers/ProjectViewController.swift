@@ -60,6 +60,7 @@ class ProjectViewController: UITableViewController {
     let vc = storyboard.instantiateViewControllerWithIdentifier("clients") as! ClientsViewController
     vc.context = clientsContext
     vc.delegate = self
+    vc.navigationItem.rightBarButtonItem = nil
     navigationController!.pushViewController(vc, animated: true)
   }
   

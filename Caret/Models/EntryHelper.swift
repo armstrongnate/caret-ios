@@ -12,13 +12,16 @@ import CoreData
 
 extension Entry {
 
+  var isArchived: Bool { return archived.boolValue }
+
   override func toJSON(formatter: NSDateFormatter) -> JSONObject {
     var json: JSONObject = [
       "description": notes,
       "duration": duration,
       "guid": guid,
       "project_id": project.apiID ?? "",
-      "happened_on": formatter.stringFromDate(happened_on)
+      "happened_on": formatter.stringFromDate(happened_on),
+      "deleted": archived,
     ]
     if let id = apiID {
       json["id"] = id
@@ -32,7 +35,7 @@ extension Entry {
     apiID = json["id"].number!
     notes = json["description"].string!
     duration = json["duration"].numberValue
-    archived = json["archived"].boolValue
+    archived = json["deleted"].boolValue
     if let updated_at = json["updated_at"].string {
       self.updated_at = formatter.dateFromString(updated_at)
     }
@@ -47,6 +50,9 @@ extension Entry {
       self.project = project
     } else {
       println("project not found!")
+    }
+    if isArchived {
+      context.deleteObject(self)
     }
   }
 

@@ -36,6 +36,7 @@ class EntryTestCase: CoreDataTestCase {
       entry.project = project
       entry.happened_on = NSDate()
       entry.apiID = nil
+      entry.archived = true
       let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
       var json = entry.toJSON(dateFormatter)
@@ -44,10 +45,13 @@ class EntryTestCase: CoreDataTestCase {
       XCTAssertEqual(json["duration"] as! NSNumber, 60, "duration matches")
       XCTAssertEqual(json["guid"] as! String, "123abc", "guid matches")
       XCTAssertEqual(json["project_id"] as! NSNumber, 1, "project id matches")
+      XCTAssert(json["deleted"] as! Bool, "entry is deleted")
       XCTAssertNotNil(json["happened_on"] as! String, "happened_on not nil")
       entry.apiID = 10
+      entry.archived = false
       json = entry.toJSON(dateFormatter)
       XCTAssertEqual(json["id"] as! NSNumber, 10, "id matches")
+      XCTAssert(!(json["deleted"] as! Bool), "entry is not deleted")
     }
 
   }
@@ -68,7 +72,8 @@ class EntryTestCase: CoreDataTestCase {
         "guid": "abc123",
         "happened_on": happened_on,
         "updated_at": updated_at,
-        "project_id": project.apiID!
+        "project_id": project.apiID!,
+        "deleted": true,
       ]
       let dateFormatter = NSDateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
@@ -79,6 +84,7 @@ class EntryTestCase: CoreDataTestCase {
       XCTAssertEqual(entry.notes, "My notes", "name matches")
       XCTAssertEqual(entry.duration, 120, "duration matches")
       XCTAssertEqual(entry.guid, "abc123", "guid matches")
+      XCTAssert(entry.isArchived, "entry is archived")
       XCTAssertNotNil(entry.happened_on, "happened_on is not nil")
       XCTAssert(entry.updated_at!.isEqualToDate(dateFormatter.dateFromString(updated_at)!), "updated_at matches")
       dateFormatter.dateFormat = "yyyy-MM-dd"

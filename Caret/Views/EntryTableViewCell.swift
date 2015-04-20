@@ -19,7 +19,7 @@ class EntryTableViewCell: UITableViewCell {
   var mergeable: Bool = false {
     didSet {
       if mergeable {
-        contentView.layer.borderColor = UIColor.secondaryColor().CGColor
+        contentView.layer.borderColor = UIColor.visualAidColor().CGColor
         NSNotificationCenter.defaultCenter().postNotificationName(EntryBecameMergeableNotification, object: self)
       } else {
         contentView.layer.borderColor = UIColor.whiteColor().CGColor

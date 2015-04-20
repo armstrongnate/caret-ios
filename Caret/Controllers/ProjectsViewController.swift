@@ -49,6 +49,7 @@ class ProjectsViewController: UITableViewController {
     syncController = SyncController(context: syncContext) {
       self.refreshControl?.endRefreshing()
     }
+    sync()
 
     refreshControl = UIRefreshControl()
     refreshControl!.backgroundColor = UIColor.primaryColor()

@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
-let kApiURL = "http://192.168.1.18"
+let kApiURL = "http://10.0.1.39"
 
 typealias JSONObject = [String: AnyObject]
 typealias SyncDictionary = [String: [NSManagedObject]]
@@ -84,7 +84,7 @@ class SyncController: NSObject {
 
   private func handleResponse(response: JSON, name: String) {
     if let objects = response.array {
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+      context.performBlock {
         for json in objects {
           var object: NSManagedObject?
           object = self.findOrInitializeClass(self.names[name]!, guid: json["guid"].string!)
