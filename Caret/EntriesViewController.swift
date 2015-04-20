@@ -17,6 +17,8 @@ class EntriesViewController: UIViewController {
   @IBOutlet weak var editButton: UIBarButtonItem!
   @IBOutlet weak var addButton: UIBarButtonItem!
   @IBOutlet weak var doneButton: UIBarButtonItem!
+  @IBOutlet weak var mergeButton: UIBarButtonItem!
+  @IBOutlet weak var deleteButton: UIBarButtonItem!
 
   var context: NSManagedObjectContext!
   lazy var syncController: SyncController = {
@@ -93,12 +95,44 @@ class EntriesViewController: UIViewController {
 
   @IBAction func editButtonPressed(sender: UIBarButtonItem) {
     tableView.editing = true
-    navigationItem.rightBarButtonItems = [doneButton]
+    navigationItem.rightBarButtonItems = [doneButton, mergeButton, deleteButton]
   }
 
   @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
     tableView.editing = false
     navigationItem.rightBarButtonItems = [editButton, addButton]
+  }
+
+  @IBAction func mergeButtonPressed(sender: UIBarButtonItem) {
+    var firstEntry: Entry!
+    if let selectedRows = tableView.indexPathsForSelectedRows() {
+      if selectedRows.count <= 1 { return }
+      for (index, indexPath) in enumerate(selectedRows) {
+        let indexPath = indexPath as! NSIndexPath
+        if index == 0 {
+          firstEntry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
+        } else {
+          let entry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
+          firstEntry.duration = firstEntry.duration.integerValue + entry.duration.integerValue
+          firstEntry.syncStatus = .Changed
+          entry.archived = true
+          entry.syncStatus = .Changed
+        }
+      }
+      sync()
+    }
+  }
+
+  @IBAction func deleteButtonPressed(sender: UIBarButtonItem) {
+    if let selectedRows = tableView.indexPathsForSelectedRows() {
+      for indexPath in selectedRows {
+        let indexPath = indexPath as! NSIndexPath
+        let entry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
+        entry.archived = true
+        entry.syncStatus = .Changed
+      }
+      sync()
+    }
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

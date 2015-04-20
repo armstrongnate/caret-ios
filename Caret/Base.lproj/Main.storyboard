@@ -54,8 +54,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="naF-9z-1WQ" id="ZxP-U4-9A5"/>
+                        <outlet property="deleteButton" destination="os8-El-b5A" id="7XM-AH-1fW"/>
                         <outlet property="doneButton" destination="KPM-rI-Aqh" id="Bi0-wy-XiN"/>
                         <outlet property="editButton" destination="vdQ-di-RO4" id="vWj-Gm-pwY"/>
+                        <outlet property="mergeButton" destination="FzV-Iz-Phn" id="wXC-sf-Bb4"/>
                         <outlet property="tableView" destination="7wc-bE-Gj2" id="IET-fB-ezL"/>
                         <outlet property="weeklyCalendarView" destination="qI5-Cc-D56" id="2kg-R5-7ba"/>
                         <segue destination="WlZ-ZM-YMv" kind="presentation" identifier="editEntry" id="UW3-fw-xz5"/>
@@ -75,6 +77,16 @@
                 <barButtonItem style="plain" systemItem="done" id="KPM-rI-Aqh">
                     <connections>
                         <action selector="doneButtonPressed:" destination="9pv-A4-QxB" id="cD1-ve-SU3"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="Merge" style="plain" id="FzV-Iz-Phn">
+                    <connections>
+                        <action selector="mergeButtonPressed:" destination="9pv-A4-QxB" id="HGm-a9-S8g"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem title="Delete" id="os8-El-b5A">
+                    <connections>
+                        <action selector="deleteButtonPressed:" destination="9pv-A4-QxB" id="25X-pS-ceW"/>
                     </connections>
                 </barButtonItem>
             </objects>
