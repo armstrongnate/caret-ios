@@ -62,11 +62,11 @@ class ClientsViewController: UITableViewController {
   }
 
   @IBAction func unwindFromCancelClient(segue: UIStoryboardSegue) {
-    dismissViewControllerAnimated(true, completion: nil)
+    // noop
   }
 
   @IBAction func unwindFromSaveClient(segue: UIStoryboardSegue) {
-    dismissViewControllerAnimated(true, completion: nil)
+    // noop
   }
 
   func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
