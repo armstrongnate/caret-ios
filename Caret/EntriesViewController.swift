@@ -19,6 +19,7 @@ class EntriesViewController: UIViewController {
   @IBOutlet weak var doneButton: UIBarButtonItem!
 
   var context: NSManagedObjectContext!
+  var syncController: SyncController!
   var date: NSDate!
   var mergingCell: MergingCellImageView!
   var entries: [Entry] = [] // TODO: remove this
@@ -39,7 +40,7 @@ class EntriesViewController: UIViewController {
     let fetchRequest = NSFetchRequest()
     let entity = NSEntityDescription.entityForName("Entry", inManagedObjectContext: self.context)
     fetchRequest.entity = entity
-    let sort = NSSortDescriptor(key: "notes", ascending: true)
+    let sort = NSSortDescriptor(key: "project.name", ascending: true)
     fetchRequest.sortDescriptors = [sort]
     let controller = NSFetchedResultsController(
       fetchRequest: fetchRequest,
@@ -59,7 +60,14 @@ class EntriesViewController: UIViewController {
     let refreshControlTableViewController = UITableViewController(style: tableView.style)
     refreshControlTableViewController.tableView = tableView
     refreshControlTableViewController.refreshControl = refreshControl
-//    refreshControl.addTarget(self, action: "fetchHole", forControlEvents: .ValueChanged)
+    refreshControl.addTarget(self, action: "sync", forControlEvents: .ValueChanged)
+
+
+    let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    syncContext.parentContext = context
+    syncController = SyncController(context: syncContext) {
+      self.refreshControl.endRefreshing()
+    }
 
     // setup
     weeklyCalendarView.delegate = self
@@ -79,6 +87,7 @@ class EntriesViewController: UIViewController {
 
   @IBAction func unwindFromSaveEntry(segue: UIStoryboardSegue) {
     dismissViewControllerAnimated(true, completion: nil)
+    tableView.reloadData()
   }
 
   @IBAction func editButtonPressed(sender: UIBarButtonItem) {
@@ -100,14 +109,18 @@ class EntriesViewController: UIViewController {
       let entry: Entry
       if segue.identifier == "newEntry" {
         entry = NSEntityDescription.insertNewObjectForEntityForName("Entry", inManagedObjectContext: childContext) as! Entry
+        entry.apiID = nil
         entry.guid = NSUUID().UUIDString
         entry.notes = ""
         entry.duration = 0
         entry.happened_on = date
+        entry.archived = false
+        entryForm.projectsContext = childContext
       } else {
         let indexPath = sender as! NSIndexPath
         entry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
         entryForm.project = entry.project
+        entryForm.projectsContext = context
       }
 
       entryForm.entry = entry
@@ -138,6 +151,10 @@ class EntriesViewController: UIViewController {
     } else {
       println("entries fetch error \(error)")
     }
+  }
+
+  func sync() {
+    syncController.sync(["entries"])
   }
 
 }

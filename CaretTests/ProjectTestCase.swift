@@ -35,7 +35,7 @@ class ProjectTestCase: CoreDataTestCase {
       project.guid = "123abc"
       project.apiID = 10
       project.client = client
-      let json = project.toJSON()
+      let json = project.toJSON(NSDateFormatter())
       XCTAssertEqual(json["name"] as! String, "My Project", "name matches")
       XCTAssertEqual(json["hourly_rate"] as! NSNumber, 85, "hourly_rate matches")
       XCTAssertEqual(json["guid"] as! String, "123abc", "guid matches")

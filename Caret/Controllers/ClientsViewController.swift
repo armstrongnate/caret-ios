@@ -86,6 +86,7 @@ class ClientsViewController: UITableViewController {
         controller.title = "New Client"
         client = NSEntityDescription.insertNewObjectForEntityForName("Client",
           inManagedObjectContext: childContext) as! Client
+        client.apiID = nil
         client.guid = NSUUID().UUIDString
         client.name = ""
         client.hourly_rate = 100 // TODO: use settings hourly rate

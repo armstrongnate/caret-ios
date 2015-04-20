@@ -17,7 +17,8 @@ class ProjectViewController: UITableViewController {
       clientLabel?.text = client?.name ?? "Select Client"
     }
   }
-  var context: NSManagedObjectContext! // set by source
+  var context: NSManagedObjectContext!
+  var clientsContext: NSManagedObjectContext!
   var syncController: SyncController!
 
   @IBOutlet weak var nameTextField: UITextField!
@@ -57,7 +58,7 @@ class ProjectViewController: UITableViewController {
   func pickClient() {
     let storyboard = UIStoryboard(name: "Client", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("clients") as! ClientsViewController
-    vc.context = context.parentContext
+    vc.context = clientsContext
     vc.delegate = self
     navigationController!.pushViewController(vc, animated: true)
   }

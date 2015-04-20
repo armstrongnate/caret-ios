@@ -18,6 +18,7 @@ class EntryViewController: UITableViewController {
   var entry: Entry!
   var project: Project?
   var context: NSManagedObjectContext!
+  var projectsContext: NSManagedObjectContext!
   var syncController: SyncController!
   var durationBackgroundView: UIView!
   lazy var durationSlider: DurationSliderView = {
@@ -82,7 +83,7 @@ class EntryViewController: UITableViewController {
   func pickProject() {
     let storyboard = UIStoryboard(name: "Project", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("projects") as! ProjectsViewController
-    vc.context = context.parentContext
+    vc.context = projectsContext
     vc.delegate = self
     vc.navigationItem.rightBarButtonItem = nil
     navigationController!.pushViewController(vc, animated: true)

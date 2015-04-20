@@ -12,14 +12,18 @@ import CoreData
 
 extension Entry {
 
-  override func toJSON() -> JSONObject {
-    return [
-      "id": apiID ?? "",
+  override func toJSON(formatter: NSDateFormatter) -> JSONObject {
+    var json: JSONObject = [
       "description": notes,
       "duration": duration,
       "guid": guid,
-      "project_id": project.apiID ?? ""
+      "project_id": project.apiID ?? "",
+      "happened_on": formatter.stringFromDate(happened_on)
     ]
+    if let id = apiID {
+      json["id"] = id
+    }
+    return json
   }
 
   override func fromJSON(json: JSONObject, formatter: NSDateFormatter, context: NSManagedObjectContext) {

@@ -33,14 +33,21 @@ class EntryTestCase: CoreDataTestCase {
       entry.notes = "Worked on something."
       entry.duration = 60
       entry.guid = "123abc"
-      entry.apiID = 10
       entry.project = project
-      let json = entry.toJSON()
+      entry.happened_on = NSDate()
+      entry.apiID = nil
+      let dateFormatter = NSDateFormatter()
+      dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+      var json = entry.toJSON(dateFormatter)
+      XCTAssertNil(json["id"], "id is nil")
       XCTAssertEqual(json["description"] as! String, "Worked on something.", "notes matches")
       XCTAssertEqual(json["duration"] as! NSNumber, 60, "duration matches")
       XCTAssertEqual(json["guid"] as! String, "123abc", "guid matches")
-      XCTAssertEqual(json["id"] as! NSNumber, 10, "id matches")
       XCTAssertEqual(json["project_id"] as! NSNumber, 1, "project id matches")
+      XCTAssertNotNil(json["happened_on"] as! String, "happened_on not nil")
+      entry.apiID = 10
+      json = entry.toJSON(dateFormatter)
+      XCTAssertEqual(json["id"] as! NSNumber, 10, "id matches")
     }
 
   }

@@ -12,14 +12,17 @@ import CoreData
 
 extension Project {
 
-  override func toJSON() -> JSONObject {
-    return [
-      "id": apiID ?? "",
+  override func toJSON(formatter: NSDateFormatter) -> JSONObject {
+    var json: JSONObject = [
       "name": name,
       "hourly_rate": hourly_rate,
       "guid": guid,
       "client_id": client.apiID ?? ""
     ]
+    if let id = apiID {
+      json["id"] = id
+    }
+    return json
   }
 
   override func fromJSON(json: JSONObject, formatter: NSDateFormatter, context: NSManagedObjectContext) {

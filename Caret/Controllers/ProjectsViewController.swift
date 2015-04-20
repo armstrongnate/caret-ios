@@ -86,15 +86,18 @@ class ProjectsViewController: UITableViewController {
         controller.title = "New Project"
         project = NSEntityDescription.insertNewObjectForEntityForName("Project",
           inManagedObjectContext: childContext) as! Project
+        project.apiID = nil
         project.guid = NSUUID().UUIDString
         project.name = ""
         project.hourly_rate = 100 // TODO: use settings hourly rate
+        controller.clientsContext = childContext
       } else {
         controller.title = "Edit Project"
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPathForCell(cell)!
         project = fetchedResultsController.objectAtIndexPath(indexPath) as! Project
         controller.client = project.client
+        controller.clientsContext = context
       }
 
       controller.project = project

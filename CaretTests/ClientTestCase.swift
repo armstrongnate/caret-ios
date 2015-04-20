@@ -58,15 +58,16 @@ class ClientTestCase: CoreDataTestCase {
       client.hourly_rate = 85
       client.guid = "abc123"
       client.apiID = 10
-      var json = client.toJSON()
+      let formatter = NSDateFormatter()
+      var json = client.toJSON(formatter)
       XCTAssertEqual(json["name"] as! String, "My Client", "name matches")
       XCTAssertEqual(json["hourly_rate"] as! NSNumber, 85, "hourly_rate matches")
       XCTAssertEqual(json["guid"] as! String, "abc123", "guid matches")
       XCTAssertEqual(json["id"] as! NSNumber, 10, "id matches")
 
       client.apiID = nil
-      json = client.toJSON()
-      XCTAssertEqual(json["id"] as! String, "", "id can be blank")
+      json = client.toJSON(formatter)
+      XCTAssertNil(json["id"], "id can be blank")
     }
   }
 

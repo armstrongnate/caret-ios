@@ -61,7 +61,7 @@ class SyncController: NSObject {
   func syncClass(name: String) {
     if self.names[name] == nil { return }
     let objects = self.managedObjectsForClass(self.names[name]!, withSyncStatus: .Changed)
-    let jsonObjects = objects.map{ $0.toJSON() }
+    let jsonObjects = objects.map{ $0.toJSON(self.dateFormatter) }
     var params: JSONObject = [name: jsonObjects]
     params["api_key"] = kMyAPIKey
     let lastUpdate = self.mostRecentUpdatedAtDateForClass(self.names[name]!) ?? NSDate(timeIntervalSince1970: 0)
@@ -166,7 +166,7 @@ extension NSManagedObject {
     set { setValue(newValue.rawValue, forKey: "sync_status") }
   }
 
-  func toJSON() -> JSONObject {
+  func toJSON(formatter: NSDateFormatter) -> JSONObject {
     fatalError("Method unimplemented")
   }
 
