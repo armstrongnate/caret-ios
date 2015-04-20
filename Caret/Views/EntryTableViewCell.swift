@@ -39,6 +39,7 @@ class EntryTableViewCell: UITableViewCell {
     super.awakeFromNib()
     contentView.layer.borderWidth = 2.0
     contentView.layer.borderColor = UIColor.whiteColor().CGColor
+    multipleSelectionBackgroundView = UIView()
 
     NSNotificationCenter.defaultCenter().addObserver(self,
       selector: "onMergeable:",
