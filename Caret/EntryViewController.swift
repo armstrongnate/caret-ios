@@ -7,10 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class EntryViewController: UITableViewController {
 
+  @IBOutlet weak var projectLabel: UILabel!
+  @IBOutlet weak var notesTextView: UITextView!
+  @IBOutlet weak var happenedOnLabel: UILabel!
+
   var entry: Entry!
+  var project: Project?
+  var happenedOn: NSDate?
+  var context: NSManagedObjectContext!
   lazy var durationSlider: DurationSliderView = {
     let slider = DurationSliderView()
     slider.addTarget(self, action: "durationValueChanged:", forControlEvents: .ValueChanged)
@@ -23,12 +31,43 @@ class EntryViewController: UITableViewController {
     label.textAlignment = .Center
     return label
   }()
+  lazy var dateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "MM/dd/yyyy"
+    return formatter
+  }()
 
 
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Edit Entry"
     tableView.keyboardDismissMode = .Interactive
+    projectLabel.text = project?.name ?? ""
+    happenedOnLabel.text = ""
+    if let happenedOn = happenedOn {
+      happenedOnLabel.text = dateFormatter.stringFromDate(happenedOn)
+    }
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    durationSlider.value = entry.duration.doubleValue / 60.0 / 60.0
+  }
+
+  @IBAction func save() {
+    if let project = project, happenedOn = happenedOn {
+      entry.duration = durationSlider.value * 60
+      entry.notes = notesTextView.text
+      entry.happened_on = NSDate() // TODO: use date from form
+      entry.project = project
+      var error: NSError?
+      if context.save(&error) {
+        performSegueWithIdentifier("unwindFromSaveEntry", sender: self)
+//        syncController.sync(["entries"])
+      }
+    } else {
+      // TODO: show that project is required
+    }
   }
 
   func durationValueChanged(durationSlider: DurationSliderView) {
@@ -61,7 +100,6 @@ extension EntryViewController: UITableViewDelegate {
       let width = CGRectGetWidth(tableView.frame)
       let labelHeight = durationHeaderHeight - 44
       durationLabel.frame = CGRectMake(0, 0, width, labelHeight)
-      durationLabel.text = "00:00"
       durationSlider.frame = CGRectMake(0, labelHeight, width, 44)
       durationSlider.minimumValue = 0
       durationSlider.maximumValue = 12

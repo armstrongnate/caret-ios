@@ -2,82 +2,23 @@
 //  Entry.swift
 //  Caret
 //
-//  Created by Nate Armstrong on 3/18/15.
+//  Created by Nate Armstrong on 4/19/15.
 //  Copyright (c) 2015 Nate Armstrong. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreData
 
-final class Entry: NSObject {
+class Entry: NSManagedObject {
 
-  var entryID: NSNumber?
-  var projectID: NSNumber?
-  var notes: String?
-  var happenedOn: NSDate!
-  var duration: NSNumber!
-
-
-  private override init() {
-    super.init()
-  }
-
-}
-
-extension Entry: ResponseObjectSerializable {
-
-  convenience init?(response: NSHTTPURLResponse, representation: AnyObject) {
-    self.init()
-    entryID = representation.valueForKeyPath("id") as? NSNumber
-    notes = representation.valueForKeyPath("description") as? String
-    let happenedOnString = representation.valueForKeyPath("happened_on") as! String
-    happenedOn = NSDate(fromString: happenedOnString, withFormat: "yyyy-MM-dd")
-    duration = representation.valueForKeyPath("duration") as! NSNumber
-
-    // project
-    if let projectID = representation.valueForKeyPath("project_id") as? NSNumber {
-      self.projectID = projectID
-    }
-  }
-
-  func toJSON() -> [String : AnyObject] {
-    var json: [String: AnyObject] = [:]
-    if let entryID = entryID {
-      json["id"] = entryID
-    }
-    json["notes"] = notes ?? ""
-    json["duration"] = duration
-    if let projectID = projectID {
-      json["project_id"] = projectID
-    } else {
-      json["project_id"] = ""
-    }
-    return ["entry": json]
-  }
-
-  func resourceID() -> NSNumber? {
-    return entryID
-  }
-
-}
-
-extension Entry: ResponseCollectionSerializable {
-
-  class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Entry] {
-    var entries: [Entry] = []
-    for dict in representation as! NSArray {
-      if let entry = Entry(response: response, representation: dict as! NSObject) {
-        entries.append(entry)
-      }
-    }
-    return entries
-  }
-
-}
-
-extension Entry: Printable {
-
-  override var description: String {
-    return self.notes ?? "no notes"
-  }
+    @NSManaged var updated_at: NSDate?
+    @NSManaged var happened_on: NSDate
+    @NSManaged var archived: NSNumber
+    @NSManaged var duration: NSNumber
+    @NSManaged var guid: String
+    @NSManaged var apiID: NSNumber?
+    @NSManaged var notes: String
+    @NSManaged var sync_status: NSNumber
+    @NSManaged var project: Project
 
 }

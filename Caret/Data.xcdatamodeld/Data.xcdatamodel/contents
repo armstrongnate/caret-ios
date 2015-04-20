@@ -10,6 +10,17 @@
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="client" inverseEntity="Project" syncable="YES"/>
     </entity>
+    <entity name="Entry" representedClassName="Caret.Entry" syncable="YES">
+        <attribute name="apiID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="archived" attributeType="Boolean" syncable="YES"/>
+        <attribute name="duration" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="guid" attributeType="String" syncable="YES"/>
+        <attribute name="happened_on" attributeType="Date" syncable="YES"/>
+        <attribute name="notes" attributeType="String" syncable="YES"/>
+        <attribute name="sync_status" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="project" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="entries" inverseEntity="Project" syncable="YES"/>
+    </entity>
     <entity name="Project" representedClassName="Caret.Project" syncable="YES">
         <attribute name="apiID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -19,9 +30,11 @@
         <attribute name="sync_status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="projects" inverseEntity="Client" syncable="YES"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="project" inverseEntity="Entry" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Client" positionX="-63" positionY="-18" width="128" height="163"/>
-        <element name="Project" positionX="162" positionY="-9" width="128" height="163"/>
+        <element name="Client" positionX="-38" positionY="-9" width="128" height="163"/>
+        <element name="Project" positionX="162" positionY="-9" width="128" height="178"/>
+        <element name="Entry" positionX="360" positionY="-9" width="128" height="178"/>
     </elements>
 </model>

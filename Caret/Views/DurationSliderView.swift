@@ -13,7 +13,12 @@ class DurationSliderView: UIControl {
   var phase = 0
   var numberOfPhases = 2
   var zoomedLengthInMinutes: Double = 2
-  var value: Double = 0.0
+  var value: Double = 0.0 {
+    didSet {
+      setNeedsLayout()
+      sendActionsForControlEvents(.ValueChanged)
+    }
+  }
   var padding: CGFloat = 60
   let pinColor = UIColor.secondaryColor()
   let durationColor = UIColor.secondaryColor().colorWithAlphaComponent(0.80)

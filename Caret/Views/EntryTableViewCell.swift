@@ -52,4 +52,13 @@ class EntryTableViewCell: UITableViewCell {
     }
   }
 
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    if editing {
+      backgroundColor = UIColor.whiteColor()
+      backgroundView?.backgroundColor = UIColor.whiteColor()
+      contentView.backgroundColor = UIColor.whiteColor()
+    }
+  }
+
 }

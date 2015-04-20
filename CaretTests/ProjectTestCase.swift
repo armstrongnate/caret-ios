@@ -18,7 +18,7 @@ class ProjectTestCase: CoreDataTestCase {
     super.setUp()
     let entity = NSEntityDescription.entityForName("Project", inManagedObjectContext: managedObjectContext!)
     project = Project(entity: entity!, insertIntoManagedObjectContext: managedObjectContext!)
-    XCTAssertNotNil(project, "client is not nil")
+    XCTAssertNotNil(project, "project is not nil")
   }
 
   override func tearDown() {

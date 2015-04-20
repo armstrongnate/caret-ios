@@ -35,7 +35,7 @@ class ProjectsViewController: UITableViewController {
     )
     controller.delegate = self
     return controller
-    }()
+  }()
 
   override func viewDidLoad() {
     super.viewDidLoad()

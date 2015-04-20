@@ -9,14 +9,9 @@
 /* Begin PBXBuildFile section */
 		431166FF1ACE123D00ED78BA /* EntryAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 431166FE1ACE123D00ED78BA /* EntryAccessoryView.xib */; };
 		431167011ACE125A00ED78BA /* EntryAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431167001ACE125A00ED78BA /* EntryAccessoryView.swift */; };
-		4319E0CD1ABA59CE006BFA40 /* CaretAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */; };
-		4319E0CF1ABA5A66006BFA40 /* Caret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0CE1ABA5A66006BFA40 /* Caret.swift */; };
-		4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D11ABA5ADB006BFA40 /* Entry.swift */; };
 		4319E0D61ABA73A9006BFA40 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D51ABA73A9006BFA40 /* NSDate+Utilities.m */; };
 		4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D81ABA78F3006BFA40 /* Calendar.swift */; };
 		4319E0DB1ABA7CE2006BFA40 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */; };
-		4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */; };
-		4319E0E21ABA8515006BFA40 /* EntryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E11ABA8515006BFA40 /* EntryStore.swift */; };
 		4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */; };
 		432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */; };
 		432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */; };
@@ -37,6 +32,11 @@
 		4388238E1AE3572500A24D02 /* ProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */; };
 		438823901AE37DDD00A24D02 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388238F1AE37DDD00A24D02 /* Client.swift */; };
 		438823911AE37E2100A24D02 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388238F1AE37DDD00A24D02 /* Client.swift */; };
+		438823951AE42BE500A24D02 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438823941AE42BE500A24D02 /* Entry.swift */; };
+		438823971AE42FE200A24D02 /* EntryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438823961AE42FE200A24D02 /* EntryHelper.swift */; };
+		438823991AE4325100A24D02 /* EntryTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438823981AE4325100A24D02 /* EntryTestCase.swift */; };
+		4388239A1AE4327700A24D02 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438823941AE42BE500A24D02 /* Entry.swift */; };
+		4388239B1AE4327700A24D02 /* EntryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438823961AE42FE200A24D02 /* EntryHelper.swift */; };
 		438CB0041AE2DC2500E0F1E2 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0031AE2DC2500E0F1E2 /* Project.swift */; };
 		438CB0061AE2DC9800E0F1E2 /* ProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */; };
 		438CB0091AE3171900E0F1E2 /* Project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438CB0071AE3171900E0F1E2 /* Project.storyboard */; };
@@ -71,7 +71,6 @@
 		43E012941A994A0B00647961 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E0128D1A994A0B00647961 /* UIImage+CL.m */; };
 		43E012961A9963C100647961 /* NSDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012951A9963C100647961 /* NSDate+.swift */; };
 		43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012971A99A57D00647961 /* SettingsViewController.swift */; };
-		43E589E61ABB0F7F00655DDD /* ProjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E589E51ABB0F7F00655DDD /* ProjectStore.swift */; };
 		43EB3D881ADB090E00111563 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB3D861ADB090E00111563 /* DashboardViewController.swift */; };
 		43EB3D891ADB090E00111563 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB3D871ADB090E00111563 /* DashboardViewController.xib */; };
 		43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */; };
@@ -99,15 +98,10 @@
 /* Begin PBXFileReference section */
 		431166FE1ACE123D00ED78BA /* EntryAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EntryAccessoryView.xib; path = Views/EntryAccessoryView.xib; sourceTree = "<group>"; };
 		431167001ACE125A00ED78BA /* EntryAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryAccessoryView.swift; path = Views/EntryAccessoryView.swift; sourceTree = "<group>"; };
-		4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaretAPI.swift; path = Utils/CaretAPI.swift; sourceTree = "<group>"; };
-		4319E0CE1ABA5A66006BFA40 /* Caret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caret.swift; sourceTree = "<group>"; };
-		4319E0D11ABA5ADB006BFA40 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Models/Entry.swift; sourceTree = "<group>"; };
 		4319E0D41ABA73A9006BFA40 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		4319E0D51ABA73A9006BFA40 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		4319E0D81ABA78F3006BFA40 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Calendar.swift; path = Components/Calendar.swift; sourceTree = "<group>"; };
 		4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+.swift"; path = "Extensions/UIViewController+.swift"; sourceTree = "<group>"; };
-		4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesList.swift; sourceTree = "<group>"; };
-		4319E0E11ABA8515006BFA40 /* EntryStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryStore.swift; path = Stores/EntryStore.swift; sourceTree = "<group>"; };
 		4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 		432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryTableViewCell.swift; path = Views/EntryTableViewCell.swift; sourceTree = "<group>"; };
 		432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EntryTableViewCell.xib; path = Views/EntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -125,6 +119,9 @@
 		4351B99E1A9AAB440008E8CD /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTestCase.swift; sourceTree = "<group>"; };
 		4388238F1AE37DDD00A24D02 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Models/Client.swift; sourceTree = "<group>"; };
+		438823941AE42BE500A24D02 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Models/Entry.swift; sourceTree = "<group>"; };
+		438823961AE42FE200A24D02 /* EntryHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryHelper.swift; path = Models/EntryHelper.swift; sourceTree = "<group>"; };
+		438823981AE4325100A24D02 /* EntryTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTestCase.swift; sourceTree = "<group>"; };
 		438CB0031AE2DC2500E0F1E2 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = Models/Project.swift; sourceTree = "<group>"; };
 		438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectHelper.swift; path = Models/ProjectHelper.swift; sourceTree = "<group>"; };
 		438CB0081AE3171900E0F1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Project.storyboard; sourceTree = "<group>"; };
@@ -170,7 +167,6 @@
 		43E0128D1A994A0B00647961 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
 		43E012951A9963C100647961 /* NSDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+.swift"; sourceTree = "<group>"; };
 		43E012971A99A57D00647961 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		43E589E51ABB0F7F00655DDD /* ProjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectStore.swift; path = Stores/ProjectStore.swift; sourceTree = "<group>"; };
 		43EB3D861ADB090E00111563 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashboardViewController.swift; path = Controllers/DashboardViewController.swift; sourceTree = "<group>"; };
 		43EB3D871ADB090E00111563 /* DashboardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DashboardViewController.xib; path = Controllers/DashboardViewController.xib; sourceTree = "<group>"; };
 		43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentEntryNavigationController.swift; path = Controllers/CurrentEntryNavigationController.swift; sourceTree = "<group>"; };
@@ -218,12 +214,13 @@
 		4319E0D01ABA5AC5006BFA40 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				438823941AE42BE500A24D02 /* Entry.swift */,
 				4388238F1AE37DDD00A24D02 /* Client.swift */,
 				438CB0031AE2DC2500E0F1E2 /* Project.swift */,
 				4351B99E1A9AAB440008E8CD /* Resource.swift */,
-				4319E0D11ABA5ADB006BFA40 /* Entry.swift */,
 				43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */,
 				438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */,
+				438823961AE42FE200A24D02 /* EntryHelper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -252,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				4319E0D81ABA78F3006BFA40 /* Calendar.swift */,
-				4319E0DE1ABA83CE006BFA40 /* EntriesList.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -261,8 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */,
-				4319E0E11ABA8515006BFA40 /* EntryStore.swift */,
-				43E589E51ABB0F7F00655DDD /* ProjectStore.swift */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -299,7 +293,6 @@
 			children = (
 				43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */,
 				43BC26101AA6C5CD00CA1E53 /* whereIs.swift */,
-				4319E0CC1ABA59CE006BFA40 /* CaretAPI.swift */,
 				43313E3F1ADF729F006FAF8E /* PersistenceController.swift */,
 				43313E411AE03FD4006FAF8E /* SyncController.swift */,
 			);
@@ -343,7 +336,6 @@
 			isa = PBXGroup;
 			children = (
 				4319E0E01ABA8501006BFA40 /* Stores */,
-				4319E0CE1ABA5A66006BFA40 /* Caret.swift */,
 				4319E0D31ABA5BC8006BFA40 /* Controllers */,
 				4319E0D01ABA5AC5006BFA40 /* Models */,
 				43BC260D1AA6AE9700CA1E53 /* Utils */,
@@ -380,6 +372,7 @@
 				43E012541A993E9800647961 /* Supporting Files */,
 				439FC9421AE1BB4D0079D10F /* SyncControllerTestCase.swift */,
 				4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */,
+				438823981AE4325100A24D02 /* EntryTestCase.swift */,
 			);
 			path = CaretTests;
 			sourceTree = "<group>";
@@ -648,9 +641,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4319E0DF1ABA83CE006BFA40 /* EntriesList.swift in Sources */,
-				43E589E61ABB0F7F00655DDD /* ProjectStore.swift in Sources */,
-				4319E0D21ABA5ADB006BFA40 /* Entry.swift in Sources */,
 				432B08271ABBE0E400DBDF72 /* EntryViewController.swift in Sources */,
 				43E012921A994A0B00647961 /* NSDictionary+CL.m in Sources */,
 				43E012981A99A57D00647961 /* SettingsViewController.swift in Sources */,
@@ -678,7 +668,6 @@
 				4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */,
 				43D587031ACCD0200083F079 /* EasyCast.swift in Sources */,
 				43E0128E1A994A0B00647961 /* CLWeeklyCalendarView.m in Sources */,
-				4319E0E21ABA8515006BFA40 /* EntryStore.swift in Sources */,
 				4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */,
 				43F9DA171ADF60D1005ED457 /* ClientViewController.swift in Sources */,
 				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
@@ -686,16 +675,16 @@
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
 				43CD64BF1AC3C77A00BBD68F /* MergeTableViewController.swift in Sources */,
 				432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */,
-				4319E0CF1ABA5A66006BFA40 /* Caret.swift in Sources */,
 				4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
 				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
 				43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */,
+				438823951AE42BE500A24D02 /* Entry.swift in Sources */,
 				43F9DA151ADF5473005ED457 /* ClientsViewController.swift in Sources */,
+				438823971AE42FE200A24D02 /* EntryHelper.swift in Sources */,
 				438823901AE37DDD00A24D02 /* Client.swift in Sources */,
 				43E012911A994A0B00647961 /* NSDate+CL.m in Sources */,
 				43F9DA0F1ADF39B3005ED457 /* ClientHelper.swift in Sources */,
-				4319E0CD1ABA59CE006BFA40 /* CaretAPI.swift in Sources */,
 				43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */,
 				438CB00B1AE3178400E0F1E2 /* ProjectsViewController.swift in Sources */,
 				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
@@ -709,12 +698,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4388239A1AE4327700A24D02 /* Entry.swift in Sources */,
+				4388239B1AE4327700A24D02 /* EntryHelper.swift in Sources */,
 				438823911AE37E2100A24D02 /* Client.swift in Sources */,
 				4388238D1AE3572500A24D02 /* Project.swift in Sources */,
 				4388238E1AE3572500A24D02 /* ProjectHelper.swift in Sources */,
 				439FC9431AE1BB4D0079D10F /* SyncControllerTestCase.swift in Sources */,
 				439FC9411AE184D30079D10F /* ClientHelper.swift in Sources */,
 				4388238C1AE3570B00A24D02 /* ProjectTestCase.swift in Sources */,
+				438823991AE4325100A24D02 /* EntryTestCase.swift in Sources */,
 				434AC9C51AE17806001D7BF2 /* SyncController.swift in Sources */,
 				434AC9C01AE17742001D7BF2 /* CoreDataTestCase.swift in Sources */,
 				43E012571A993E9800647961 /* CaretTests.swift in Sources */,

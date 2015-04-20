@@ -100,9 +100,10 @@ class DayView: UIView {
 extension Moment {
 
   func toNSDate() -> NSDate? {
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = "yyyy-M-d"
-    return formatter.dateFromString("\(year)-\(month)-\(day)")
+    let epoch = moment(NSDate(timeIntervalSince1970: 0))
+    let timeInterval = self.intervalSince(epoch)
+    let date = NSDate(timeIntervalSince1970: timeInterval.seconds)
+    return date
   }
 
   func isToday() -> Bool {

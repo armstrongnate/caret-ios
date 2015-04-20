@@ -35,3 +35,7 @@ func secondsToTime(s: Int) -> String {
   let minutesSeconds = String(format: "%02d", Int(minutes))
   return "\(hoursSeconds):\(minutesSeconds)"
 }
+
+func secondsToDecimalMinutes(seconds: Int) -> Double {
+  return Double(seconds) / 60.0
+}

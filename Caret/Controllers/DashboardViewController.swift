@@ -153,6 +153,9 @@ extension DashboardViewController: UITableViewDelegate {
     else if identifier == "projects" {
       (vc as! ProjectsViewController).context = persistenceController.managedObjectContext
     }
+    else if identifier == "entries" {
+      (vc as! EntriesViewController).context = persistenceController.managedObjectContext
+    }
     navigationController!.pushViewController(vc, animated: true)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }

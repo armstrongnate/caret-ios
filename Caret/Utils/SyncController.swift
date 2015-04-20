@@ -37,7 +37,8 @@ class SyncController: NSObject {
   }()
   var names = [
     "clients": "Client",
-    "projects": "Project"
+    "projects": "Project",
+    "entries": "Entry"
   ]
 
   init(context: NSManagedObjectContext, callback: SyncCallbackBlock? = nil) {

@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func sync() {
     syncController = SyncController(context: persistenceController.managedObjectContext, callback: showDashboard)
-    syncController.sync(["clients", "projects"])
+    syncController.sync(["clients", "projects", "entries"])
   }
 
   func showDashboard() {
