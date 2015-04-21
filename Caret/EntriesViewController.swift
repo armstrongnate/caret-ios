@@ -243,7 +243,7 @@ extension EntriesViewController: UITableViewDelegate {
     let label = UILabel()
     label.font = UIFont.boldSystemFontOfSize(16)
     label.textColor = UIColor.darkGrayColor()
-    var strDate = date.stringWithFormat("d MMM yyy")
+    var strDate = date.stringWithFormat("MMMM d, yyy")
     if date.isToday() {
       strDate = "Today, \(strDate)"
     }
