@@ -54,6 +54,9 @@ class EntryViewController: UITableViewController {
 
   @IBAction func save() {
     if let project = project {
+      if entry.isNewRecord {
+        entry.guid = NSUUID().UUIDString
+      }
       entry.duration = durationSlider.value * 60 * 60
       entry.notes = notesTextView.text
       entry.happened_on = entry.happened_on
@@ -96,10 +99,22 @@ class EntryViewController: UITableViewController {
     navigationController!.pushViewController(calendar, animated: true)
   }
 
+  func deleteEntry() {
+    let alert = UIAlertController(title: "Delete Entry?", message: "This cannot be undone.", preferredStyle: .ActionSheet)
+    let deleteAction = UIAlertAction(title: "Delete", style: .Destructive) { action in
+      self.entry.archived = true
+      self.save()
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+    alert.addAction(deleteAction)
+    alert.addAction(cancelAction)
+    tableView.deselectRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2), animated: false)
+    presentViewController(alert, animated: true, completion: nil)
+  }
+
 }
 
 // MARK: - Table view delegate
-
 let durationHeaderHeight: CGFloat = 190
 extension EntryViewController: UITableViewDelegate {
 
@@ -133,7 +148,20 @@ extension EntryViewController: UITableViewDelegate {
       pickProject()
     } else if indexPath.section == 0 && indexPath.row == 1 {
       pickDate()
+    } else if indexPath.section == 2 {
+      deleteEntry()
     }
+  }
+
+}
+
+// MARK: - Table view data source
+extension EntryViewController: UITableViewDataSource {
+
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    let sections = super.numberOfSectionsInTableView(tableView)
+    if entry.isNewRecord { return sections - 1 }
+    return sections
   }
 
 }

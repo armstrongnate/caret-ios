@@ -12,6 +12,7 @@ import CoreData
 
 extension Entry {
 
+  var isNewRecord: Bool { return guid.isEmpty }
   var isArchived: Bool { return archived.boolValue }
 
   override func toJSON(formatter: NSDateFormatter) -> JSONObject {

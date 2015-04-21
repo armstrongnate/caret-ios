@@ -145,7 +145,7 @@ class EntriesViewController: UIViewController {
       if segue.identifier == "newEntry" {
         entry = NSEntityDescription.insertNewObjectForEntityForName("Entry", inManagedObjectContext: childContext) as! Entry
         entry.apiID = nil
-        entry.guid = NSUUID().UUIDString
+        entry.guid = ""
         entry.notes = ""
         entry.duration = 0
         entry.happened_on = date
