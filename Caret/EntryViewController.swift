@@ -100,7 +100,7 @@ extension EntryViewController: UITableViewDelegate {
     if section == 0 {
       return durationHeaderHeight
     }
-    return 35
+    return 40
   }
 
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
