@@ -410,8 +410,6 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
         self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
       case .Delete:
         self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-      case .Update:
-        println("in update!")
       default:
         return
     }
