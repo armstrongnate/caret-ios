@@ -89,6 +89,13 @@ class EntryViewController: UITableViewController {
     navigationController!.pushViewController(vc, animated: true)
   }
 
+  func pickDate() {
+    let calendar = CalendarViewController(nibName: "CalendarViewController", bundle: nil)
+    calendar.date = entry.happened_on
+    calendar.delegate = self
+    navigationController!.pushViewController(calendar, animated: true)
+  }
+
 }
 
 // MARK: - Table view delegate
@@ -124,6 +131,8 @@ extension EntryViewController: UITableViewDelegate {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 0 && indexPath.row == 0 {
       pickProject()
+    } else if indexPath.section == 0 && indexPath.row == 1 {
+      pickDate()
     }
   }
 
@@ -151,6 +160,17 @@ extension EntryViewController: DurationSliderViewDelegate {
       self.durationLabel.font = font
       self.durationBackgroundView.backgroundColor = bgColor
     }
+  }
+
+}
+
+// MARK: - Calendar view controller delegate
+extension EntryViewController: CalendarViewControllerDelegate {
+
+  func calendarView(calendarView: CalendarView, didSelectDate date: NSDate) {
+    entry.happened_on = date
+    happenedOnLabel.text = dateFormatter.stringFromDate(entry.happened_on)
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0))!.setNeedsLayout()
   }
 
 }

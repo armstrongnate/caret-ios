@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
-let kApiURL = "http://10.0.1.39"
+let kApiURL = "http://192.168.1.115"
 
 typealias JSONObject = [String: AnyObject]
 typealias SyncDictionary = [String: [NSManagedObject]]

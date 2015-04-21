@@ -51,6 +51,7 @@ class CalendarView: UIView {
   func setup() {
     if let date = contentView.selectedDate {
       contentView.selectVisibleDate(date.day)
+      delegate?.calendarDidSelectDate(moment(date))
       contentView.selectedDate = nil
     }
   }
@@ -93,7 +94,6 @@ extension CalendarView: UIScrollViewDelegate {
         dispatch_async(dispatch_get_main_queue()) {
           if let view = dayView {
             view.selected = true
-            self.delegate?.calendarDidSelectDate(view.date)
           }
         }
       }
