@@ -26,6 +26,8 @@
 		434AC9C01AE17742001D7BF2 /* CoreDataTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AC9BF1AE17742001D7BF2 /* CoreDataTestCase.swift */; };
 		434AC9C21AE17793001D7BF2 /* ClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434AC9C11AE17793001D7BF2 /* ClientTestCase.swift */; };
 		434AC9C51AE17806001D7BF2 /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43313E411AE03FD4006FAF8E /* SyncController.swift */; };
+		434CAA9F1AE5AE1200B7C459 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */; };
+		434CAAA01AE5AE1200B7C459 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */; };
 		4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351B99E1A9AAB440008E8CD /* Resource.swift */; };
 		4388238C1AE3570B00A24D02 /* ProjectTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */; };
 		4388238D1AE3572500A24D02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0031AE2DC2500E0F1E2 /* Project.swift */; };
@@ -116,6 +118,8 @@
 		4345E04E1A9EB409008896D3 /* DurationSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DurationSliderView.swift; path = Views/DurationSliderView.swift; sourceTree = "<group>"; };
 		434AC9BF1AE17742001D7BF2 /* CoreDataTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTestCase.swift; sourceTree = "<group>"; };
 		434AC9C11AE17793001D7BF2 /* ClientTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTestCase.swift; sourceTree = "<group>"; };
+		434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Controllers/CalendarViewController.swift; sourceTree = "<group>"; };
+		434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CalendarViewController.xib; path = Controllers/CalendarViewController.xib; sourceTree = "<group>"; };
 		4351B99E1A9AAB440008E8CD /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTestCase.swift; sourceTree = "<group>"; };
 		4388238F1AE37DDD00A24D02 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Models/Client.swift; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 				43F9DA161ADF60D1005ED457 /* ClientViewController.swift */,
 				438CB00A1AE3178400E0F1E2 /* ProjectsViewController.swift */,
 				438CB00C1AE3179D00E0F1E2 /* ProjectViewController.swift */,
+				434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */,
+				434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -526,6 +532,7 @@
 				438CB0091AE3171900E0F1E2 /* Project.storyboard in Resources */,
 				43E0124B1A993E9800647961 /* LaunchScreen.xib in Resources */,
 				431166FF1ACE123D00ED78BA /* EntryAccessoryView.xib in Resources */,
+				434CAAA01AE5AE1200B7C459 /* CalendarViewController.xib in Resources */,
 				432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */,
 				4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */,
 				43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */,
@@ -677,6 +684,7 @@
 				432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */,
 				4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
+				434CAA9F1AE5AE1200B7C459 /* CalendarViewController.swift in Sources */,
 				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
 				43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */,
 				438823951AE42BE500A24D02 /* Entry.swift in Sources */,

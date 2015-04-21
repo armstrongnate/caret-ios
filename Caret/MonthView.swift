@@ -18,11 +18,21 @@ class MonthView: UIView {
       startsOn = date.startOf(.Months).weekday // Sun is 1
       var numDays = Double(date.endOf(.Months).day + startsOn - 1)
       self.numDays = Int(ceil(numDays / 7.0) * 7)
+      self.numDays = 42 // TODO: add option to always show 6 weeks
       setWeeks()
     }
   }
 
   var weeks: [WeekView] = []
+  var weekLabels: [WeekLabel] = [
+    WeekLabel(day: "Sun"),
+    WeekLabel(day: "Mon"),
+    WeekLabel(day: "Tue"),
+    WeekLabel(day: "Wed"),
+    WeekLabel(day: "Thu"),
+    WeekLabel(day: "Fri"),
+    WeekLabel(day: "Sat"),
+  ]
 
   // these values are expensive to compute so cache them
   var numDays: Int = 30
@@ -45,15 +55,32 @@ class MonthView: UIView {
       addSubview(week)
       weeks.append(week)
     }
+    for label in weekLabels {
+      addSubview(label)
+    }
+  }
+
+  func setdown() {
+    for week in weeks {
+      week.setdown()
+      week.removeFromSuperview()
+    }
   }
 
   override func layoutSubviews() {
     super.layoutSubviews()
+    var x: CGFloat = 0
+    var labelHeight: CGFloat = 37
+    var inset: CGFloat = 7
+    for label in weekLabels {
+      label.frame = CGRectMake(x, inset, bounds.size.width / 7, labelHeight)
+      x = CGRectGetMaxX(label.frame)
+    }
     let numWeeks = Int(numDays / 7)
-    var y: CGFloat = 0
+    var y: CGFloat = labelHeight + inset
     for i in 1...weeks.count {
       let week = weeks[i - 1]
-      week.frame = CGRectMake(0, y, bounds.size.width, bounds.size.height / maxNumWeeks)
+      week.frame = CGRectMake(0, y, bounds.size.width, (bounds.size.height - (labelHeight + inset) - inset) / maxNumWeeks)
       y = CGRectGetMaxY(week.frame)
     }
   }
@@ -64,12 +91,32 @@ class MonthView: UIView {
       var currentDay = date.startOf(.Months).substract(startsOn - 1, .Days) // TODO: substract is not a word
       for i in 1...weeks.count {
         let week = weeks[i - 1]
+        week.month = date
         week.date = currentDay
         currentDay = currentDay.add(7, .Days)
         week.hidden = i > numWeeks
       }
     }
+  }
 
+}
+
+class WeekLabel: UILabel {
+
+  init(day: String) {
+    super.init(frame: CGRectZero)
+    text = day
+    textAlignment = .Center
+    textColor = UIColor(white: 1.0, alpha: 0.3)
+    font = UIFont.boldSystemFontOfSize(16)
+  }
+
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
   }
 
 }

@@ -22,15 +22,11 @@ class DayView: UIView {
   lazy var dateLabel: UILabel = {
     let label = UILabel()
     label.textAlignment = .Center
-    label.textColor = UIColor.blackColor()
     self.addSubview(label)
     return label
   }()
-  var isToday: Bool = false {
-    didSet {
-      dateLabel.backgroundColor = isToday ? UIColor.lightGrayColor() : UIColor.clearColor()
-    }
-  }
+  var isToday: Bool = false
+  var isOtherMonth: Bool = false
   var selected: Bool = false {
     didSet {
       if selected {
@@ -59,10 +55,6 @@ class DayView: UIView {
     super.init(frame: frame)
   }
 
-  deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
-
   override func layoutSubviews() {
     super.layoutSubviews()
     dateLabel.frame = CGRectInset(bounds, 10, 10)
@@ -81,12 +73,15 @@ class DayView: UIView {
   func updateView() {
     if self.selected {
       dateLabel.textColor = UIColor.whiteColor()
-      dateLabel.backgroundColor = UIColor.orangeColor()
+      dateLabel.backgroundColor = UIColor.secondaryColor() // TODO: use appearance
     } else if isToday {
-      dateLabel.textColor = UIColor.blackColor()
-      dateLabel.backgroundColor = UIColor.lightGrayColor()
+      dateLabel.textColor = UIColor.whiteColor()
+      dateLabel.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
+    } else if isOtherMonth {
+      dateLabel.textColor = UIColor(white: 1.0, alpha: 0.3)
+      dateLabel.backgroundColor = UIColor.clearColor()
     } else {
-      self.dateLabel.textColor = UIColor.blackColor()
+      self.dateLabel.textColor = UIColor(white: 1.0, alpha: 0.6)
       self.dateLabel.backgroundColor = UIColor.clearColor()
     }
   }
@@ -109,6 +104,10 @@ extension Moment {
   func isToday() -> Bool {
     let cal = NSCalendar.currentCalendar()
     return cal.isDateInToday(self.toNSDate()!)
+  }
+
+  func isSameMonth(other: Moment) -> Bool {
+    return self.month == other.month && self.year == other.year
   }
 
 }

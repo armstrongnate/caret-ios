@@ -33,6 +33,7 @@ class ContentView: UIScrollView {
     showsVerticalScrollIndicator = false
 
     for month in months {
+      month.setdown()
       month.removeFromSuperview()
     }
 
@@ -116,19 +117,31 @@ class ContentView: UIScrollView {
   func selectDate(date: Moment) {
     selectedDate = date
     setup()
+    selectVisibleDate(date.day)
     setNeedsLayout()
   }
 
   func selectVisibleDate(date: Int) -> DayView? {
-    for week in currentMonth().weeks {
+    let month = currentMonth()
+    for week in month.weeks {
       for day in week.days {
-        if day.date != nil && day.date.month == currentMonth().date.month && day.date.day == date {
+        if day.date != nil && day.date.month == month.date.month && day.date.day == date {
           day.selected = true
           return day
         }
       }
     }
     return nil
+  }
+
+  func removeObservers() {
+    for month in months {
+      for week in month.weeks {
+        for day in week.days {
+          NSNotificationCenter.defaultCenter().removeObserver(day)
+        }
+      }
+    }
   }
 
   func currentMonth() -> MonthView {

@@ -19,6 +19,7 @@ class CalendarView: UIView {
   lazy var contentView: ContentView = {
     let cv = ContentView(frame: CGRectZero)
     cv.delegate = self
+    self.addSubview(cv)
     return cv
   }()
   var delegate: CalendarViewDelegate? {
@@ -38,9 +39,16 @@ class CalendarView: UIView {
     setup()
   }
 
+  override func willMoveToWindow(newWindow: UIWindow?) {
+    if newWindow == nil {
+      NSNotificationCenter.defaultCenter().removeObserver(self)
+      contentView.removeObservers()
+    } else {
+      NSNotificationCenter.defaultCenter().addObserver(self, selector: "dateSelected:", name: CalendarSelectedDayNotification, object: nil)
+    }
+  }
+
   func setup() {
-    addSubview(contentView)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "dateSelected:", name: CalendarSelectedDayNotification, object: nil)
     if let date = contentView.selectedDate {
       contentView.selectVisibleDate(date.day)
       contentView.selectedDate = nil
@@ -79,12 +87,13 @@ extension CalendarView: UIScrollViewDelegate {
   func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     contentView.setContentOffset(CGPointMake(CGRectGetWidth(contentView.frame), contentView.contentOffset.y), animated: true)
     delegate?.calendarDidPageToDate(contentView.currentMonth().date)
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
       if let day = self.selectedDayOnPaged {
         let dayView = self.contentView.selectVisibleDate(day)
         dispatch_async(dispatch_get_main_queue()) {
           if let view = dayView {
             view.selected = true
+            self.delegate?.calendarDidSelectDate(view.date)
           }
         }
       }

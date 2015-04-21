@@ -17,7 +17,7 @@ class WeekView: UIView {
     }
   }
   var days: [DayView] = []
-  weak var month: MonthView!
+  var month: Moment!
 
   required init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -30,14 +30,18 @@ class WeekView: UIView {
   }
 
   func setup() {
-    for day in days {
-      day.removeFromSuperview()
-    }
     days = []
     for _ in 1...7 {
       let day = DayView()
       addSubview(day)
       days.append(day)
+    }
+  }
+
+  func setdown() {
+    for day in days {
+      NSNotificationCenter.defaultCenter().removeObserver(day)
+      day.removeFromSuperview()
     }
   }
 
@@ -57,6 +61,7 @@ class WeekView: UIView {
         let day = days[i - 1]
         let dayDate = date.add(i - 1, .Days)
         day.isToday = dayDate.isToday()
+        day.isOtherMonth = !month.isSameMonth(dayDate)
         day.selected = false
         day.date = dayDate
       }
