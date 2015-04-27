@@ -13,6 +13,7 @@
 		4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0D81ABA78F3006BFA40 /* Calendar.swift */; };
 		4319E0DB1ABA7CE2006BFA40 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */; };
 		4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */; };
+		432A60251AEB0163000CBDFA /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A60241AEB0163000CBDFA /* TimerController.swift */; };
 		432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */; };
 		432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */; };
 		432B08271ABBE0E400DBDF72 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432B08261ABBE0E400DBDF72 /* EntryViewController.swift */; };
@@ -29,6 +30,20 @@
 		434CAA9F1AE5AE1200B7C459 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */; };
 		434CAAA01AE5AE1200B7C459 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */; };
 		4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351B99E1A9AAB440008E8CD /* Resource.swift */; };
+		435C35401AEC564800FA70F2 /* TimerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */; };
+		4377BA7A1AE72AAD001F9B5B /* CaretKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4377BA791AE72AAD001F9B5B /* CaretKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4377BA801AE72AAD001F9B5B /* CaretKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */; };
+		4377BA891AE72AAD001F9B5B /* CaretKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377BA881AE72AAD001F9B5B /* CaretKitTests.swift */; };
+		4377BA8C1AE72AAD001F9B5B /* CaretKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */; };
+		4377BA8D1AE72AAD001F9B5B /* CaretKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4377BA9F1AE73342001F9B5B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377BA9E1AE73342001F9B5B /* InterfaceController.swift */; };
+		4377BAA11AE73342001F9B5B /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377BAA01AE73342001F9B5B /* NotificationController.swift */; };
+		4377BAA31AE73342001F9B5B /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377BAA21AE73342001F9B5B /* GlanceController.swift */; };
+		4377BAA51AE73342001F9B5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4377BAA41AE73342001F9B5B /* Images.xcassets */; };
+		4377BAA91AE73343001F9B5B /* Caret WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 4377BAA81AE73343001F9B5B /* Caret WatchKit App.app */; };
+		4377BAB11AE73343001F9B5B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4377BAAF1AE73343001F9B5B /* Interface.storyboard */; };
+		4377BAB31AE73343001F9B5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4377BAB21AE73343001F9B5B /* Images.xcassets */; };
+		4377BAB61AE73343001F9B5B /* Caret WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4377BA991AE73342001F9B5B /* Caret WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4388238C1AE3570B00A24D02 /* ProjectTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */; };
 		4388238D1AE3572500A24D02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0031AE2DC2500E0F1E2 /* Project.swift */; };
 		4388238E1AE3572500A24D02 /* ProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */; };
@@ -83,11 +98,47 @@
 		43F9DA151ADF5473005ED457 /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA141ADF5473005ED457 /* ClientsViewController.swift */; };
 		43F9DA171ADF60D1005ED457 /* ClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA161ADF60D1005ED457 /* ClientViewController.swift */; };
 		50F4A046D2E4FFA390D4DAC8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6D868327F20C64E537699C1D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9EA35E48B42C9AEBB867C70F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 522EB100A18F94DE90C6F40F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CAA88A4407C3A9A7A6F8A95A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4377BA811AE72AAD001F9B5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E012311A993E9800647961 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4377BA741AE72AAC001F9B5B;
+			remoteInfo = CaretKit;
+		};
+		4377BA831AE72AAD001F9B5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E012311A993E9800647961 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43E012381A993E9800647961;
+			remoteInfo = Caret;
+		};
+		4377BA8A1AE72AAD001F9B5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E012311A993E9800647961 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4377BA741AE72AAC001F9B5B;
+			remoteInfo = CaretKit;
+		};
+		4377BAAA1AE73343001F9B5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E012311A993E9800647961 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4377BAA71AE73343001F9B5B;
+			remoteInfo = "Caret WatchKit App";
+		};
+		4377BAB41AE73343001F9B5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43E012311A993E9800647961 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4377BA981AE73342001F9B5B;
+			remoteInfo = "Caret WatchKit Extension";
+		};
 		43E012511A993E9800647961 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43E012311A993E9800647961 /* Project object */;
@@ -97,6 +148,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4377BA911AE72AAD001F9B5B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4377BA8D1AE72AAD001F9B5B /* CaretKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BABD1AE73343001F9B5B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4377BAB61AE73343001F9B5B /* Caret WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		431166FE1ACE123D00ED78BA /* EntryAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EntryAccessoryView.xib; path = Views/EntryAccessoryView.xib; sourceTree = "<group>"; };
 		431167001ACE125A00ED78BA /* EntryAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryAccessoryView.swift; path = Views/EntryAccessoryView.swift; sourceTree = "<group>"; };
@@ -105,6 +181,7 @@
 		4319E0D81ABA78F3006BFA40 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Calendar.swift; path = Components/Calendar.swift; sourceTree = "<group>"; };
 		4319E0DA1ABA7CE2006BFA40 /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+.swift"; path = "Extensions/UIViewController+.swift"; sourceTree = "<group>"; };
 		4319E0E31ABA85A4006BFA40 /* EventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
+		432A60241AEB0163000CBDFA /* TimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimerController.swift; path = Utils/TimerController.swift; sourceTree = "<group>"; };
 		432B08221ABBDA6A00DBDF72 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryTableViewCell.swift; path = Views/EntryTableViewCell.swift; sourceTree = "<group>"; };
 		432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EntryTableViewCell.xib; path = Views/EntryTableViewCell.xib; sourceTree = "<group>"; };
 		432B08261ABBE0E400DBDF72 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +198,26 @@
 		434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Controllers/CalendarViewController.swift; sourceTree = "<group>"; };
 		434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CalendarViewController.xib; path = Controllers/CalendarViewController.xib; sourceTree = "<group>"; };
 		4351B99E1A9AAB440008E8CD /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimerBarButtonItem.swift; path = Views/TimerBarButtonItem.swift; sourceTree = "<group>"; };
+		435C435D1AE733B8008022F7 /* Caret.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Caret.entitlements; sourceTree = "<group>"; };
+		435C435E1AE733DF008022F7 /* Caret WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Caret WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		4377BA751AE72AAC001F9B5B /* CaretKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CaretKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4377BA781AE72AAD001F9B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4377BA791AE72AAD001F9B5B /* CaretKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaretKit.h; sourceTree = "<group>"; };
+		4377BA7F1AE72AAD001F9B5B /* CaretKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaretKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4377BA871AE72AAD001F9B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4377BA881AE72AAD001F9B5B /* CaretKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaretKitTests.swift; sourceTree = "<group>"; };
+		4377BA991AE73342001F9B5B /* Caret WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Caret WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4377BA9C1AE73342001F9B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4377BA9D1AE73342001F9B5B /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		4377BA9E1AE73342001F9B5B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		4377BAA01AE73342001F9B5B /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		4377BAA21AE73342001F9B5B /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		4377BAA41AE73342001F9B5B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4377BAA81AE73343001F9B5B /* Caret WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caret WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4377BAAE1AE73343001F9B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4377BAB01AE73343001F9B5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		4377BAB21AE73343001F9B5B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTestCase.swift; sourceTree = "<group>"; };
 		4388238F1AE37DDD00A24D02 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Models/Client.swift; sourceTree = "<group>"; };
 		438823941AE42BE500A24D02 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Models/Entry.swift; sourceTree = "<group>"; };
@@ -186,11 +283,35 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4377BA711AE72AAC001F9B5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BA7C1AE72AAD001F9B5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4377BA801AE72AAD001F9B5B /* CaretKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BA961AE73342001F9B5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D868327F20C64E537699C1D /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E012361A993E9800647961 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				50F4A046D2E4FFA390D4DAC8 /* Pods.framework in Frameworks */,
+				4377BA8C1AE72AAD001F9B5B /* CaretKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +411,83 @@
 				432B08231ABBDA6A00DBDF72 /* EntryTableViewCell.xib */,
 				431166FE1ACE123D00ED78BA /* EntryAccessoryView.xib */,
 				431167001ACE125A00ED78BA /* EntryAccessoryView.swift */,
+				435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4377BA761AE72AAD001F9B5B /* CaretKit */ = {
+			isa = PBXGroup;
+			children = (
+				4377BA791AE72AAD001F9B5B /* CaretKit.h */,
+				4377BA771AE72AAD001F9B5B /* Supporting Files */,
+			);
+			path = CaretKit;
+			sourceTree = "<group>";
+		};
+		4377BA771AE72AAD001F9B5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4377BA781AE72AAD001F9B5B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4377BA851AE72AAD001F9B5B /* CaretKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4377BA881AE72AAD001F9B5B /* CaretKitTests.swift */,
+				4377BA861AE72AAD001F9B5B /* Supporting Files */,
+			);
+			path = CaretKitTests;
+			sourceTree = "<group>";
+		};
+		4377BA861AE72AAD001F9B5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4377BA871AE72AAD001F9B5B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4377BA9A1AE73342001F9B5B /* Caret WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				435C435E1AE733DF008022F7 /* Caret WatchKit Extension.entitlements */,
+				4377BA9E1AE73342001F9B5B /* InterfaceController.swift */,
+				4377BAA01AE73342001F9B5B /* NotificationController.swift */,
+				4377BAA21AE73342001F9B5B /* GlanceController.swift */,
+				4377BAA41AE73342001F9B5B /* Images.xcassets */,
+				4377BA9B1AE73342001F9B5B /* Supporting Files */,
+			);
+			path = "Caret WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		4377BA9B1AE73342001F9B5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4377BA9C1AE73342001F9B5B /* Info.plist */,
+				4377BA9D1AE73342001F9B5B /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4377BAAC1AE73343001F9B5B /* Caret WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				4377BAAF1AE73343001F9B5B /* Interface.storyboard */,
+				4377BAB21AE73343001F9B5B /* Images.xcassets */,
+				4377BAAD1AE73343001F9B5B /* Supporting Files */,
+			);
+			path = "Caret WatchKit App";
+			sourceTree = "<group>";
+		};
+		4377BAAD1AE73343001F9B5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4377BAAE1AE73343001F9B5B /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		43BC260D1AA6AE9700CA1E53 /* Utils */ = {
@@ -301,6 +497,7 @@
 				43BC26101AA6C5CD00CA1E53 /* whereIs.swift */,
 				43313E3F1ADF729F006FAF8E /* PersistenceController.swift */,
 				43313E411AE03FD4006FAF8E /* SyncController.swift */,
+				432A60241AEB0163000CBDFA /* TimerController.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -323,6 +520,10 @@
 			children = (
 				43E0123B1A993E9800647961 /* Caret */,
 				43E012531A993E9800647961 /* CaretTests */,
+				4377BA761AE72AAD001F9B5B /* CaretKit */,
+				4377BA851AE72AAD001F9B5B /* CaretKitTests */,
+				4377BA9A1AE73342001F9B5B /* Caret WatchKit Extension */,
+				4377BAAC1AE73343001F9B5B /* Caret WatchKit App */,
 				43E0123A1A993E9800647961 /* Products */,
 				1CA4F498768EF27FE7AA47B3 /* Pods */,
 				927292706E23251BDD55EE5F /* Frameworks */,
@@ -334,6 +535,10 @@
 			children = (
 				43E012391A993E9800647961 /* Caret.app */,
 				43E012501A993E9800647961 /* CaretTests.xctest */,
+				4377BA751AE72AAC001F9B5B /* CaretKit.framework */,
+				4377BA7F1AE72AAD001F9B5B /* CaretKitTests.xctest */,
+				4377BA991AE73342001F9B5B /* Caret WatchKit Extension.appex */,
+				4377BAA81AE73343001F9B5B /* Caret WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,6 +546,7 @@
 		43E0123B1A993E9800647961 /* Caret */ = {
 			isa = PBXGroup;
 			children = (
+				435C435D1AE733B8008022F7 /* Caret.entitlements */,
 				4319E0E01ABA8501006BFA40 /* Stores */,
 				4319E0D31ABA5BC8006BFA40 /* Controllers */,
 				4319E0D01ABA5AC5006BFA40 /* Models */,
@@ -348,15 +554,15 @@
 				4319E0D71ABA78B6006BFA40 /* Components */,
 				4345E0491A9DA05B008896D3 /* Views */,
 				43E0127B1A9944A900647961 /* Extensions */,
+				43E0123C1A993E9800647961 /* Supporting Files */,
 				43E0123E1A993E9800647961 /* AppDelegate.swift */,
 				43E012441A993E9800647961 /* Main.storyboard */,
-				43E012491A993E9800647961 /* LaunchScreen.xib */,
-				43E012471A993E9800647961 /* Images.xcassets */,
-				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
-				43E0123C1A993E9800647961 /* Supporting Files */,
-				43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */,
 				43F9DA121ADF543A005ED457 /* Client.storyboard */,
 				438CB0071AE3171900E0F1E2 /* Project.storyboard */,
+				43E012491A993E9800647961 /* LaunchScreen.xib */,
+				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
+				43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */,
+				43E012471A993E9800647961 /* Images.xcassets */,
 			);
 			path = Caret;
 			sourceTree = "<group>";
@@ -443,7 +649,91 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		4377BA721AE72AAC001F9B5B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4377BA7A1AE72AAD001F9B5B /* CaretKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		4377BA741AE72AAC001F9B5B /* CaretKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4377BA8E1AE72AAD001F9B5B /* Build configuration list for PBXNativeTarget "CaretKit" */;
+			buildPhases = (
+				4377BA701AE72AAC001F9B5B /* Sources */,
+				4377BA711AE72AAC001F9B5B /* Frameworks */,
+				4377BA721AE72AAC001F9B5B /* Headers */,
+				4377BA731AE72AAC001F9B5B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaretKit;
+			productName = CaretKit;
+			productReference = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4377BA7E1AE72AAD001F9B5B /* CaretKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4377BA921AE72AAD001F9B5B /* Build configuration list for PBXNativeTarget "CaretKitTests" */;
+			buildPhases = (
+				4377BA7B1AE72AAD001F9B5B /* Sources */,
+				4377BA7C1AE72AAD001F9B5B /* Frameworks */,
+				4377BA7D1AE72AAD001F9B5B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4377BA821AE72AAD001F9B5B /* PBXTargetDependency */,
+				4377BA841AE72AAD001F9B5B /* PBXTargetDependency */,
+			);
+			name = CaretKitTests;
+			productName = CaretKitTests;
+			productReference = 4377BA7F1AE72AAD001F9B5B /* CaretKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4377BA981AE73342001F9B5B /* Caret WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4377BABA1AE73343001F9B5B /* Build configuration list for PBXNativeTarget "Caret WatchKit Extension" */;
+			buildPhases = (
+				401BA7837D8A870AD89A729A /* Check Pods Manifest.lock */,
+				4377BA951AE73342001F9B5B /* Sources */,
+				4377BA961AE73342001F9B5B /* Frameworks */,
+				4377BA971AE73342001F9B5B /* Resources */,
+				85D7F6F9972D4C84C4EDDF33 /* Embed Pods Frameworks */,
+				932B302E3EF07C2E0A35E562 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4377BAAB1AE73343001F9B5B /* PBXTargetDependency */,
+			);
+			name = "Caret WatchKit Extension";
+			productName = "Caret WatchKit Extension";
+			productReference = 4377BA991AE73342001F9B5B /* Caret WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		4377BAA71AE73343001F9B5B /* Caret WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4377BAB71AE73343001F9B5B /* Build configuration list for PBXNativeTarget "Caret WatchKit App" */;
+			buildPhases = (
+				4377BAA61AE73343001F9B5B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Caret WatchKit App";
+			productName = "Caret WatchKit App";
+			productReference = 4377BAA81AE73343001F9B5B /* Caret WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		43E012381A993E9800647961 /* Caret */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43E0125A1A993E9800647961 /* Build configuration list for PBXNativeTarget "Caret" */;
@@ -454,10 +744,14 @@
 				43E012371A993E9800647961 /* Resources */,
 				87775441C7CB58242D770633 /* Copy Pods Resources */,
 				649E7DB2B758D2682DF240D3 /* Embed Pods Frameworks */,
+				4377BA911AE72AAD001F9B5B /* Embed Frameworks */,
+				4377BABD1AE73343001F9B5B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4377BA8B1AE72AAD001F9B5B /* PBXTargetDependency */,
+				4377BAB51AE73343001F9B5B /* PBXTargetDependency */,
 			);
 			name = Caret;
 			productName = Caret;
@@ -494,8 +788,33 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Nate Armstrong";
 				TargetAttributes = {
+					4377BA741AE72AAC001F9B5B = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					4377BA7E1AE72AAD001F9B5B = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 43E012381A993E9800647961;
+					};
+					4377BA981AE73342001F9B5B = {
+						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 8YM7FJN8FY;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					4377BAA71AE73343001F9B5B = {
+						CreatedOnToolsVersion = 6.3;
+					};
 					43E012381A993E9800647961 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 8YM7FJN8FY;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					43E0124F1A993E9800647961 = {
 						CreatedOnToolsVersion = 6.3;
@@ -518,11 +837,47 @@
 			targets = (
 				43E012381A993E9800647961 /* Caret */,
 				43E0124F1A993E9800647961 /* CaretTests */,
+				4377BA741AE72AAC001F9B5B /* CaretKit */,
+				4377BA7E1AE72AAD001F9B5B /* CaretKitTests */,
+				4377BA981AE73342001F9B5B /* Caret WatchKit Extension */,
+				4377BAA71AE73343001F9B5B /* Caret WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4377BA731AE72AAC001F9B5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BA7D1AE72AAD001F9B5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BA971AE73342001F9B5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4377BAA91AE73343001F9B5B /* Caret WatchKit App.app in Resources */,
+				4377BAA51AE73342001F9B5B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BAA61AE73343001F9B5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4377BAB11AE73343001F9B5B /* Interface.storyboard in Resources */,
+				4377BAB31AE73343001F9B5B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E012371A993E9800647961 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,6 +907,21 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		057BF152F519C974AD3F6BE3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		401BA7837D8A870AD89A729A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -596,7 +966,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		85D7F6F9972D4C84C4EDDF33 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		87775441C7CB58242D770633 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		932B302E3EF07C2E0A35E562 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -644,6 +1044,31 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4377BA701AE72AAC001F9B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BA7B1AE72AAD001F9B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4377BA891AE72AAD001F9B5B /* CaretKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4377BA951AE73342001F9B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4377BAA11AE73342001F9B5B /* NotificationController.swift in Sources */,
+				4377BA9F1AE73342001F9B5B /* InterfaceController.swift in Sources */,
+				4377BAA31AE73342001F9B5B /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E012351A993E9800647961 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -669,6 +1094,7 @@
 				4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */,
 				43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */,
 				4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */,
+				432A60251AEB0163000CBDFA /* TimerController.swift in Sources */,
 				43D587001ACCD0200083F079 /* CalendarView.swift in Sources */,
 				43E0128F1A994A0B00647961 /* DailyCalendarView.m in Sources */,
 				43F9DA0B1ADF26FA005ED457 /* Data.xcdatamodeld in Sources */,
@@ -686,6 +1112,7 @@
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
 				434CAA9F1AE5AE1200B7C459 /* CalendarViewController.swift in Sources */,
 				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
+				435C35401AEC564800FA70F2 /* TimerBarButtonItem.swift in Sources */,
 				43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */,
 				438823951AE42BE500A24D02 /* Entry.swift in Sources */,
 				43F9DA151ADF5473005ED457 /* ClientsViewController.swift in Sources */,
@@ -725,6 +1152,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4377BA821AE72AAD001F9B5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4377BA741AE72AAC001F9B5B /* CaretKit */;
+			targetProxy = 4377BA811AE72AAD001F9B5B /* PBXContainerItemProxy */;
+		};
+		4377BA841AE72AAD001F9B5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43E012381A993E9800647961 /* Caret */;
+			targetProxy = 4377BA831AE72AAD001F9B5B /* PBXContainerItemProxy */;
+		};
+		4377BA8B1AE72AAD001F9B5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4377BA741AE72AAC001F9B5B /* CaretKit */;
+			targetProxy = 4377BA8A1AE72AAD001F9B5B /* PBXContainerItemProxy */;
+		};
+		4377BAAB1AE73343001F9B5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4377BAA71AE73343001F9B5B /* Caret WatchKit App */;
+			targetProxy = 4377BAAA1AE73343001F9B5B /* PBXContainerItemProxy */;
+		};
+		4377BAB51AE73343001F9B5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4377BA981AE73342001F9B5B /* Caret WatchKit Extension */;
+			targetProxy = 4377BAB41AE73343001F9B5B /* PBXContainerItemProxy */;
+		};
 		43E012521A993E9800647961 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 43E012381A993E9800647961 /* Caret */;
@@ -733,6 +1185,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4377BAAF1AE73343001F9B5B /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4377BAB01AE73343001F9B5B /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		438CB0071AE3171900E0F1E2 /* Project.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -760,6 +1220,156 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4377BA8F1AE72AAD001F9B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CaretKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4377BA901AE72AAD001F9B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = CaretKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4377BA931AE72AAD001F9B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CaretKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caret.app/Caret";
+			};
+			name = Debug;
+		};
+		4377BA941AE72AAD001F9B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = CaretKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caret.app/Caret";
+			};
+			name = Release;
+		};
+		4377BAB81AE73343001F9B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = Caret_WatchKit_Extension;
+				INFOPLIST_FILE = "Caret WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		4377BAB91AE73343001F9B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = Caret_WatchKit_Extension;
+				INFOPLIST_FILE = "Caret WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		4377BABB1AE73343001F9B5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F83930592AAB2992D6283784 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Caret WatchKit Extension/Caret WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Caret WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4377BABC1AE73343001F9B5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AF3B173D9B7891209ECB5DA /* Pods.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Caret WatchKit Extension/Caret WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Caret WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		43E012581A993E9800647961 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -847,10 +1457,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Caret/Caret.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Caret/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caret/Caret-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -862,10 +1476,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Caret/Caret.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Caret/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caret/Caret-Bridging-Header.h";
 			};
 			name = Release;
@@ -911,6 +1529,42 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4377BA8E1AE72AAD001F9B5B /* Build configuration list for PBXNativeTarget "CaretKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4377BA8F1AE72AAD001F9B5B /* Debug */,
+				4377BA901AE72AAD001F9B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4377BA921AE72AAD001F9B5B /* Build configuration list for PBXNativeTarget "CaretKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4377BA931AE72AAD001F9B5B /* Debug */,
+				4377BA941AE72AAD001F9B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4377BAB71AE73343001F9B5B /* Build configuration list for PBXNativeTarget "Caret WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4377BAB81AE73343001F9B5B /* Debug */,
+				4377BAB91AE73343001F9B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4377BABA1AE73343001F9B5B /* Build configuration list for PBXNativeTarget "Caret WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4377BABB1AE73343001F9B5B /* Debug */,
+				4377BABC1AE73343001F9B5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		43E012341A993E9800647961 /* Build configuration list for PBXProject "Caret" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

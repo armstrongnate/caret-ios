@@ -15,6 +15,14 @@ protocol PersistenceViewController {
 
 }
 
+protocol TimerViewController {
+
+  var timerController: TimerController! { get set }
+  func clockInOut()
+  func editEntry()
+
+}
+
 class DashboardViewController: UIViewController {
 
   struct ListItem {
@@ -25,6 +33,13 @@ class DashboardViewController: UIViewController {
   }
 
   var persistenceController: PersistenceController!
+  var timerController: TimerController!
+  var clockInOutButton: UIBarButtonItem {
+    return toolbarItems!.first as! UIBarButtonItem
+  }
+  var durationButton: UIBarButtonItem {
+    return toolbarItems!.last as! UIBarButtonItem
+  }
 
   @IBOutlet weak var chartView: BarChartView!
   @IBOutlet weak var tableView: UITableView!
@@ -38,6 +53,7 @@ class DashboardViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    timerController.delegate = self
     tableView.dataSource = self
     tableView.delegate = self
 
@@ -74,6 +90,7 @@ class DashboardViewController: UIViewController {
     super.viewDidAppear(animated)
     title = "Dashboard"
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    timerController.update()
   }
 
   override func didReceiveMemoryWarning() {
@@ -155,6 +172,29 @@ extension DashboardViewController: UITableViewDelegate {
     }
     navigationController!.pushViewController(vc, animated: true)
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+
+}
+
+// MARK: - Timer view controller
+extension DashboardViewController: TimerViewController {
+
+  func clockInOut() {
+    timerController.clockedIn ? timerController.clockOut() : timerController.clockIn()
+    clockInOutButton.title = timerController.clockedIn ? "Clock out" : "Clock in"
+  }
+
+  func editEntry() {
+    // todo: present view controller
+  }
+
+}
+
+// MARK: - TimerController delegate
+extension DashboardViewController: TimerControllerDelegate {
+
+  func lastEntryEndedAtDidUpdate(lastUpdatedAt: NSDate?) {
+    clockInOutButton.title = timerController.clockedIn ? "Clock out" : "Clock in"
   }
 
 }

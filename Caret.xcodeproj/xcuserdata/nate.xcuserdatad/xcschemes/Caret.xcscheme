@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Caret.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4377BA7E1AE72AAD001F9B5B"
+               BuildableName = "CaretKitTests.xctest"
+               BlueprintName = "CaretKitTests"
+               ReferencedContainer = "container:Caret.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "43E0124F1A993E9800647961"
                BuildableName = "CaretTests.xctest"
                BlueprintName = "CaretTests"
+               ReferencedContainer = "container:Caret.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4377BA7E1AE72AAD001F9B5B"
+               BuildableName = "CaretKitTests.xctest"
+               BlueprintName = "CaretKitTests"
                ReferencedContainer = "container:Caret.xcodeproj">
             </BuildableReference>
          </TestableReference>

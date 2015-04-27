@@ -10,13 +10,25 @@
 #define COCOAPODS_POD_AVAILABLE_Alamofire
 #define COCOAPODS_VERSION_MAJOR_Alamofire 1
 #define COCOAPODS_VERSION_MINOR_Alamofire 2
-#define COCOAPODS_VERSION_PATCH_Alamofire 0
+#define COCOAPODS_VERSION_PATCH_Alamofire 1
 
 // Charts
 #define COCOAPODS_POD_AVAILABLE_Charts
 #define COCOAPODS_VERSION_MAJOR_Charts 2
 #define COCOAPODS_VERSION_MINOR_Charts 0
 #define COCOAPODS_VERSION_PATCH_Charts 9
+
+// MMWormhole
+#define COCOAPODS_POD_AVAILABLE_MMWormhole
+#define COCOAPODS_VERSION_MAJOR_MMWormhole 1
+#define COCOAPODS_VERSION_MINOR_MMWormhole 1
+#define COCOAPODS_VERSION_PATCH_MMWormhole 1
+
+// MMWormhole/Core
+#define COCOAPODS_POD_AVAILABLE_MMWormhole_Core
+#define COCOAPODS_VERSION_MAJOR_MMWormhole_Core 1
+#define COCOAPODS_VERSION_MINOR_MMWormhole_Core 1
+#define COCOAPODS_VERSION_PATCH_MMWormhole_Core 1
 
 // SwiftMoment
 #define COCOAPODS_POD_AVAILABLE_SwiftMoment

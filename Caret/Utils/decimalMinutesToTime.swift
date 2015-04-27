@@ -27,13 +27,17 @@ func decimalMinutesToTime(d: Double) -> String {
   return Time(hours: hours, minutes: Int(minutes), seconds: Int(seconds)).description
 }
 
-func secondsToTime(s: Int) -> String {
+func secondsToTime(s: Int, includeSeconds: Bool = false) -> String {
   let hours = floor(Double(s / 3600))
   let minutes = floor(Double(s / 60)) % 60
   let seconds = s % 60
-  let hoursSeconds = String(format: "%02d", Int(hours))
-  let minutesSeconds = String(format: "%02d", Int(minutes))
-  return "\(hoursSeconds):\(minutesSeconds)"
+  let pHours = String(format: "%02d", Int(hours))
+  let pMinutes = String(format: "%02d", Int(minutes))
+  let pSeconds = String(format: "%02d", Int(seconds))
+  if !includeSeconds {
+    return "\(pHours):\(pMinutes)"
+  }
+  return "\(pHours):\(pMinutes):\(pSeconds)"
 }
 
 func secondsToDecimalMinutes(seconds: Int) -> Double {

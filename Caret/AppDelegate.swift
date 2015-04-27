@@ -14,10 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var persistenceController: PersistenceController!
   var syncController: SyncController!
+  var timerController: TimerController!
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     persistenceController = PersistenceController(callback: sync)
+    timerController = TimerController(userID: 1)
 
     // Custom nav bar color
     let navigationBarAppearance = UINavigationBar.appearance()
@@ -40,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let dashboard = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
     dashboard.persistenceController = persistenceController
+    dashboard.timerController = timerController
     let nav = UINavigationController(rootViewController: dashboard)
     nav.toolbarHidden = false
     nav.delegate = self
@@ -68,6 +71,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     persistenceController.save()
   }
 
+  func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+    if let message = userInfo?["watch"] as? String {
+      switch message {
+      case "update":
+        timerController.update()
+      case "clock_in":
+        timerController.clockIn()
+      case "clock_out":
+        timerController.clockOut()
+      default:
+        return
+      }
+    }
+    reply([:])
+  }
+
 }
 
 extension AppDelegate: UINavigationControllerDelegate {
@@ -75,14 +94,13 @@ extension AppDelegate: UINavigationControllerDelegate {
   func navigationController(navigationController: UINavigationController,
     willShowViewController viewController: UIViewController,
     animated: Bool) {
-    let btn = UIBarButtonItem(title: "Clock in", style: .Plain, target: self, action: "")
-    let btn2 = UIBarButtonItem(title: "00:00:00", style: .Plain, target: self, action: "")
+    if viewController is TimerViewController {
+      let btn = UIBarButtonItem(title: "Clock in", style: .Plain, target: viewController, action: "clockInOut")
+      let btn2 = DurationBarButtonItem(title: "", style: .Plain, target: viewController, action: "editEntry", timerController: timerController)
 
-    // if clocked out
-    btn2.tintColor = UIColor.grayColor()
-
-    let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-    viewController.setToolbarItems([btn, flex, btn2], animated: false)
+      let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+      viewController.setToolbarItems([btn, flex, btn2], animated: false)
+    }
   }
 
 }

@@ -31,7 +31,6 @@ class EntriesViewController: UIViewController {
   }()
   var date: NSDate!
   var mergingCell: MergingCellImageView!
-  var entries: [Entry] = [] // TODO: remove this
   lazy var refreshControl: UIRefreshControl = {
     let refreshControl = UIRefreshControl()
     refreshControl.backgroundColor = UIColor.primaryColor()
@@ -412,7 +411,7 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
         self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
       default:
         return
-    }
+      }
   }
 
 }

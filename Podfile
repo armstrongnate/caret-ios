@@ -6,5 +6,6 @@ pod 'Alamofire'
 pod 'SwiftMoment'
 pod 'Charts'
 pod 'SwiftyJSON', '>= 2.2'
+pod 'MMWormhole', '~> 1.1.1'
 
-link_with 'Caret', 'CaretTests'
+link_with 'Caret', 'CaretTests', 'Caret WatchKit Extension'
