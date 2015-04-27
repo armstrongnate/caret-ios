@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Entries View Controller-->
@@ -51,14 +51,46 @@
                     </view>
                     <navigationItem key="navigationItem" id="ds4-pP-NkZ">
                         <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="uP8-Dr-hFX">
+                            <rect key="frame" x="180" y="5" width="240" height="34"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="26.04.2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uI-bA-GBe">
+                                    <rect key="frame" x="-15" y="0.0" width="255" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:34 total" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWb-vR-wX8">
+                                    <rect key="frame" x="-15" y="18" width="255" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="HWb-vR-wX8" firstAttribute="leading" secondItem="uP8-Dr-hFX" secondAttribute="leading" constant="-15" id="Aaq-Ve-aTg"/>
+                                <constraint firstItem="8uI-bA-GBe" firstAttribute="top" secondItem="uP8-Dr-hFX" secondAttribute="top" id="Bd6-s4-Tpg"/>
+                                <constraint firstAttribute="trailing" secondItem="HWb-vR-wX8" secondAttribute="trailing" id="HoA-VH-Ap6"/>
+                                <constraint firstItem="HWb-vR-wX8" firstAttribute="top" secondItem="8uI-bA-GBe" secondAttribute="bottom" id="LnV-45-BOP"/>
+                                <constraint firstAttribute="trailing" secondItem="8uI-bA-GBe" secondAttribute="trailing" id="p9e-K4-PQE"/>
+                                <constraint firstItem="8uI-bA-GBe" firstAttribute="leading" secondItem="uP8-Dr-hFX" secondAttribute="leading" constant="-15" id="sif-pP-8mm"/>
+                            </constraints>
+                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="naF-9z-1WQ" id="ZxP-U4-9A5"/>
+                        <outlet property="calendarButton" destination="Y8Z-z6-E8A" id="4XF-4G-yHc"/>
+                        <outlet property="dayLabel" destination="8uI-bA-GBe" id="VeX-l9-X7B"/>
+                        <outlet property="dayTotal" destination="HWb-vR-wX8" id="oJ9-mj-WhV"/>
                         <outlet property="deleteButton" destination="os8-El-b5A" id="7XM-AH-1fW"/>
                         <outlet property="doneButton" destination="KPM-rI-Aqh" id="Bi0-wy-XiN"/>
                         <outlet property="editButton" destination="vdQ-di-RO4" id="vWj-Gm-pwY"/>
                         <outlet property="mergeButton" destination="FzV-Iz-Phn" id="wXC-sf-Bb4"/>
+                        <outlet property="settingsButton" destination="Ftu-jj-gIO" id="Poy-Gs-Z7U"/>
                         <outlet property="tableView" destination="7wc-bE-Gj2" id="IET-fB-ezL"/>
+                        <outlet property="titleView" destination="uP8-Dr-hFX" id="Z4J-No-nPg"/>
                         <outlet property="weeklyCalendarView" destination="qI5-Cc-D56" id="2kg-R5-7ba"/>
                         <segue destination="WlZ-ZM-YMv" kind="presentation" identifier="editEntry" id="UW3-fw-xz5"/>
                     </connections>
@@ -89,6 +121,8 @@
                         <action selector="deleteButtonPressed:" destination="9pv-A4-QxB" id="25X-pS-ceW"/>
                     </connections>
                 </barButtonItem>
+                <barButtonItem image="bar-icon-calendar" id="Y8Z-z6-E8A" userLabel="Calendar"/>
+                <barButtonItem image="bar-icon-cogwheel" id="Ftu-jj-gIO" userLabel="Settings"/>
             </objects>
             <point key="canvasLocation" x="1561" y="-320"/>
         </scene>
@@ -194,6 +228,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="zw3-hz-g4c">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="vFO-Th-9XC">
                             <connections>
                                 <segue destination="p9f-Sc-pqd" kind="unwind" unwindAction="unwindFromEditEntry:" id="0Kn-hc-ISd"/>
@@ -302,6 +337,10 @@
             <point key="canvasLocation" x="2273" y="-320"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bar-icon-calendar" width="21" height="23"/>
+        <image name="bar-icon-cogwheel" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UW3-fw-xz5"/>
     </inferredMetricsTieBreakers>

@@ -44,6 +44,7 @@
 		4377BAB11AE73343001F9B5B /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4377BAAF1AE73343001F9B5B /* Interface.storyboard */; };
 		4377BAB31AE73343001F9B5B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4377BAB21AE73343001F9B5B /* Images.xcassets */; };
 		4377BAB61AE73343001F9B5B /* Caret WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4377BA991AE73342001F9B5B /* Caret WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4379C3511AEE17B90003F003 /* CaretKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */; };
 		4388238C1AE3570B00A24D02 /* ProjectTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */; };
 		4388238D1AE3572500A24D02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0031AE2DC2500E0F1E2 /* Project.swift */; };
 		4388238E1AE3572500A24D02 /* ProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */; };
@@ -302,6 +303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4379C3511AEE17B90003F003 /* CaretKit.framework in Frameworks */,
 				6D868327F20C64E537699C1D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

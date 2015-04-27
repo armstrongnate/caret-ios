@@ -39,11 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func showDashboard() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("entries") as! EntriesViewController
+    vc.context = persistenceController.managedObjectContext
 
-    let dashboard = DashboardViewController(nibName: "DashboardViewController", bundle: nil)
-    dashboard.persistenceController = persistenceController
-    dashboard.timerController = timerController
-    let nav = UINavigationController(rootViewController: dashboard)
+    // dashboard.timerController = timerController
+    let nav = UINavigationController(rootViewController: vc)
     nav.toolbarHidden = false
     nav.delegate = self
 

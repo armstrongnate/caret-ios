@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
-let kApiURL = "http://192.168.1.115"
+let kApiURL = "http://10.0.1.39"
 
 typealias JSONObject = [String: AnyObject]
 typealias SyncDictionary = [String: [NSManagedObject]]
@@ -56,6 +56,12 @@ class SyncController: NSObject {
     if queue.count <= 0 { return }
     syncClass(queue.last!)
     queue.removeLast()
+    if self.queue.count == 0 {
+      dispatch_async(dispatch_get_main_queue()) {
+        println("calling back!")
+        self.callback?()
+      }
+    }
   }
 
   func syncClass(name: String) {
@@ -75,7 +81,6 @@ class SyncController: NSObject {
         if error == nil {
           let j = JSON(json!)
           self.handleResponse(j, name: name)
-          self.dequeue()
         } else {
           println("sync error \(error)")
         }
@@ -102,11 +107,10 @@ class SyncController: NSObject {
         var error: NSError?
         if !self.context.save(&error) {
           println("error saving sync context \(error)") // TODO: handle error
+          self.dequeue()
         } else {
           println("success saving sync context")
-        }
-        dispatch_async(dispatch_get_main_queue()) {
-          self.callback?()
+          self.dequeue()
         }
       }
     } else {

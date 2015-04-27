@@ -14,11 +14,16 @@ class EntriesViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var titleView: UIView!
   @IBOutlet weak var editButton: UIBarButtonItem!
   @IBOutlet weak var addButton: UIBarButtonItem!
   @IBOutlet weak var doneButton: UIBarButtonItem!
   @IBOutlet weak var mergeButton: UIBarButtonItem!
   @IBOutlet weak var deleteButton: UIBarButtonItem!
+  @IBOutlet weak var calendarButton: UIBarButtonItem!
+  @IBOutlet weak var settingsButton: UIBarButtonItem!
+  @IBOutlet weak var dayLabel: UILabel!
+  @IBOutlet weak var dayTotal: UILabel!
 
   var context: NSManagedObjectContext!
   lazy var syncController: SyncController = {
@@ -36,13 +41,6 @@ class EntriesViewController: UIViewController {
     refreshControl.backgroundColor = UIColor.primaryColor()
     refreshControl.tintColor = UIColor.whiteColor()
     return refreshControl
-  }()
-  lazy var dayTotal: UILabel = {
-    let label = UILabel(frame: CGRectZero)
-    label.font = UIFont.boldSystemFontOfSize(16)
-    label.textAlignment = .Right
-    label.textColor = UIColor.darkGrayColor()
-    return label
   }()
   lazy var fetchedResultsController: NSFetchedResultsController = {
     let fetchRequest = NSFetchRequest()
@@ -78,10 +76,15 @@ class EntriesViewController: UIViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.allowsMultipleSelectionDuringEditing = true
     date = NSDate()
+    dayLabel.text = "Today"
     performFetch()
 
     // bar button items
     navigationItem.rightBarButtonItems = [editButton, addButton]
+    navigationItem.leftBarButtonItems = [calendarButton, settingsButton]
+    titleView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin
+    titleView.autoresizesSubviews = true
+    navigationItem.titleView = titleView
   }
 
   @IBAction func unwindFromEditEntry(segue: UIStoryboardSegue) {
@@ -194,6 +197,13 @@ class EntriesViewController: UIViewController {
     syncController.sync(["entries"])
   }
 
+  func setDayTotal() {
+    if let entries = fetchedResultsController.fetchedObjects as? [Entry] {
+      let totalSeconds = entries.reduce(0) { $0 + $1.duration.integerValue }
+      dayTotal.text = "\(secondsToTime(totalSeconds)) total"
+    }
+  }
+
 }
 
 // MARK: - Weekly calendar view delegate
@@ -208,7 +218,13 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 
   func dailyCalendarViewDidSelect(date: NSDate!) {
     self.date = date
+    var strDate = date.stringWithFormat("dd.MM.yyyy")
+    if date.isToday() {
+      strDate = "Today"
+    }
+    dayLabel.text = strDate
     performFetch()
+    setDayTotal()
   }
 
   func weeklyCalendarView(weeklyCalendarView: CLWeeklyCalendarView!, changedWeek date: NSDate!) {
@@ -228,35 +244,6 @@ extension EntriesViewController: UITableViewDelegate {
         pushScrollView(mergingCell.center)
       }
     }
-  }
-
-  func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 50
-  }
-
-  func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let v = UIView()
-    v.backgroundColor = UIColor.whiteColor()
-
-    // date label
-    let label = UILabel()
-    label.font = UIFont.boldSystemFontOfSize(16)
-    label.textColor = UIColor.darkGrayColor()
-    var strDate = date.stringWithFormat("MMMM d, yyy")
-    if date.isToday() {
-      strDate = "Today, \(strDate)"
-    }
-    label.text = strDate
-    label.sizeToFit()
-    label.center = v.center
-    label.frame = CGRectMake(10, 0, CGRectGetWidth(tableView.frame) - 15, 50)
-
-    dayTotal.frame = CGRectMake(0, 0, CGRectGetWidth(tableView.frame) - 15, 50)
-    dayTotal.text = "00:00"
-
-    v.addSubview(label)
-    v.addSubview(dayTotal)
-    return v
   }
 
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -380,6 +367,7 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
     tableView.endUpdates()
     refreshControl.endRefreshing()
+    setDayTotal()
   }
 
   func controller(controller: NSFetchedResultsController,
