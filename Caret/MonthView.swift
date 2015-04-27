@@ -25,13 +25,13 @@ class MonthView: UIView {
 
   var weeks: [WeekView] = []
   var weekLabels: [WeekLabel] = [
-    WeekLabel(day: "Sun"),
-    WeekLabel(day: "Mon"),
-    WeekLabel(day: "Tue"),
-    WeekLabel(day: "Wed"),
-    WeekLabel(day: "Thu"),
-    WeekLabel(day: "Fri"),
-    WeekLabel(day: "Sat"),
+    WeekLabel(day: "SUN"),
+    WeekLabel(day: "MON"),
+    WeekLabel(day: "TUE"),
+    WeekLabel(day: "WED"),
+    WeekLabel(day: "THU"),
+    WeekLabel(day: "FRI"),
+    WeekLabel(day: "SAT"),
   ]
 
   // these values are expensive to compute so cache them
@@ -70,8 +70,8 @@ class MonthView: UIView {
   override func layoutSubviews() {
     super.layoutSubviews()
     var x: CGFloat = 0
-    var labelHeight: CGFloat = 37
-    var inset: CGFloat = 7
+    var labelHeight: CGFloat = 18
+    var inset: CGFloat = 10
     for label in weekLabels {
       label.frame = CGRectMake(x, inset, bounds.size.width / 7, labelHeight)
       x = CGRectGetMaxX(label.frame)
@@ -108,7 +108,7 @@ class WeekLabel: UILabel {
     text = day
     textAlignment = .Center
     textColor = UIColor(white: 1.0, alpha: 0.3)
-    font = UIFont.boldSystemFontOfSize(16)
+    font = UIFont.boldSystemFontOfSize(10)
   }
 
   required init(coder aDecoder: NSCoder) {
