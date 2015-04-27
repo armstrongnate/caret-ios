@@ -34,12 +34,21 @@
                     <items>
                         <group alignment="left" id="vbQ-JG-9km">
                             <items>
-                                <imageView alignment="left" id="zAo-Be-Zm8"/>
+                                <imageView alignment="left" verticalAlignment="center" image="icon-notification-center-48mm" contentMode="scaleAspectFit" id="zAo-Be-Zm8"/>
                             </items>
                         </group>
-                        <group alignment="left" id="Buc-to-xTk"/>
+                        <group alignment="left" id="Buc-to-xTk">
+                            <items>
+                                <timer alignment="center" verticalAlignment="center" minimumScaleFactor="0.10000000000000014" id="bSG-v0-Rxd">
+                                    <fontDescription key="font" type="system" pointSize="25"/>
+                                </timer>
+                            </items>
+                        </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="timer" destination="bSG-v0-Rxd" id="XPR-so-ziV"/>
+                    </connections>
                 </glanceController>
             </objects>
             <point key="canvasLocation" x="235" y="672"/>

@@ -8,24 +8,68 @@
 
 import WatchKit
 import Foundation
+import MMWormhole
 
 
 class GlanceController: WKInterfaceController {
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-        
-        // Configure interface objects here.
-    }
+  let groupIdentifier = "group.com.natearmstrong.caret"
+  let messageIdentifier = "lastEntryEndedAt"
 
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
+  var wormhole: MMWormhole!
+  var lastEntryEndedAt: NSDate? {
+    didSet {
+      updateUI()
     }
+  }
+  var clockedIn: Bool {
+    return lastEntryEndedAt != nil
+  }
 
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
+  @IBOutlet weak var timer: WKInterfaceTimer!
+
+  override func awakeWithContext(context: AnyObject?) {
+    super.awakeWithContext(context)
+
+    wormhole = MMWormhole(applicationGroupIdentifier: groupIdentifier, optionalDirectory: "wormhole")
+    wormhole.listenForMessageWithIdentifier(messageIdentifier, listener: wormholeCallback)
+  }
+
+  override func willActivate() {
+    // This method is called when watch view controller is about to be visible to user
+    sendMessageToParent("update")
+    if let message = wormhole.messageWithIdentifier(messageIdentifier) as? NSDate {
+      lastEntryEndedAt = message
     }
+    super.willActivate()
+  }
+
+  override func didDeactivate() {
+    // This method is called when watch view controller is no longer visible
+    super.didDeactivate()
+  }
+
+  private func updateUI() {
+    timer.setDate(lastEntryEndedAt ?? NSDate())
+    clockedIn ? timer.start() : timer.stop()
+  }
+
+  private func sendMessageToParent(message: String) {
+    WKInterfaceController.openParentApplication(["watch": message]) { (info, error) in
+      if error != nil {
+        println("openParentApplication reply error: \(error)")
+      }
+    }
+  }
+
+  private func wormholeCallback(messageObject: AnyObject!) {
+    if messageObject == nil {
+      lastEntryEndedAt = nil
+      return
+    }
+    if let lastEntryEndedAt = messageObject as? NSDate {
+      self.lastEntryEndedAt = lastEntryEndedAt
+    }
+  }
 
 }

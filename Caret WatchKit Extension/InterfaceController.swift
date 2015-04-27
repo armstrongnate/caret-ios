@@ -34,14 +34,14 @@ class InterfaceController: WKInterfaceController {
     // Configure interface objects here.
     wormhole = MMWormhole(applicationGroupIdentifier: groupIdentifier, optionalDirectory: "wormhole")
     wormhole.listenForMessageWithIdentifier(messageIdentifier, listener: wormholeCallback)
-    if let message = wormhole.messageWithIdentifier(messageIdentifier) as? NSDate {
-      lastEntryEndedAt = message
-    }
-    sendMessageToParent("update")
   }
 
   override func willActivate() {
     // This method is called when watch view controller is about to be visible to user
+    sendMessageToParent("update")
+    if let message = wormhole.messageWithIdentifier(messageIdentifier) as? NSDate {
+      lastEntryEndedAt = message
+    }
     super.willActivate()
   }
 
@@ -56,7 +56,7 @@ class InterfaceController: WKInterfaceController {
     updateUI()
   }
 
-  func updateUI() {
+  private func updateUI() {
     if !clockedIn {
       timer.setDate(NSDate())
       timer.stop()
