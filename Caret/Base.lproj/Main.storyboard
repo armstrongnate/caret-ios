@@ -126,7 +126,11 @@
                         <action selector="calendarButtonPressed:" destination="9pv-A4-QxB" id="AI8-UT-jw4"/>
                     </connections>
                 </barButtonItem>
-                <barButtonItem image="bar-icon-cogwheel" id="Ftu-jj-gIO" userLabel="Settings"/>
+                <barButtonItem image="bar-icon-cogwheel" id="Ftu-jj-gIO" userLabel="Settings">
+                    <connections>
+                        <action selector="settingsButtonPressed:" destination="9pv-A4-QxB" id="Mt9-Bd-KW1"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="1561" y="-320"/>
         </scene>

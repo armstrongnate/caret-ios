@@ -100,6 +100,10 @@ class EntriesViewController: UIViewController {
     // noop
   }
 
+  @IBAction func unwindFromSettings(segue: UIStoryboardSegue) {
+    // noop
+  }
+
   @IBAction func unwindFromSaveEntry(segue: UIStoryboardSegue) {
     performFetch()
   }
@@ -153,6 +157,13 @@ class EntriesViewController: UIViewController {
     calendar.selectedDayOnPaged = nil
     calendar.titleDateFormat = "MMMM yyyy"
     let nav = UINavigationController(rootViewController: calendar)
+    presentViewController(nav, animated: true, completion: nil)
+  }
+
+  @IBAction func settingsButtonPressed(sender: UIBarButtonItem) {
+    let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+    let nav = storyboard.instantiateViewControllerWithIdentifier("settingsNavigationController") as! UINavigationController
+    (nav.topViewController as! SettingsViewController).context = context
     presentViewController(nav, animated: true, completion: nil)
   }
 
