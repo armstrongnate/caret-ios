@@ -121,7 +121,11 @@
                         <action selector="deleteButtonPressed:" destination="9pv-A4-QxB" id="25X-pS-ceW"/>
                     </connections>
                 </barButtonItem>
-                <barButtonItem image="bar-icon-calendar" id="Y8Z-z6-E8A" userLabel="Calendar"/>
+                <barButtonItem image="bar-icon-calendar" id="Y8Z-z6-E8A" userLabel="Calendar">
+                    <connections>
+                        <action selector="calendarButtonPressed:" destination="9pv-A4-QxB" id="AI8-UT-jw4"/>
+                    </connections>
+                </barButtonItem>
                 <barButtonItem image="bar-icon-cogwheel" id="Ftu-jj-gIO" userLabel="Settings"/>
             </objects>
             <point key="canvasLocation" x="1561" y="-320"/>

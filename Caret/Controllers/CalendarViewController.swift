@@ -23,6 +23,8 @@ class CalendarViewController: UIViewController {
     }
   }
   var delegate: CalendarViewControllerDelegate?
+  var selectedDayOnPaged: Int? = 1
+  var titleDateFormat = "MMMM d, yyyy"
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,6 +37,19 @@ class CalendarViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    calendar.delegate = self
+    calendar.backgroundColor = UIColor.primaryColor()
+    calendar.selectedDayOnPaged = selectedDayOnPaged
+    calendar.setTranslatesAutoresizingMaskIntoConstraints(false)
+    view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topGuide]-0-[calendar]",
+      options: nil,
+      metrics: nil,
+      views: ["topGuide": topLayoutGuide, "calendar": calendar]))
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
     if date == nil {
       date = NSDate()
     } else {
@@ -42,15 +57,7 @@ class CalendarViewController: UIViewController {
         calendar.selectDate(moment(date))
       }
     }
-    title = date!.stringWithFormat("MMMM d, yyyy")
-
-    calendar.delegate = self
-    calendar.backgroundColor = UIColor.primaryColor()
-    calendar.setTranslatesAutoresizingMaskIntoConstraints(false)
-    view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[topGuide]-0-[calendar]",
-      options: nil,
-      metrics: nil,
-      views: ["topGuide": topLayoutGuide, "calendar": calendar]))
+    title = date!.stringWithFormat(titleDateFormat)
   }
 
 }
@@ -59,10 +66,10 @@ extension CalendarViewController: CalendarViewDelegate {
 
   func calendarDidSelectDate(date: Moment) {
     self.date = date.toNSDate()
-    title = self.date!.stringWithFormat("MMMM d, yyyy")
+    title = self.date!.stringWithFormat(titleDateFormat)
   }
 
   func calendarDidPageToDate(date: Moment) {
-    title = date.startOf(.Months).format(dateFormat: "MMMM d, yyyy")
+    title = date.startOf(.Months).format(dateFormat: titleDateFormat)
   }
 }

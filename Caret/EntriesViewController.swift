@@ -34,7 +34,17 @@ class EntriesViewController: UIViewController {
     }
     return syncController
   }()
-  var date: NSDate!
+  var date: NSDate! {
+    didSet {
+      var strDate = date.stringWithFormat("MM/dd/yyyy")
+      if date.isToday() {
+        strDate = "Today"
+      }
+      dayLabel.text = strDate
+      performFetch()
+      setDayTotal()
+    }
+  }
   var mergingCell: MergingCellImageView!
   lazy var refreshControl: UIRefreshControl = {
     let refreshControl = UIRefreshControl()
@@ -76,7 +86,6 @@ class EntriesViewController: UIViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.allowsMultipleSelectionDuringEditing = true
     date = NSDate()
-    dayLabel.text = "Today"
     performFetch()
 
     // bar button items
@@ -135,6 +144,16 @@ class EntriesViewController: UIViewController {
       }
       sync()
     }
+  }
+
+  @IBAction func calendarButtonPressed(sender: UIBarButtonItem) {
+    let calendar = CalendarViewController(nibName: "CalendarViewController", bundle: nil)
+    calendar.date = date
+    calendar.delegate = self
+    calendar.selectedDayOnPaged = nil
+    calendar.titleDateFormat = "MMMM yyyy"
+    let nav = UINavigationController(rootViewController: calendar)
+    presentViewController(nav, animated: true, completion: nil)
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -218,13 +237,6 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 
   func dailyCalendarViewDidSelect(date: NSDate!) {
     self.date = date
-    var strDate = date.stringWithFormat("dd.MM.yyyy")
-    if date.isToday() {
-      strDate = "Today"
-    }
-    dayLabel.text = strDate
-    performFetch()
-    setDayTotal()
   }
 
   func weeklyCalendarView(weeklyCalendarView: CLWeeklyCalendarView!, changedWeek date: NSDate!) {
@@ -233,6 +245,18 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 
 }
 
+// MARK: - Calendar view controller delegate
+extension EntriesViewController: CalendarViewControllerDelegate {
+
+  func calendarView(calendarView: CalendarView, didSelectDate date: NSDate) {
+    self.date = date
+    weeklyCalendarView.redrawToDate(date)
+    dismissViewControllerAnimated(true) { completed in
+      self.weeklyCalendarView.redrawToDate(date)
+    }
+  }
+
+}
 
 // MARK: - Table view delegate
 extension EntriesViewController: UITableViewDelegate {
