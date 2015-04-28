@@ -49,6 +49,19 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Clock in" id="HKP-fN-Yke">
+                            <connections>
+                                <action selector="clockInOutButtonPressed:" destination="9pv-A4-QxB" id="f1v-9v-Al4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="5QD-JJ-WeR"/>
+                        <barButtonItem title="00:00:00" id="rp9-6O-x4f" customClass="DurationBarButtonItem" customModule="Caret" customModuleProvider="target">
+                            <connections>
+                                <action selector="durationButtonPressed:" destination="9pv-A4-QxB" id="ejK-1z-Z63"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="ds4-pP-NkZ">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="uP8-Dr-hFX">
@@ -82,10 +95,12 @@
                     <connections>
                         <outlet property="addButton" destination="naF-9z-1WQ" id="ZxP-U4-9A5"/>
                         <outlet property="calendarButton" destination="Y8Z-z6-E8A" id="4XF-4G-yHc"/>
+                        <outlet property="clockInOutButton" destination="HKP-fN-Yke" id="Nl5-Hp-unG"/>
                         <outlet property="dayLabel" destination="8uI-bA-GBe" id="VeX-l9-X7B"/>
                         <outlet property="dayTotal" destination="HWb-vR-wX8" id="oJ9-mj-WhV"/>
                         <outlet property="deleteButton" destination="os8-El-b5A" id="7XM-AH-1fW"/>
                         <outlet property="doneButton" destination="KPM-rI-Aqh" id="Bi0-wy-XiN"/>
+                        <outlet property="durationButton" destination="rp9-6O-x4f" id="q21-Fl-fZi"/>
                         <outlet property="editButton" destination="vdQ-di-RO4" id="vWj-Gm-pwY"/>
                         <outlet property="mergeButton" destination="FzV-Iz-Phn" id="wXC-sf-Bb4"/>
                         <outlet property="settingsButton" destination="Ftu-jj-gIO" id="Poy-Gs-Z7U"/>
@@ -309,7 +324,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="HOR-VC-8U5" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xGC-RX-IYn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

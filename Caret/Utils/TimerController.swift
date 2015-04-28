@@ -33,6 +33,12 @@ class TimerController: NSObject {
       notifyDelegate(lastEntryEndedAt)
     }
   }
+  var interval: NSTimeInterval {
+    if !clockedIn {
+      return 0
+    }
+    return abs(lastEntryEndedAt!.timeIntervalSinceNow)
+  }
 
   lazy var dateFormatter: NSDateFormatter = {
     let formatter = NSDateFormatter()

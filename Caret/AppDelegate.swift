@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     persistenceController = PersistenceController(callback: sync)
-    timerController = TimerController(userID: 1)
+    timerController = TimerController(userID: 6)
 
     // Custom nav bar color
     let navigationBarAppearance = UINavigationBar.appearance()
@@ -42,12 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let vc = storyboard.instantiateViewControllerWithIdentifier("entries") as! EntriesViewController
     vc.context = persistenceController.managedObjectContext
-
-    // dashboard.timerController = timerController
+    vc.timerController = timerController
     let nav = UINavigationController(rootViewController: vc)
-    nav.toolbarHidden = false
-    nav.delegate = self
-
     window!.rootViewController = nav
     window!.makeKeyAndVisible()
   }
@@ -91,17 +87,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UINavigationControllerDelegate {
-
-  func navigationController(navigationController: UINavigationController,
-    willShowViewController viewController: UIViewController,
-    animated: Bool) {
-    if viewController is TimerViewController {
-      let btn = UIBarButtonItem(title: "Clock in", style: .Plain, target: viewController, action: "clockInOut")
-      let btn2 = DurationBarButtonItem(title: "", style: .Plain, target: viewController, action: "editEntry", timerController: timerController)
-
-      let flex = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-      viewController.setToolbarItems([btn, flex, btn2], animated: false)
-    }
-  }
 
 }

@@ -14,6 +14,8 @@ class EntriesViewController: UIViewController {
 
   @IBOutlet weak var weeklyCalendarView: CLWeeklyCalendarView!
   @IBOutlet weak var tableView: UITableView!
+
+  // title bar
   @IBOutlet weak var titleView: UIView!
   @IBOutlet weak var editButton: UIBarButtonItem!
   @IBOutlet weak var addButton: UIBarButtonItem!
@@ -25,7 +27,12 @@ class EntriesViewController: UIViewController {
   @IBOutlet weak var dayLabel: UILabel!
   @IBOutlet weak var dayTotal: UILabel!
 
+  // toolbar
+  @IBOutlet weak var clockInOutButton: UIBarButtonItem!
+  @IBOutlet weak var durationButton: DurationBarButtonItem!
+
   var context: NSManagedObjectContext!
+  var timerController: TimerController!
   lazy var syncController: SyncController = {
     let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
     syncContext.parentContext = self.context
@@ -81,6 +88,10 @@ class EntriesViewController: UIViewController {
     sync()
 
     // setup
+    durationButton.timerController = timerController
+    durationButton.delegate = self
+    timerController.delegate = self
+    lastEntryEndedAtDidUpdate(nil)
     weeklyCalendarView.delegate = self
     tableView.estimatedRowHeight = 70.0
     tableView.rowHeight = UITableViewAutomaticDimension
@@ -94,6 +105,13 @@ class EntriesViewController: UIViewController {
     titleView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin
     titleView.autoresizesSubviews = true
     navigationItem.titleView = titleView
+    navigationController!.toolbarHidden = false
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    println("in viewdidappear")
+    timerController.update()
   }
 
   @IBAction func unwindFromEditEntry(segue: UIStoryboardSegue) {
@@ -167,6 +185,15 @@ class EntriesViewController: UIViewController {
     presentViewController(nav, animated: true, completion: nil)
   }
 
+  @IBAction func clockInOutButtonPressed(sender: UIBarButtonItem) {
+    timerController.clockedIn ? timerController.clockOut() : timerController.clockIn()
+    clockInOutButton.title = timerController.clockedIn ? "Clock out" : "Clock in"
+  }
+
+  @IBAction func durationButtonPressed(sender: UIBarButtonItem) {
+    performSegueWithIdentifier("newEntry", sender: sender)
+  }
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "newEntry" || segue.identifier == "editEntry" {
       let entryForm = segue.destinationViewController.topViewController as! EntryViewController
@@ -179,9 +206,13 @@ class EntriesViewController: UIViewController {
         entry.apiID = nil
         entry.guid = ""
         entry.notes = ""
-        entry.duration = 0
         entry.happened_on = date
         entry.archived = false
+        if let durationButton = sender as? DurationBarButtonItem {
+          entry.duration = timerController.interval
+        } else {
+          entry.duration = 0
+        }
         entryForm.projectsContext = childContext
       } else {
         let indexPath = sender as! NSIndexPath
@@ -225,11 +256,13 @@ class EntriesViewController: UIViewController {
     syncContext.parentContext = context
     syncController.context = syncContext
     syncController.sync(["entries"])
+    timerController.update()
   }
 
   func setDayTotal() {
     if let entries = fetchedResultsController.fetchedObjects as? [Entry] {
-      let totalSeconds = entries.reduce(0) { $0 + $1.duration.integerValue }
+      var totalSeconds = entries.reduce(0) { $0 + $1.duration.integerValue }
+      totalSeconds += Int(timerController.interval)
       dayTotal.text = "\(secondsToTime(totalSeconds)) total"
     }
   }
@@ -435,6 +468,25 @@ extension EntriesViewController: NSFetchedResultsControllerDelegate {
       default:
         return
       }
+  }
+
+}
+
+// MARK: - TimerController delegate
+extension EntriesViewController: TimerControllerDelegate {
+
+  func lastEntryEndedAtDidUpdate(lastUpdatedAt: NSDate?) {
+    clockInOutButton.title = timerController.clockedIn ? "Clock out" : "Clock in"
+    setDayTotal()
+  }
+
+}
+
+// MARK: - Duration bar button item delegate
+extension EntriesViewController: DurationBarButtonItemDelegate {
+
+  func durationBarButtonItemMinuteUpdate() {
+    setDayTotal()
   }
 
 }
