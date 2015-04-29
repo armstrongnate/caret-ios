@@ -31,6 +31,11 @@
 		434CAAA01AE5AE1200B7C459 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */; };
 		4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351B99E1A9AAB440008E8CD /* Resource.swift */; };
 		435C35401AEC564800FA70F2 /* TimerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */; };
+		435F48181AF037C600DE1B89 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435F48161AF036BC00DE1B89 /* CoreLocation.framework */; };
+		435F48191AF037CC00DE1B89 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435F48141AF036B100DE1B89 /* MapKit.framework */; };
+		435F481B1AF03C2700DE1B89 /* AddGeoreminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F481A1AF03C2700DE1B89 /* AddGeoreminderViewController.swift */; };
+		435F481D1AF0633000DE1B89 /* GeoremindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F481C1AF0633000DE1B89 /* GeoremindersViewController.swift */; };
+		435F481F1AF0650500DE1B89 /* Georeminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435F481E1AF0650500DE1B89 /* Georeminder.swift */; };
 		4377BA7A1AE72AAD001F9B5B /* CaretKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4377BA791AE72AAD001F9B5B /* CaretKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4377BA801AE72AAD001F9B5B /* CaretKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */; };
 		4377BA891AE72AAD001F9B5B /* CaretKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4377BA881AE72AAD001F9B5B /* CaretKitTests.swift */; };
@@ -203,6 +208,11 @@
 		435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimerBarButtonItem.swift; path = Views/TimerBarButtonItem.swift; sourceTree = "<group>"; };
 		435C435D1AE733B8008022F7 /* Caret.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Caret.entitlements; sourceTree = "<group>"; };
 		435C435E1AE733DF008022F7 /* Caret WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Caret WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		435F48141AF036B100DE1B89 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		435F48161AF036BC00DE1B89 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		435F481A1AF03C2700DE1B89 /* AddGeoreminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGeoreminderViewController.swift; path = Controllers/AddGeoreminderViewController.swift; sourceTree = "<group>"; };
+		435F481C1AF0633000DE1B89 /* GeoremindersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeoremindersViewController.swift; path = Controllers/GeoremindersViewController.swift; sourceTree = "<group>"; };
+		435F481E1AF0650500DE1B89 /* Georeminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Georeminder.swift; path = Models/Georeminder.swift; sourceTree = "<group>"; };
 		4377BA751AE72AAC001F9B5B /* CaretKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CaretKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4377BA781AE72AAD001F9B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4377BA791AE72AAD001F9B5B /* CaretKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CaretKit.h; sourceTree = "<group>"; };
@@ -314,6 +324,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				435F48191AF037CC00DE1B89 /* MapKit.framework in Frameworks */,
+				435F48181AF037C600DE1B89 /* CoreLocation.framework in Frameworks */,
 				50F4A046D2E4FFA390D4DAC8 /* Pods.framework in Frameworks */,
 				4377BA8C1AE72AAD001F9B5B /* CaretKit.framework in Frameworks */,
 			);
@@ -350,6 +362,7 @@
 				43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */,
 				438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */,
 				438823961AE42FE200A24D02 /* EntryHelper.swift */,
+				435F481E1AF0650500DE1B89 /* Georeminder.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -372,6 +385,8 @@
 				434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */,
 				434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */,
 				43AF4AEF1AEF30EE0041D03B /* SettingsViewController.swift */,
+				435F481A1AF03C2700DE1B89 /* AddGeoreminderViewController.swift */,
+				435F481C1AF0633000DE1B89 /* GeoremindersViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -563,11 +578,11 @@
 				43E012441A993E9800647961 /* Main.storyboard */,
 				43F9DA121ADF543A005ED457 /* Client.storyboard */,
 				438CB0071AE3171900E0F1E2 /* Project.storyboard */,
+				43AF4AF31AEF320D0041D03B /* Settings.storyboard */,
 				43E012491A993E9800647961 /* LaunchScreen.xib */,
 				43E012601A993F0B00647961 /* Caret-Bridging-Header.h */,
 				43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */,
 				43E012471A993E9800647961 /* Images.xcassets */,
-				43AF4AF31AEF320D0041D03B /* Settings.storyboard */,
 			);
 			path = Caret;
 			sourceTree = "<group>";
@@ -647,6 +662,8 @@
 		927292706E23251BDD55EE5F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				435F48161AF036BC00DE1B89 /* CoreLocation.framework */,
+				435F48141AF036B100DE1B89 /* MapKit.framework */,
 				522EB100A18F94DE90C6F40F /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -1109,13 +1126,16 @@
 				4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */,
 				43F9DA171ADF60D1005ED457 /* ClientViewController.swift in Sources */,
 				4345E0481A9D9F86008896D3 /* SwipeView.m in Sources */,
+				435F481B1AF03C2700DE1B89 /* AddGeoreminderViewController.swift in Sources */,
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
 				43CD64BF1AC3C77A00BBD68F /* MergeTableViewController.swift in Sources */,
 				432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */,
 				4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
+				435F481F1AF0650500DE1B89 /* Georeminder.swift in Sources */,
 				434CAA9F1AE5AE1200B7C459 /* CalendarViewController.swift in Sources */,
+				435F481D1AF0633000DE1B89 /* GeoremindersViewController.swift in Sources */,
 				43E012411A993E9800647961 /* EntriesViewController.swift in Sources */,
 				435C35401AEC564800FA70F2 /* TimerBarButtonItem.swift in Sources */,
 				43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */,

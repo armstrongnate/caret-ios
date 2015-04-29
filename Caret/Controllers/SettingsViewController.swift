@@ -15,7 +15,7 @@ class SettingsViewController: UITableViewController {
   typealias tableRowAction = () -> Void
   lazy var tableActions: [[tableRowAction]] = {
     return [
-      [self.reports],
+      [self.reports, self.notifications],
       [self.clients, self.projects],
       [self.logOut]
     ]
@@ -33,6 +33,10 @@ class SettingsViewController: UITableViewController {
   }
 
   func reports() {
+  }
+
+  func notifications() {
+    performSegueWithIdentifier("notifications", sender: self)
   }
 
   func clients() {
