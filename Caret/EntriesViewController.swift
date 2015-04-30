@@ -276,6 +276,7 @@ extension EntriesViewController: CLWeeklyCalendarViewDelegate {
 
   func CLCalendarBehaviorAttributes() -> [NSObject : AnyObject]! {
     return [
+      CLCalendarWeekStartDay : 0,
       CLCalendarBackgroundImageColor : UIColor.primaryColor(),
       CLCalendarDayTitleTextColor : UIColor(white: 1.0, alpha: 0.6)
     ]
