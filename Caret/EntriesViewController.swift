@@ -209,6 +209,7 @@ class EntriesViewController: UIViewController {
         entry.archived = false
         if let durationButton = sender as? DurationBarButtonItem {
           entry.duration = timerController.interval
+          entry.happened_on = NSDate()
         } else {
           entry.duration = 0
         }
