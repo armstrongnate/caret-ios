@@ -33,6 +33,7 @@ class SettingsViewController: UITableViewController {
   }
 
   func reports() {
+    performSegueWithIdentifier("reports", sender: self)
   }
 
   func notifications() {
@@ -54,6 +55,13 @@ class SettingsViewController: UITableViewController {
   }
 
   func logOut() {
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "reports" {
+      let reports = segue.destinationViewController as! ReportsViewController
+      reports.context = context
+    }
   }
 
 }

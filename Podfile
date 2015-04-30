@@ -8,4 +8,4 @@ pod 'Charts'
 pod 'SwiftyJSON', '>= 2.2'
 pod 'MMWormhole', '~> 1.1.1'
 
-link_with 'Caret', 'CaretTests', 'Caret WatchKit Extension'
+link_with 'Caret', 'CaretTests', 'Caret WatchKit Extension', 'CaretKit'
