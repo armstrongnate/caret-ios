@@ -65,6 +65,7 @@
 		438CB0091AE3171900E0F1E2 /* Project.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 438CB0071AE3171900E0F1E2 /* Project.storyboard */; };
 		438CB00B1AE3178400E0F1E2 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB00A1AE3178400E0F1E2 /* ProjectsViewController.swift */; };
 		438CB00D1AE3179D00E0F1E2 /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB00C1AE3179D00E0F1E2 /* ProjectViewController.swift */; };
+		43919C2B1AF1C00300073B53 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43919C2A1AF1C00300073B53 /* Utilities.swift */; };
 		439FC9411AE184D30079D10F /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */; };
 		439FC9431AE1BB4D0079D10F /* SyncControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FC9421AE1BB4D0079D10F /* SyncControllerTestCase.swift */; };
 		43AF4AF11AEF30EE0041D03B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF4AEF1AEF30EE0041D03B /* SettingsViewController.swift */; };
@@ -240,6 +241,8 @@
 		438CB0081AE3171900E0F1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Project.storyboard; sourceTree = "<group>"; };
 		438CB00A1AE3178400E0F1E2 /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectsViewController.swift; path = Controllers/ProjectsViewController.swift; sourceTree = "<group>"; };
 		438CB00C1AE3179D00E0F1E2 /* ProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectViewController.swift; path = Controllers/ProjectViewController.swift; sourceTree = "<group>"; };
+		43919C2A1AF1C00300073B53 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Utils/Utilities.swift; sourceTree = "<group>"; };
+		43919C2C1AF1C1DC00073B53 /* TestLocations.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestLocations.gpx; sourceTree = "<group>"; };
 		439FC9421AE1BB4D0079D10F /* SyncControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncControllerTestCase.swift; sourceTree = "<group>"; };
 		43AF4AEF1AEF30EE0041D03B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Controllers/SettingsViewController.swift; sourceTree = "<group>"; };
 		43AF4AF31AEF320D0041D03B /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -517,6 +520,7 @@
 				43313E3F1ADF729F006FAF8E /* PersistenceController.swift */,
 				43313E411AE03FD4006FAF8E /* SyncController.swift */,
 				432A60241AEB0163000CBDFA /* TimerController.swift */,
+				43919C2A1AF1C00300073B53 /* Utilities.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -591,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				43E0123D1A993E9800647961 /* Info.plist */,
+				43919C2C1AF1C1DC00073B53 /* TestLocations.gpx */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1147,6 +1152,7 @@
 				43E012911A994A0B00647961 /* NSDate+CL.m in Sources */,
 				43F9DA0F1ADF39B3005ED457 /* ClientHelper.swift in Sources */,
 				43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */,
+				43919C2B1AF1C00300073B53 /* Utilities.swift in Sources */,
 				438CB00B1AE3178400E0F1E2 /* ProjectsViewController.swift in Sources */,
 				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,

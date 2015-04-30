@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 let kSavedItemsKey = "savedItems"
 
@@ -16,9 +17,13 @@ class GeoremindersViewController: UIViewController {
   @IBOutlet weak var mapView: MKMapView!
 
   var georeminders = [Georeminder]()
+  var locationManager = CLLocationManager()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    locationManager.delegate = self
+    locationManager.requestAlwaysAuthorization()
 
     loadAllGeoreminders()
   }
@@ -59,6 +64,35 @@ class GeoremindersViewController: UIViewController {
     NSUserDefaults.standardUserDefaults().synchronize()
   }
 
+  func regionWithGeoreminder(georeminder: Georeminder) -> CLCircularRegion {
+    let region = CLCircularRegion(center: georeminder.coordinate, radius: georeminder.radius, identifier: georeminder.identifier)
+    region.notifyOnEntry = georeminder.onEntry != nil
+    region.notifyOnExit = georeminder.onExit != nil
+    return region
+  }
+
+  func startMonitoringGeoreminder(georeminder: Georeminder) {
+    if !CLLocationManager.isMonitoringAvailableForClass(CLCircularRegion) {
+      showSimpleAlertWithTitle("Error", message: "Geofencing is not supported on this device!", viewController: self)
+      return
+    }
+    if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+      showSimpleAlertWithTitle("Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.", viewController: self)
+    }
+    let region = regionWithGeoreminder(georeminder)
+    locationManager.startMonitoringForRegion(region)
+  }
+
+  func stopMonitoringGeoreminder(georeminder: Georeminder) {
+    for region in locationManager.monitoredRegions {
+      if let circularRegion = region as? CLCircularRegion {
+        if circularRegion.identifier == georeminder.identifier {
+          locationManager.stopMonitoringForRegion(circularRegion)
+        }
+      }
+    }
+  }
+
 }
 
 // MARK: - AddGeoreminderViewControllerDelegate
@@ -68,6 +102,7 @@ extension GeoremindersViewController: AddGeoreminderViewControllerDelegate {
     controller.dismissViewControllerAnimated(true, completion: nil)
     let georeminder = Georeminder(coordinate: coordinate, radius: radius, identifier: identifier, onEntry: onEntry, onExit: onExit)
     addGeoreminder(georeminder)
+    startMonitoringGeoreminder(georeminder)
     saveAllGeoreminders()
   }
 
@@ -140,7 +175,17 @@ extension GeoremindersViewController: MKMapViewDelegate {
     // Delete georeminder
     var georeminder = view.annotation as! Georeminder
     removeGeoreminder(georeminder)
+    stopMonitoringGeoreminder(georeminder)
     saveAllGeoreminders()
+  }
+
+}
+
+// MARK: - Location manager delegate
+extension GeoremindersViewController: CLLocationManagerDelegate {
+
+  func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    mapView.showsUserLocation = status == .AuthorizedAlways
   }
 
 }

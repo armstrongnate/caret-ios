@@ -7,6 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
+import MMWormhole
+
+let kNotificationCategoryClockIn = "clockInCategory"
+let kNotificationCategoryClockOut = "clockOutCategory"
+let kNotificationActionClockIn = "clockInAction"
+let kNotificationActionClockOut = "clockOutAction"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,11 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var persistenceController: PersistenceController!
   var syncController: SyncController!
   var timerController: TimerController!
+  let locationManager = CLLocationManager()
+  var notificationClockEvent: ClockEvent?
+  var wormhole: MMWormhole!
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     persistenceController = PersistenceController(callback: sync)
     timerController = TimerController(userID: 6)
+    locationManager.delegate = self
 
     // Custom nav bar color
     let navigationBarAppearance = UINavigationBar.appearance()
@@ -28,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let toolbarAppearance = UIToolbar.appearance()
     toolbarAppearance.tintColor = UIColor.secondaryColor()
+
+    registerForNotifications()
 
     return true
   }
@@ -46,6 +59,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let nav = UINavigationController(rootViewController: vc)
     window!.rootViewController = nav
     window!.makeKeyAndVisible()
+  }
+
+  func registerForNotifications() {
+    // clock in
+    let clockIn = UIMutableUserNotificationAction()
+    clockIn.identifier = kNotificationActionClockIn
+    clockIn.title = "Clock in"
+    clockIn.activationMode = UIUserNotificationActivationMode.Background
+    clockIn.authenticationRequired = true
+    clockIn.destructive = false
+
+    let clockInCategory = UIMutableUserNotificationCategory()
+    clockInCategory.identifier = kNotificationCategoryClockIn
+
+    clockInCategory.setActions([clockIn],
+    forContext: UIUserNotificationActionContext.Default)
+
+    clockInCategory.setActions([clockIn],
+    forContext: UIUserNotificationActionContext.Minimal)
+
+    // clock out
+    let clockOut = UIMutableUserNotificationAction()
+    clockOut.identifier = kNotificationActionClockOut
+    clockOut.title = "Clock out"
+    clockOut.activationMode = UIUserNotificationActivationMode.Background
+    clockOut.authenticationRequired = true
+    clockOut.destructive = false
+
+    let clockOutCategory = UIMutableUserNotificationCategory()
+    clockOutCategory.identifier = kNotificationCategoryClockOut
+
+    clockOutCategory.setActions([clockOut],
+    forContext: UIUserNotificationActionContext.Default)
+
+    clockOutCategory.setActions([clockOut],
+    forContext: UIUserNotificationActionContext.Minimal)
+
+    let types = UIUserNotificationType.Alert | UIUserNotificationType.Sound
+    let settings = UIUserNotificationSettings(forTypes: types, categories: Set([clockInCategory, clockOutCategory]))
+    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    UIApplication.sharedApplication().cancelAllLocalNotifications()
+
+    // setup wormhole for notifications
+    let groupIdentifier = "group.com.natearmstrong.caret"
+    let messageIdentifier = "lastEntryEndedAt"
+    wormhole = MMWormhole(applicationGroupIdentifier: groupIdentifier, optionalDirectory: "wormhole")
+    wormhole.listenForMessageWithIdentifier(messageIdentifier, listener: wormholeCallback)
+  }
+
+  private func wormholeCallback(messageObject: AnyObject!) {
+    if let clockEvent = notificationClockEvent {
+      if clockEvent == .In && !timerController.clockedIn {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        presentNotificationForClockEvent(.In)
+      } else if clockEvent == .Out && timerController.clockedIn {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        presentNotificationForClockEvent(.Out)
+      }
+
+      self.notificationClockEvent = nil
+    }
+  }
+
+  private func presentNotificationForClockEvent(clockEvent: ClockEvent) {
+    let message = clockEvent == .In ? "Shall we begin?" : "Did you mean to clock out?"
+    if UIApplication.sharedApplication().applicationState != .Active {
+      var notification = UILocalNotification()
+      notification.alertBody = message
+      notification.soundName = UILocalNotificationDefaultSoundName
+      notification.category = clockEvent == .In ? kNotificationCategoryClockIn : kNotificationCategoryClockOut
+      UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    }
   }
 
   func applicationWillResignActive(application: UIApplication) {
@@ -84,8 +169,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     reply([:])
   }
 
+  func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+    if notification.category == kNotificationCategoryClockIn {
+      if identifier == kNotificationActionClockIn {
+        timerController.clockIn()
+      }
+    } else if notification.category == kNotificationCategoryClockOut {
+      if identifier == kNotificationActionClockOut {
+        timerController.clockOut()
+      }
+    }
+    completionHandler()
+  }
+
 }
 
-extension AppDelegate: UINavigationControllerDelegate {
+extension AppDelegate: CLLocationManagerDelegate {
+
+  func handleRegionEvent(region: CLRegion!, _ clockEvent: ClockEvent) {
+    self.notificationClockEvent = clockEvent
+    timerController.update() // triggers wormholeCallback
+  }
+
+  func georeminderForRegionIdentifier(identifier: String) -> Georeminder? {
+    if let savedItems = NSUserDefaults.standardUserDefaults().arrayForKey(kSavedItemsKey) {
+      for savedItem in savedItems {
+        if let georeminder = NSKeyedUnarchiver.unarchiveObjectWithData(savedItem as! NSData) as? Georeminder {
+          if georeminder.identifier == identifier {
+            return georeminder
+          }
+        }
+      }
+    }
+    return nil
+  }
+
+  func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+    if region is CLCircularRegion {
+      if let georeminder = georeminderForRegionIdentifier(region.identifier) {
+        if let onEntry = georeminder.onEntry {
+          handleRegionEvent(region, onEntry)
+        }
+      }
+    }
+  }
+
+  func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+    if region is CLCircularRegion {
+      if let georeminder = georeminderForRegionIdentifier(region.identifier) {
+        if let onExit = georeminder.onExit {
+          handleRegionEvent(region, onExit)
+        }
+      }
+    }
+  }
 
 }
