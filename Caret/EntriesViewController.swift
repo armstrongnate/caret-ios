@@ -110,7 +110,6 @@ class EntriesViewController: UIViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    println("in viewdidappear")
     timerController.update()
   }
 
