@@ -262,7 +262,9 @@ class EntriesViewController: UIViewController {
   func setDayTotal() {
     if let entries = fetchedResultsController.fetchedObjects as? [Entry] {
       var totalSeconds = entries.reduce(0) { $0 + $1.duration.integerValue }
-      totalSeconds += Int(timerController.interval)
+      if date.isDateToday() {
+        totalSeconds += Int(timerController.interval)
+      }
       dayTotal.text = "\(secondsToTime(totalSeconds)) total"
     }
   }
