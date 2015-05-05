@@ -62,13 +62,9 @@ class ProjectsViewController: UITableViewController {
     // Dispose of any resources that can be recreated.
   }
 
-  @IBAction func unwindFromCancelProject(segue: UIStoryboardSegue) {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+  @IBAction func unwindFromCancelProject(segue: UIStoryboardSegue) {}
 
-  @IBAction func unwindFromSaveProject(segue: UIStoryboardSegue) {
-    dismissViewControllerAnimated(true, completion: nil)
-  }
+  @IBAction func unwindFromSaveProject(segue: UIStoryboardSegue) {}
 
   func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
     let project = fetchedResultsController.objectAtIndexPath(indexPath) as! Project
