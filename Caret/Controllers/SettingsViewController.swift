@@ -55,6 +55,10 @@ class SettingsViewController: UITableViewController {
   }
 
   func logOut() {
+    if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+      User.current = nil
+      appDelegate.window?.rootViewController = appDelegate.loginViewController
+    }
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

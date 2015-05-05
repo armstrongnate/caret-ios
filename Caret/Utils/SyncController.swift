@@ -69,7 +69,7 @@ class SyncController: NSObject {
     let objects = self.managedObjectsForClass(self.names[name]!, withSyncStatus: .Changed)
     let jsonObjects = objects.map{ $0.toJSON(self.dateFormatter) }
     var params: JSONObject = [name: jsonObjects]
-    params["api_key"] = kMyAPIKey
+    params["api_key"] = User.current?.apiKey ?? ""
     let lastUpdate = self.mostRecentUpdatedAtDateForClass(self.names[name]!) ?? NSDate(timeIntervalSince1970: 0)
     params["updated_at"] = lastUpdate
     self.post(name, params: params)

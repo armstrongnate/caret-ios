@@ -51,6 +51,8 @@
 		4377BAB61AE73343001F9B5B /* Caret WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4377BA991AE73342001F9B5B /* Caret WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4379C3511AEE17B90003F003 /* CaretKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4377BA751AE72AAC001F9B5B /* CaretKit.framework */; };
 		437E074C1AF1FBFD00C59185 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E074B1AF1FBFD00C59185 /* Numbers.swift */; };
+		437E074F1AF299EF00C59185 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E074D1AF299EF00C59185 /* LoginViewController.swift */; };
+		437E07501AF299EF00C59185 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 437E074E1AF299EF00C59185 /* LoginViewController.xib */; };
 		4388238C1AE3570B00A24D02 /* ProjectTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */; };
 		4388238D1AE3572500A24D02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0031AE2DC2500E0F1E2 /* Project.swift */; };
 		4388238E1AE3572500A24D02 /* ProjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */; };
@@ -99,6 +101,9 @@
 		43E012961A9963C100647961 /* NSDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012951A9963C100647961 /* NSDate+.swift */; };
 		43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */; };
 		43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */; };
+		43F6E8A71AF2C4D100251BA8 /* HRToast+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F6E8A61AF2C4D100251BA8 /* HRToast+UIView.swift */; };
+		43F6E8A91AF2E57000251BA8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F6E8A81AF2E57000251BA8 /* User.swift */; };
+		43F6E8AA1AF306BA00251BA8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F6E8A81AF2E57000251BA8 /* User.swift */; };
 		43F9DA0B1ADF26FA005ED457 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA091ADF26FA005ED457 /* Data.xcdatamodeld */; };
 		43F9DA0F1ADF39B3005ED457 /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */; };
 		43F9DA131ADF543A005ED457 /* Client.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43F9DA121ADF543A005ED457 /* Client.storyboard */; };
@@ -232,6 +237,8 @@
 		4377BAB01AE73343001F9B5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		4377BAB21AE73343001F9B5B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		437E074B1AF1FBFD00C59185 /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Numbers.swift; path = Utils/Numbers.swift; sourceTree = "<group>"; };
+		437E074D1AF299EF00C59185 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
+		437E074E1AF299EF00C59185 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controllers/LoginViewController.xib; sourceTree = "<group>"; };
 		4388238B1AE3570B00A24D02 /* ProjectTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTestCase.swift; sourceTree = "<group>"; };
 		4388238F1AE37DDD00A24D02 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Models/Client.swift; sourceTree = "<group>"; };
 		438823941AE42BE500A24D02 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entry.swift; path = Models/Entry.swift; sourceTree = "<group>"; };
@@ -287,6 +294,8 @@
 		43E012951A9963C100647961 /* NSDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+.swift"; sourceTree = "<group>"; };
 		43EB3D8A1ADB92A000111563 /* CurrentEntryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentEntryNavigationController.swift; path = Controllers/CurrentEntryNavigationController.swift; sourceTree = "<group>"; };
 		43EB3D8B1ADB92A000111563 /* CurrentEntryNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CurrentEntryNavigationController.xib; path = Controllers/CurrentEntryNavigationController.xib; sourceTree = "<group>"; };
+		43F6E8A61AF2C4D100251BA8 /* HRToast+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HRToast+UIView.swift"; sourceTree = "<group>"; };
+		43F6E8A81AF2E57000251BA8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		43F9DA0A1ADF26FA005ED457 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientHelper.swift; path = Models/ClientHelper.swift; sourceTree = "<group>"; };
 		43F9DA121ADF543A005ED457 /* Client.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Client.storyboard; sourceTree = "<group>"; };
@@ -366,6 +375,7 @@
 				438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */,
 				438823961AE42FE200A24D02 /* EntryHelper.swift */,
 				435F481E1AF0650500DE1B89 /* Georeminder.swift */,
+				43F6E8A81AF2E57000251BA8 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -388,6 +398,8 @@
 				43AF4AEF1AEF30EE0041D03B /* SettingsViewController.swift */,
 				435F481A1AF03C2700DE1B89 /* AddGeoreminderViewController.swift */,
 				435F481C1AF0633000DE1B89 /* GeoremindersViewController.swift */,
+				437E074D1AF299EF00C59185 /* LoginViewController.swift */,
+				437E074E1AF299EF00C59185 /* LoginViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -513,6 +525,7 @@
 		43BC260D1AA6AE9700CA1E53 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				43F6E8A61AF2C4D100251BA8 /* HRToast+UIView.swift */,
 				43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */,
 				43BC26101AA6C5CD00CA1E53 /* whereIs.swift */,
 				43313E3F1ADF729F006FAF8E /* PersistenceController.swift */,
@@ -919,6 +932,7 @@
 				434CAAA01AE5AE1200B7C459 /* CalendarViewController.xib in Resources */,
 				432B08251ABBDA6A00DBDF72 /* EntryTableViewCell.xib in Resources */,
 				4345E04B1A9DA080008896D3 /* TimerEntryView.xib in Resources */,
+				437E07501AF299EF00C59185 /* LoginViewController.xib in Resources */,
 				43EB3D8D1ADB92A000111563 /* CurrentEntryNavigationController.xib in Resources */,
 				43E012481A993E9800647961 /* Images.xcassets in Resources */,
 				43F9DA131ADF543A005ED457 /* Client.storyboard in Resources */,
@@ -1155,6 +1169,7 @@
 				431167011ACE125A00ED78BA /* EntryAccessoryView.swift in Sources */,
 				4319E0DB1ABA7CE2006BFA40 /* UIViewController+.swift in Sources */,
 				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
+				43F6E8A91AF2E57000251BA8 /* User.swift in Sources */,
 				438CB0041AE2DC2500E0F1E2 /* Project.swift in Sources */,
 				43D587051ACCD0200083F079 /* WeekView.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
@@ -1181,6 +1196,7 @@
 				43E012901A994A0B00647961 /* DayTitleLabel.m in Sources */,
 				43E012941A994A0B00647961 /* UIImage+CL.m in Sources */,
 				43CD64BF1AC3C77A00BBD68F /* MergeTableViewController.swift in Sources */,
+				437E074F1AF299EF00C59185 /* LoginViewController.swift in Sources */,
 				432B08241ABBDA6A00DBDF72 /* EntryTableViewCell.swift in Sources */,
 				4345E04F1A9EB409008896D3 /* DurationSliderView.swift in Sources */,
 				43E0127D1A9944C200647961 /* UIColorExtension.swift in Sources */,
@@ -1201,6 +1217,7 @@
 				43919C2B1AF1C00300073B53 /* Utilities.swift in Sources */,
 				438CB00B1AE3178400E0F1E2 /* ProjectsViewController.swift in Sources */,
 				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
+				43F6E8A71AF2C4D100251BA8 /* HRToast+UIView.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,
 				43D587021ACCD0200083F079 /* DayView.swift in Sources */,
 				43313E401ADF729F006FAF8E /* PersistenceController.swift in Sources */,
@@ -1211,6 +1228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F6E8AA1AF306BA00251BA8 /* User.swift in Sources */,
 				4388239A1AE4327700A24D02 /* Entry.swift in Sources */,
 				4388239B1AE4327700A24D02 /* EntryHelper.swift in Sources */,
 				438823911AE37E2100A24D02 /* Client.swift in Sources */,

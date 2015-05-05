@@ -14,3 +14,7 @@ func showSimpleAlertWithTitle(title: String!, #message: String, #viewController:
   alert.addAction(action)
   viewController.presentViewController(alert, animated: true, completion: nil)
 }
+
+func authenticated() -> Bool {
+  return User.current != nil
+}

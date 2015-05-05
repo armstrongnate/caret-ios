@@ -26,10 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var notificationClockEvent: ClockEvent?
   var wormhole: MMWormhole!
 
+  var entriesViewController: EntriesViewController {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("entries") as! EntriesViewController
+    vc.context = self.persistenceController.managedObjectContext
+    vc.timerController = self.timerController
+    return vc
+  }
+  var loginViewController: LoginViewController {
+    let vc = LoginViewController(nibName: "LoginViewController", bundle: nil)
+    vc.delegate = self
+    return vc
+  }
+
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    persistenceController = PersistenceController(callback: sync)
-    timerController = TimerController(userID: 6)
+    persistenceController = PersistenceController(callback: loadUI)
     locationManager.delegate = self
 
     // Custom nav bar color
@@ -45,20 +57,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func sync() {
-    syncController = SyncController(context: persistenceController.managedObjectContext, callback: showDashboard)
-    syncController.sync(["clients", "projects", "entries"])
+  func loadUI() {
+    window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    if authenticated() {
+      timerController = TimerController(userID: User.current!.userID)
+      sync()
+      let nav = UINavigationController(rootViewController: entriesViewController)
+      window!.rootViewController = nav
+    } else {
+      window!.rootViewController = loginViewController
+    }
+    window!.makeKeyAndVisible()
   }
 
-  func showDashboard() {
-    window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let vc = storyboard.instantiateViewControllerWithIdentifier("entries") as! EntriesViewController
-    vc.context = persistenceController.managedObjectContext
-    vc.timerController = timerController
-    let nav = UINavigationController(rootViewController: vc)
-    window!.rootViewController = nav
-    window!.makeKeyAndVisible()
+  func sync() {
+    syncController = SyncController(context: persistenceController.managedObjectContext)
+    syncController.sync(["clients", "projects", "entries"])
   }
 
   func registerForNotifications() {
@@ -222,6 +236,17 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
       }
     }
+  }
+
+}
+
+extension AppDelegate: LoginViewControllerDelegate {
+
+  func loginViewController(controller: LoginViewController, didLoginAsUser user: User) {
+    timerController = TimerController(userID: user.userID)
+    sync()
+    let nav = UINavigationController(rootViewController: entriesViewController)
+    window!.rootViewController = nav
   }
 
 }
