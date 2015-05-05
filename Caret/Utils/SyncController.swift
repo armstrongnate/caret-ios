@@ -58,7 +58,6 @@ class SyncController: NSObject {
     queue.removeLast()
     if self.queue.count == 0 {
       dispatch_async(dispatch_get_main_queue()) {
-        println("calling back!")
         self.callback?()
       }
     }
