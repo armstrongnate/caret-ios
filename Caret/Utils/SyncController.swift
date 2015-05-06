@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Alamofire
 import SwiftyJSON
+import SystemConfiguration
 
 let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
 let kApiURL = "http://10.0.1.39"
@@ -30,6 +31,7 @@ class SyncController: NSObject {
   var context: NSManagedObjectContext
   var callback: SyncCallbackBlock?
   var queue = [String]()
+  var request: Alamofire.Request?
   lazy var dateFormatter: NSDateFormatter = {
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
@@ -57,9 +59,13 @@ class SyncController: NSObject {
     syncClass(queue.last!)
     queue.removeLast()
     if self.queue.count == 0 {
-      dispatch_async(dispatch_get_main_queue()) {
-        self.callback?()
-      }
+      performCallback()
+    }
+  }
+
+  func performCallback() {
+    dispatch_async(dispatch_get_main_queue()) {
+      self.callback?()
     }
   }
 
@@ -75,20 +81,23 @@ class SyncController: NSObject {
   }
 
   private func post(name: String, params: JSONObject) {
-    Alamofire.request(.POST, "\(kApiURL)/\(name)/sync", parameters: params)
+    if !connectedToNetwork() { return }
+    request?.cancel()
+    request = Alamofire.request(.POST, "\(kApiURL)/\(name)/sync", parameters: params)
       .responseJSON { (_, _, json, error) in
         if error == nil {
           let j = JSON(json!)
           self.handleResponse(j, name: name)
         } else {
           println("sync error \(error)")
+          self.performCallback()
         }
       }
   }
 
   private func handleResponse(response: JSON, name: String) {
     if let objects = response.array {
-      context.performBlock {
+      context.performBlockAndWait {
         for json in objects {
           var object: NSManagedObject?
           object = self.findOrInitializeClass(self.names[name]!, guid: json["guid"].string!)
@@ -155,6 +164,26 @@ class SyncController: NSObject {
 
     var error: NSError?
     return context.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject] ?? []
+  }
+
+  private func connectedToNetwork() -> Bool {
+    var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+    zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+    zeroAddress.sin_family = sa_family_t(AF_INET)
+
+    let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+      SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0)).takeRetainedValue()
+    }
+
+    var flags: SCNetworkReachabilityFlags = 0
+    if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) == 0 {
+      return false
+    }
+
+    let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
+    let needsConnection = (flags & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+
+    return isReachable && !needsConnection
   }
 
 }
