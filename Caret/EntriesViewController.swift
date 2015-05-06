@@ -255,7 +255,7 @@ class EntriesViewController: UIViewController {
     let syncContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
     syncContext.parentContext = context
     syncController.context = syncContext
-    syncController.sync(["entries"])
+    syncController.sync(["clients", "projects", "entries"])
     timerController.update()
   }
 
