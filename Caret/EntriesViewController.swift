@@ -122,6 +122,7 @@ class EntriesViewController: UIViewController {
   }
 
   @IBAction func unwindFromSaveEntry(segue: UIStoryboardSegue) {
+    sync()
     performFetch()
   }
 

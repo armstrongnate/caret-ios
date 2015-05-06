@@ -19,7 +19,6 @@ class EntryViewController: UITableViewController {
   var project: Project?
   var context: NSManagedObjectContext!
   var projectsContext: NSManagedObjectContext!
-  var syncController: SyncController!
   var durationBackgroundView: UIView!
   lazy var durationSlider: DurationSliderView = {
     let slider = DurationSliderView()
@@ -44,7 +43,6 @@ class EntryViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Edit Entry"
-    syncController = SyncController(context: context)
     durationSlider.value = entry.duration.doubleValue / 60.0 / 60.0
     notesTextView.text = entry.notes
     tableView.keyboardDismissMode = .Interactive
@@ -65,7 +63,6 @@ class EntryViewController: UITableViewController {
       var error: NSError?
       if context.save(&error) {
         performSegueWithIdentifier("unwindFromSaveEntry", sender: self)
-        syncController.sync(["entries"])
       } else {
         println("save entry context error \(error)")
       }
