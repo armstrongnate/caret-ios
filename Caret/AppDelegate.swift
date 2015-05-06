@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
   var persistenceController: PersistenceController!
-  var syncController: SyncController!
   var timerController: TimerController!
   let locationManager = CLLocationManager()
   var notificationClockEvent: ClockEvent?
@@ -61,18 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     if authenticated() {
       timerController = TimerController(userID: User.current!.userID)
-      sync()
       let nav = UINavigationController(rootViewController: entriesViewController)
       window!.rootViewController = nav
     } else {
       window!.rootViewController = loginViewController
     }
     window!.makeKeyAndVisible()
-  }
-
-  func sync() {
-    syncController = SyncController(context: persistenceController.managedObjectContext)
-    syncController.sync(["clients", "projects", "entries"])
   }
 
   func registerForNotifications() {
@@ -244,7 +237,6 @@ extension AppDelegate: LoginViewControllerDelegate {
 
   func loginViewController(controller: LoginViewController, didLoginAsUser user: User) {
     timerController = TimerController(userID: user.userID)
-    sync()
     let nav = UINavigationController(rootViewController: entriesViewController)
     window!.rootViewController = nav
   }
