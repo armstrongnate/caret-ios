@@ -64,7 +64,6 @@ extension Entry {
     fetchRequest.predicate = predicate
     var error: NSError?
     let results = context.executeFetchRequest(fetchRequest, error: &error)
-    println("find project results count = \(results?.count)")
     return results?.first as? Project
   }
 

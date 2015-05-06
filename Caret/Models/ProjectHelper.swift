@@ -17,7 +17,7 @@ extension Project {
       "name": name,
       "hourly_rate": hourly_rate,
       "guid": guid,
-      "client_id": client.apiID ?? ""
+      "client_id": client.apiID ?? "",
     ]
     if let id = apiID {
       json["id"] = id
@@ -50,7 +50,6 @@ extension Project {
     fetchRequest.predicate = predicate
     var error: NSError?
     let results = context.executeFetchRequest(fetchRequest, error: &error)
-    println("find client results count = \(results?.count)")
     return results?.first as? Client
   }
 
