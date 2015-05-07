@@ -72,17 +72,17 @@ class DayView: UIView {
 
   func updateView() {
     if self.selected {
-      dateLabel.textColor = UIColor.whiteColor()
-      dateLabel.backgroundColor = UIColor.secondaryColor() // TODO: use appearance
+      dateLabel.textColor = CalendarView.daySelectedTextColor
+      dateLabel.backgroundColor = CalendarView.daySelectedBackgroundColor
     } else if isToday {
-      dateLabel.textColor = UIColor.whiteColor()
-      dateLabel.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
+      dateLabel.textColor = CalendarView.todayTextColor
+      dateLabel.backgroundColor = CalendarView.todayBackgroundColor
     } else if isOtherMonth {
-      dateLabel.textColor = UIColor(white: 1.0, alpha: 0.3)
-      dateLabel.backgroundColor = UIColor.clearColor()
+      dateLabel.textColor = CalendarView.otherMonthTextColor
+      dateLabel.backgroundColor = CalendarView.otherMonthBackgroundColor
     } else {
-      self.dateLabel.textColor = UIColor(white: 1.0, alpha: 0.6)
-      self.dateLabel.backgroundColor = UIColor.clearColor()
+      self.dateLabel.textColor = CalendarView.dayTextColor
+      self.dateLabel.backgroundColor = CalendarView.dayBackgroundColor
     }
   }
 

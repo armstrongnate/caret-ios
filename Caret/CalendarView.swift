@@ -16,6 +16,50 @@ protocol CalendarViewDelegate {
 
 class CalendarView: UIView {
 
+  private struct Appearance {
+    static var dayBackgroundColor = UIColor.clearColor()
+    static var daySelectedBackgroundColor = UIColor.orangeColor()
+    static var todayBackgroundColor = UIColor.lightGrayColor()
+    static var todayTextColor = UIColor.blackColor()
+    static var dayTextColor = UIColor.blackColor()
+    static var daySelectedTextColor = UIColor.whiteColor()
+    static var otherMonthTextColor = UIColor.lightGrayColor()
+    static var otherMonthBackgroundColor = UIColor.clearColor()
+  }
+
+  internal class var dayBackgroundColor: UIColor {
+    get { return Appearance.dayBackgroundColor }
+    set { Appearance.dayBackgroundColor = newValue }
+  }
+  internal class var daySelectedBackgroundColor: UIColor {
+    get { return Appearance.daySelectedBackgroundColor }
+    set { Appearance.daySelectedBackgroundColor = newValue }
+  }
+  internal class var todayBackgroundColor: UIColor {
+    get { return Appearance.todayBackgroundColor }
+    set { Appearance.todayBackgroundColor = newValue }
+  }
+  internal class var todayTextColor: UIColor {
+    get { return Appearance.todayTextColor }
+    set { Appearance.todayTextColor = newValue }
+  }
+  internal class var dayTextColor: UIColor {
+    get { return Appearance.dayTextColor }
+    set { Appearance.dayTextColor = newValue }
+  }
+  internal class var daySelectedTextColor: UIColor {
+    get { return Appearance.daySelectedTextColor }
+    set { Appearance.daySelectedTextColor = newValue }
+  }
+  internal class var otherMonthTextColor: UIColor {
+    get { return Appearance.otherMonthTextColor }
+    set { Appearance.otherMonthTextColor = newValue }
+  }
+  internal class var otherMonthBackgroundColor: UIColor {
+    get { return Appearance.otherMonthBackgroundColor }
+    set { Appearance.otherMonthBackgroundColor = newValue }
+  }
+
   lazy var contentView: ContentView = {
     let cv = ContentView(frame: CGRectZero)
     cv.delegate = self
