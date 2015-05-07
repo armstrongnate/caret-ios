@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func loadUI() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     if authenticated() {
-      timerController = TimerController(userID: User.current!.userID)
+      timerController = TimerController(user: User.current!)
       let nav = UINavigationController(rootViewController: entriesViewController)
       window!.rootViewController = nav
     } else {
@@ -236,7 +236,7 @@ extension AppDelegate: CLLocationManagerDelegate {
 extension AppDelegate: LoginViewControllerDelegate {
 
   func loginViewController(controller: LoginViewController, didLoginAsUser user: User) {
-    timerController = TimerController(userID: user.userID)
+    timerController = TimerController(user: user)
     let nav = UINavigationController(rootViewController: entriesViewController)
     window!.rootViewController = nav
   }

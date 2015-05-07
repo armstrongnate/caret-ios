@@ -12,7 +12,6 @@ import Alamofire
 import SwiftyJSON
 import SystemConfiguration
 
-let kMyAPIKey = "X1-nd1A3tCwswqV5pIVEDA"
 let kApiURL = "http://10.0.1.39"
 
 typealias JSONObject = [String: AnyObject]

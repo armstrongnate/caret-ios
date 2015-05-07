@@ -22,7 +22,7 @@ class TimerController: NSObject {
   let groupIdentifier = "group.com.natearmstrong.caret"
   let messageIdentifier = "lastEntryEndedAt"
 
-  var userID: NSNumber
+  var user: User
   var delegate: TimerControllerDelegate?
   var wormhole: MMWormhole
   var clockedIn: Bool {
@@ -47,8 +47,8 @@ class TimerController: NSObject {
   }()
 
 
-  init(userID: NSNumber) {
-    self.userID = userID
+  init(user: User) {
+    self.user = user
     wormhole = MMWormhole(applicationGroupIdentifier: groupIdentifier, optionalDirectory: "wormhole")
     super.init()
     wormhole.listenForMessageWithIdentifier(messageIdentifier, listener: wormholeCallback)
@@ -71,8 +71,8 @@ class TimerController: NSObject {
   }
 
   func update() {
-    var params: JSONObject = ["api_key": kMyAPIKey]
-    Alamofire.request(.GET, "\(kApiURL)/users/\(userID)", parameters: params)
+    var params: JSONObject = ["api_key": user.apiKey]
+    Alamofire.request(.GET, "\(kApiURL)/users/\(user.userID)", parameters: params)
       .responseJSON { (_, _, json, error) in
         if error == nil {
           self.parseResponse(JSON(json!))
@@ -114,7 +114,7 @@ class TimerController: NSObject {
   }
 
   private func clockUser(action: String) {
-    var params: JSONObject = ["api_key": kMyAPIKey]
+    var params: JSONObject = ["api_key": user.apiKey]
     Alamofire.request(.GET, "\(kApiURL)/clock_\(action)", parameters: params)
       .responseJSON { (_, _, json, error) in
         if error == nil {
