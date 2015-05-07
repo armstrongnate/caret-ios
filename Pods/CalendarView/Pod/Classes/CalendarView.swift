@@ -9,12 +9,12 @@
 import UIKit
 import SwiftMoment
 
-protocol CalendarViewDelegate {
+public protocol CalendarViewDelegate {
   func calendarDidSelectDate(date: Moment)
   func calendarDidPageToDate(date: Moment)
 }
 
-class CalendarView: UIView {
+public class CalendarView: UIView {
 
   private struct Appearance {
     static var dayBackgroundColor = UIColor.clearColor()
@@ -27,35 +27,35 @@ class CalendarView: UIView {
     static var otherMonthBackgroundColor = UIColor.clearColor()
   }
 
-  internal class var dayBackgroundColor: UIColor {
+  public class var dayBackgroundColor: UIColor {
     get { return Appearance.dayBackgroundColor }
     set { Appearance.dayBackgroundColor = newValue }
   }
-  internal class var daySelectedBackgroundColor: UIColor {
+  public class var daySelectedBackgroundColor: UIColor {
     get { return Appearance.daySelectedBackgroundColor }
     set { Appearance.daySelectedBackgroundColor = newValue }
   }
-  internal class var todayBackgroundColor: UIColor {
+  public class var todayBackgroundColor: UIColor {
     get { return Appearance.todayBackgroundColor }
     set { Appearance.todayBackgroundColor = newValue }
   }
-  internal class var todayTextColor: UIColor {
+  public class var todayTextColor: UIColor {
     get { return Appearance.todayTextColor }
     set { Appearance.todayTextColor = newValue }
   }
-  internal class var dayTextColor: UIColor {
+  public class var dayTextColor: UIColor {
     get { return Appearance.dayTextColor }
     set { Appearance.dayTextColor = newValue }
   }
-  internal class var daySelectedTextColor: UIColor {
+  public class var daySelectedTextColor: UIColor {
     get { return Appearance.daySelectedTextColor }
     set { Appearance.daySelectedTextColor = newValue }
   }
-  internal class var otherMonthTextColor: UIColor {
+  public class var otherMonthTextColor: UIColor {
     get { return Appearance.otherMonthTextColor }
     set { Appearance.otherMonthTextColor = newValue }
   }
-  internal class var otherMonthBackgroundColor: UIColor {
+  public class var otherMonthBackgroundColor: UIColor {
     get { return Appearance.otherMonthBackgroundColor }
     set { Appearance.otherMonthBackgroundColor = newValue }
   }
@@ -66,14 +66,14 @@ class CalendarView: UIView {
     self.addSubview(cv)
     return cv
   }()
-  var delegate: CalendarViewDelegate? {
+  public var delegate: CalendarViewDelegate? {
     didSet {
       delegate?.calendarDidPageToDate(contentView.currentMonth().date)
     }
   }
-  var selectedDayOnPaged: Int? = 1
+  public var selectedDayOnPaged: Int? = 1
 
-  required init(coder aDecoder: NSCoder) {
+  required public init(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
   }
@@ -83,7 +83,7 @@ class CalendarView: UIView {
     setup()
   }
 
-  override func willMoveToWindow(newWindow: UIWindow?) {
+  override public func willMoveToWindow(newWindow: UIWindow?) {
     if newWindow == nil {
       NSNotificationCenter.defaultCenter().removeObserver(self)
       contentView.removeObservers()
@@ -100,7 +100,7 @@ class CalendarView: UIView {
     }
   }
 
-  override func layoutSubviews() {
+  override public func layoutSubviews() {
     super.layoutSubviews()
     contentView.frame = bounds
     contentView.contentOffset.x = CGRectGetWidth(contentView.frame)
@@ -112,7 +112,7 @@ class CalendarView: UIView {
     }
   }
 
-  func selectDate(date: Moment) {
+  public func selectDate(date: Moment) {
     contentView.selectDate(date)
   }
 
@@ -120,7 +120,7 @@ class CalendarView: UIView {
 
 extension CalendarView: UIScrollViewDelegate {
 
-  func scrollViewDidScroll(scrollView: UIScrollView) {
+  public func scrollViewDidScroll(scrollView: UIScrollView) {
     contentView.paged = false
     let ratio = contentView.contentOffset.x / CGRectGetWidth(contentView.frame)
     if ratio.isNaN { return }
@@ -129,7 +129,7 @@ extension CalendarView: UIScrollViewDelegate {
     }
   }
 
-  func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+  public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     contentView.setContentOffset(CGPointMake(CGRectGetWidth(contentView.frame), contentView.contentOffset.y), animated: true)
     delegate?.calendarDidPageToDate(contentView.currentMonth().date)
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {

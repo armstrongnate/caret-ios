@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CalendarView
 import SwiftMoment
 
 protocol CalendarViewControllerDelegate {

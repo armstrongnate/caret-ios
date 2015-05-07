@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MMWormhole
+import CalendarView
 
 let kNotificationCategoryClockIn = "clockInCategory"
 let kNotificationCategoryClockOut = "clockOutCategory"

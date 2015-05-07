@@ -49,6 +49,7 @@ code_sign() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'CalendarView.framework'
   install_framework 'Charts.framework'
   install_framework 'MMWormhole.framework'
   install_framework 'SwiftMoment.framework'
@@ -56,6 +57,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
+  install_framework 'CalendarView.framework'
   install_framework 'Charts.framework'
   install_framework 'MMWormhole.framework'
   install_framework 'SwiftMoment.framework'

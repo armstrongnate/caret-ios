@@ -76,12 +76,6 @@
 		43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */; };
 		43BC26111AA6C5CD00CA1E53 /* whereIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC26101AA6C5CD00CA1E53 /* whereIs.swift */; };
 		43CD64BF1AC3C77A00BBD68F /* MergeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CD64BE1AC3C77A00BBD68F /* MergeTableViewController.swift */; };
-		43D587001ACCD0200083F079 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D586FA1ACCD0200083F079 /* CalendarView.swift */; };
-		43D587011ACCD0200083F079 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D586FB1ACCD0200083F079 /* ContentView.swift */; };
-		43D587021ACCD0200083F079 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D586FC1ACCD0200083F079 /* DayView.swift */; };
-		43D587031ACCD0200083F079 /* EasyCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D586FD1ACCD0200083F079 /* EasyCast.swift */; };
-		43D587041ACCD0200083F079 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D586FE1ACCD0200083F079 /* MonthView.swift */; };
-		43D587051ACCD0200083F079 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D586FF1ACCD0200083F079 /* WeekView.swift */; };
 		43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E0123E1A993E9800647961 /* AppDelegate.swift */; };
 		43E012411A993E9800647961 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012401A993E9800647961 /* EntriesViewController.swift */; };
 		43E012431A993E9800647961 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E012421A993E9800647961 /* ReportsViewController.swift */; };
@@ -256,12 +250,6 @@
 		43BC260E1AA6AEC800CA1E53 /* decimalMinutesToTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = decimalMinutesToTime.swift; path = Utils/decimalMinutesToTime.swift; sourceTree = "<group>"; };
 		43BC26101AA6C5CD00CA1E53 /* whereIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = whereIs.swift; sourceTree = "<group>"; };
 		43CD64BE1AC3C77A00BBD68F /* MergeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeTableViewController.swift; sourceTree = "<group>"; };
-		43D586FA1ACCD0200083F079 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		43D586FB1ACCD0200083F079 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		43D586FC1ACCD0200083F079 /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
-		43D586FD1ACCD0200083F079 /* EasyCast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyCast.swift; sourceTree = "<group>"; };
-		43D586FE1ACCD0200083F079 /* MonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
-		43D586FF1ACCD0200083F079 /* WeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		43E012391A993E9800647961 /* Caret.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caret.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E0123D1A993E9800647961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43E0123E1A993E9800647961 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -429,7 +417,6 @@
 		4345E0491A9DA05B008896D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				43D586F91ACCCFFD0083F079 /* Calendar */,
 				43E0127E1A994A0B00647961 /* CLWeeklyCalendarViewSourceCode */,
 				4345E0451A9D9F86008896D3 /* SwipeView */,
 				4345E04A1A9DA080008896D3 /* TimerEntryView.xib */,
@@ -532,19 +519,6 @@
 				437E074B1AF1FBFD00C59185 /* Numbers.swift */,
 			);
 			name = Utils;
-			sourceTree = "<group>";
-		};
-		43D586F91ACCCFFD0083F079 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				43D586FA1ACCD0200083F079 /* CalendarView.swift */,
-				43D586FB1ACCD0200083F079 /* ContentView.swift */,
-				43D586FC1ACCD0200083F079 /* DayView.swift */,
-				43D586FD1ACCD0200083F079 /* EasyCast.swift */,
-				43D586FE1ACCD0200083F079 /* MonthView.swift */,
-				43D586FF1ACCD0200083F079 /* WeekView.swift */,
-			);
-			name = Calendar;
 			sourceTree = "<group>";
 		};
 		43E012301A993E9800647961 = {
@@ -1168,22 +1142,17 @@
 				43E012961A9963C100647961 /* NSDate+.swift in Sources */,
 				43F6E8A91AF2E57000251BA8 /* User.swift in Sources */,
 				438CB0041AE2DC2500E0F1E2 /* Project.swift in Sources */,
-				43D587051ACCD0200083F079 /* WeekView.swift in Sources */,
 				43E012931A994A0B00647961 /* UIColor+CL.m in Sources */,
 				438CB0061AE2DC9800E0F1E2 /* ProjectHelper.swift in Sources */,
 				43EB3D8C1ADB92A000111563 /* CurrentEntryNavigationController.swift in Sources */,
-				43D587041ACCD0200083F079 /* MonthView.swift in Sources */,
 				438CB00D1AE3179D00E0F1E2 /* ProjectViewController.swift in Sources */,
-				43D587011ACCD0200083F079 /* ContentView.swift in Sources */,
 				4345E0441A9D6F3D008896D3 /* Alamofire+.swift in Sources */,
 				43E0123F1A993E9800647961 /* AppDelegate.swift in Sources */,
 				4319E0D91ABA78F3006BFA40 /* Calendar.swift in Sources */,
 				432A60251AEB0163000CBDFA /* TimerController.swift in Sources */,
-				43D587001ACCD0200083F079 /* CalendarView.swift in Sources */,
 				43E0128F1A994A0B00647961 /* DailyCalendarView.m in Sources */,
 				43F9DA0B1ADF26FA005ED457 /* Data.xcdatamodeld in Sources */,
 				4319E0E41ABA85A4006BFA40 /* EventEmitter.swift in Sources */,
-				43D587031ACCD0200083F079 /* EasyCast.swift in Sources */,
 				43E0128E1A994A0B00647961 /* CLWeeklyCalendarView.m in Sources */,
 				4345E04D1A9DB1CD008896D3 /* TimerEntryView.swift in Sources */,
 				43F9DA171ADF60D1005ED457 /* ClientViewController.swift in Sources */,
@@ -1215,7 +1184,6 @@
 				438CB00B1AE3178400E0F1E2 /* ProjectsViewController.swift in Sources */,
 				43F6E8A71AF2C4D100251BA8 /* HRToast+UIView.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,
-				43D587021ACCD0200083F079 /* DayView.swift in Sources */,
 				43313E401ADF729F006FAF8E /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SwiftMoment
+import CalendarView
 
 class EntriesViewController: UIViewController {
 

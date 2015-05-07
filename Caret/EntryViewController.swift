@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CalendarView
 
 class EntryViewController: UITableViewController {
 

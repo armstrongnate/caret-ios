@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 import SystemConfiguration
 
-let kApiURL = "http://10.0.1.39"
+let kApiURL = "http://10.0.1.36"
 
 typealias JSONObject = [String: AnyObject]
 typealias SyncDictionary = [String: [NSManagedObject]]

@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_Alamofire 2
 #define COCOAPODS_VERSION_PATCH_Alamofire 1
 
+// CalendarView
+#define COCOAPODS_POD_AVAILABLE_CalendarView
+#define COCOAPODS_VERSION_MAJOR_CalendarView 1
+#define COCOAPODS_VERSION_MINOR_CalendarView 0
+#define COCOAPODS_VERSION_PATCH_CalendarView 2
+
 // Charts
 #define COCOAPODS_POD_AVAILABLE_Charts
 #define COCOAPODS_VERSION_MAJOR_Charts 2

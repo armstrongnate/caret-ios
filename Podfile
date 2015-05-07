@@ -3,7 +3,7 @@ platform :ios, '8.3'
 use_frameworks!
 
 pod 'Alamofire'
-pod 'SwiftMoment'
+pod 'CalendarView'
 pod 'Charts'
 pod 'SwiftyJSON', '>= 2.2'
 pod 'MMWormhole', '~> 1.1.1'
