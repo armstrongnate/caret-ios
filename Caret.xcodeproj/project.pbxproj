@@ -29,7 +29,6 @@
 		434AC9C51AE17806001D7BF2 /* SyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43313E411AE03FD4006FAF8E /* SyncController.swift */; };
 		434CAA9F1AE5AE1200B7C459 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */; };
 		434CAAA01AE5AE1200B7C459 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */; };
-		4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351B99E1A9AAB440008E8CD /* Resource.swift */; };
 		435C35401AEC564800FA70F2 /* TimerBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */; };
 		435F48181AF037C600DE1B89 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435F48161AF036BC00DE1B89 /* CoreLocation.framework */; };
 		435F48191AF037CC00DE1B89 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435F48141AF036B100DE1B89 /* MapKit.framework */; };
@@ -210,7 +209,6 @@
 		434AC9C11AE17793001D7BF2 /* ClientTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTestCase.swift; sourceTree = "<group>"; };
 		434CAA9D1AE5AE1200B7C459 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Controllers/CalendarViewController.swift; sourceTree = "<group>"; };
 		434CAA9E1AE5AE1200B7C459 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CalendarViewController.xib; path = Controllers/CalendarViewController.xib; sourceTree = "<group>"; };
-		4351B99E1A9AAB440008E8CD /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		435C353F1AEC564800FA70F2 /* TimerBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimerBarButtonItem.swift; path = Views/TimerBarButtonItem.swift; sourceTree = "<group>"; };
 		435C435D1AE733B8008022F7 /* Caret.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Caret.entitlements; sourceTree = "<group>"; };
 		435C435E1AE733DF008022F7 /* Caret WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Caret WatchKit Extension.entitlements"; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 				438823941AE42BE500A24D02 /* Entry.swift */,
 				4388238F1AE37DDD00A24D02 /* Client.swift */,
 				438CB0031AE2DC2500E0F1E2 /* Project.swift */,
-				4351B99E1A9AAB440008E8CD /* Resource.swift */,
 				43F9DA0E1ADF39B3005ED457 /* ClientHelper.swift */,
 				438CB0051AE2DC9800E0F1E2 /* ProjectHelper.swift */,
 				438823961AE42FE200A24D02 /* EntryHelper.swift */,
@@ -1216,7 +1213,6 @@
 				43BC260A1AA57D8F00CA1E53 /* PanPauseGestureRecognizer.swift in Sources */,
 				43919C2B1AF1C00300073B53 /* Utilities.swift in Sources */,
 				438CB00B1AE3178400E0F1E2 /* ProjectsViewController.swift in Sources */,
-				4351B99F1A9AAB440008E8CD /* Resource.swift in Sources */,
 				43F6E8A71AF2C4D100251BA8 /* HRToast+UIView.swift in Sources */,
 				43BC260F1AA6AEC800CA1E53 /* decimalMinutesToTime.swift in Sources */,
 				43D587021ACCD0200083F079 /* DayView.swift in Sources */,
