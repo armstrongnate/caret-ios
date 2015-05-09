@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (1.2.1)
-  - CalendarView (1.0.2):
+  - CalendarView (1.0.3):
     - SwiftMoment (~> 0.1)
   - Charts (2.0.9)
   - MMWormhole (1.1.1):
@@ -18,7 +18,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
-  CalendarView: bd5b3683bc248b73d8cae209eb657115033d06bb
+  CalendarView: 83abf01602d6be66b3ef065e4e95ae813aefc232
   Charts: 9e35b7f26184e80a511fc1b8c870e087a94b48d8
   MMWormhole: 941cd168b4afd6073f883b82944d6eded4e00203
   SwiftMoment: a439fccf86c8f3367557e406204c93ec1269c8c5
