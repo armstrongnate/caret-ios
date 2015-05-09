@@ -20,7 +20,7 @@ extension Entry {
       "description": notes,
       "duration": duration,
       "guid": guid,
-      "project_id": project.apiID ?? "",
+      "project_id": project?.apiID ?? "",
       "happened_on": formatter.stringFromDate(happened_on),
       "deleted": archived,
     ]

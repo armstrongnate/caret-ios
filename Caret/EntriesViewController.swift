@@ -233,7 +233,7 @@ class EntriesViewController: UIViewController {
     let entry = fetchedResultsController.objectAtIndexPath(indexPath) as! Entry
     cell.entryDurationLabel.text = secondsToTime(entry.duration.integerValue)
     cell.entryNotesLabel.text = entry.notes
-    cell.projectLabel.text = entry.project.name
+    cell.projectLabel.text = entry.project?.name
     cell.tintColor = UIColor.secondaryColor()
 
     let longPress = UILongPressGestureRecognizer(target: self, action: "longPress:")

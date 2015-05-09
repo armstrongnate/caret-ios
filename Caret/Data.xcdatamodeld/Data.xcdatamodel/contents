@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E11f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Client" representedClassName="Caret.Client" syncable="YES">
         <attribute name="apiID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="archived" attributeType="Boolean" syncable="YES"/>
@@ -19,7 +19,7 @@
         <attribute name="notes" attributeType="String" syncable="YES"/>
         <attribute name="sync_status" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="project" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="entries" inverseEntity="Project" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="entries" inverseEntity="Project" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="Caret.Project" syncable="YES">
         <attribute name="apiID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -29,12 +29,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sync_status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="projects" inverseEntity="Client" syncable="YES"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="projects" inverseEntity="Client" syncable="YES"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="project" inverseEntity="Entry" syncable="YES"/>
     </entity>
     <elements>
         <element name="Client" positionX="-38" positionY="-9" width="128" height="163"/>
-        <element name="Project" positionX="162" positionY="-9" width="128" height="178"/>
         <element name="Entry" positionX="360" positionY="-9" width="128" height="178"/>
+        <element name="Project" positionX="162" positionY="-9" width="128" height="178"/>
     </elements>
 </model>

@@ -69,7 +69,7 @@ class ProjectsViewController: UITableViewController {
   func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
     let project = fetchedResultsController.objectAtIndexPath(indexPath) as! Project
     cell.textLabel!.text = project.name
-    cell.detailTextLabel!.text = project.client.name
+    cell.detailTextLabel!.text = project.client?.name
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

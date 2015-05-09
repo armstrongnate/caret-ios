@@ -52,23 +52,19 @@ class EntryViewController: UITableViewController {
   }
 
   @IBAction func save() {
-    if let project = project {
-      if entry.isNewRecord {
-        entry.guid = NSUUID().UUIDString
-      }
-      entry.duration = durationSlider.value * 60 * 60
-      entry.notes = notesTextView.text
-      entry.happened_on = entry.happened_on
-      entry.project = project
-      entry.syncStatus = .Changed
-      var error: NSError?
-      if context.save(&error) {
-        performSegueWithIdentifier("unwindFromSaveEntry", sender: self)
-      } else {
-        println("save entry context error \(error)")
-      }
+    if entry.isNewRecord {
+      entry.guid = NSUUID().UUIDString
+    }
+    entry.duration = durationSlider.value * 60 * 60
+    entry.notes = notesTextView.text
+    entry.happened_on = entry.happened_on
+    entry.project = project
+    entry.syncStatus = .Changed
+    var error: NSError?
+    if context.save(&error) {
+      performSegueWithIdentifier("unwindFromSaveEntry", sender: self)
     } else {
-      println("needs project and happened_on")
+      println("save entry context error \(error)")
     }
   }
 

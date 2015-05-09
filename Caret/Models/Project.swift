@@ -18,6 +18,6 @@ class Project: NSManagedObject {
     @NSManaged var sync_status: NSNumber
     @NSManaged var updated_at: NSDate?
     @NSManaged var guid: String
-    @NSManaged var client: Client
+    @NSManaged var client: Client?
 
 }

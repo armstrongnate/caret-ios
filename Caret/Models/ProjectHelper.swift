@@ -17,7 +17,7 @@ extension Project {
       "name": name,
       "hourly_rate": hourly_rate,
       "guid": guid,
-      "client_id": client.apiID ?? "",
+      "client_id": client?.apiID ?? "",
     ]
     if let id = apiID {
       json["id"] = id

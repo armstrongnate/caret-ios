@@ -19,6 +19,6 @@ class Entry: NSManagedObject {
     @NSManaged var apiID: NSNumber?
     @NSManaged var notes: String
     @NSManaged var sync_status: NSNumber
-    @NSManaged var project: Project
+    @NSManaged var project: Project?
 
 }

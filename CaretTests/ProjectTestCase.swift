@@ -65,7 +65,7 @@ class ProjectTestCase: CoreDataTestCase {
       dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
       project.fromJSON(json, formatter: dateFormatter, context: managedObjectContext!)
       XCTAssertNotNil(project.client, "project client is not nil")
-      XCTAssertEqual(project.client.name, "My Client", "project client name matches")
+      XCTAssertEqual(project.client!.name, "My Client", "project client name matches")
       XCTAssertEqual(project.apiID!, 10, "id matches")
       XCTAssertEqual(project.name, "My Project", "name matches")
       XCTAssertEqual(project.hourly_rate, 85, "hourly rate matches")
