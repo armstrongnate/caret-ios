@@ -114,7 +114,6 @@ class SyncController: NSObject {
         var error: NSError?
         if !self.context.save(&error) {
           println("error saving sync context \(error)") // TODO: handle error
-          self.dequeue()
         } else {
           println("success saving sync context")
           self.dequeue()
