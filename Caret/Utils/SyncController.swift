@@ -99,7 +99,7 @@ class SyncController: NSObject {
       context.performBlockAndWait {
         for json in objects {
           var object: NSManagedObject?
-          object = self.findOrInitializeClass(self.names[name]!, guid: json["guid"].string!)
+          object = self.findOrInitializeClass(self.names[name]!, guid: json["guid"].string ?? NSUUID().UUIDString)
           if let object = object {
             if let jsonObject = json.object as? JSONObject {
               object.fromJSON(jsonObject,
