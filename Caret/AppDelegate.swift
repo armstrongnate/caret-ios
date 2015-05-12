@@ -142,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   private func presentNotificationForClockEvent(clockEvent: ClockEvent) {
-    let message = clockEvent == .In ? "Shall we begin?" : "Did you mean to clock out?"
+    let message = clockEvent == .In ? "Remember to clock in!" : "Did you mean to clock out?"
     if UIApplication.sharedApplication().applicationState != .Active {
       var notification = UILocalNotification()
       notification.alertBody = message
