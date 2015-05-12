@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     clockIn.identifier = kNotificationActionClockIn
     clockIn.title = "Clock in"
     clockIn.activationMode = UIUserNotificationActivationMode.Background
-    clockIn.authenticationRequired = true
+    clockIn.authenticationRequired = false
     clockIn.destructive = false
 
     let clockInCategory = UIMutableUserNotificationCategory()
@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     clockOut.identifier = kNotificationActionClockOut
     clockOut.title = "Clock out"
     clockOut.activationMode = UIUserNotificationActivationMode.Background
-    clockOut.authenticationRequired = true
+    clockOut.authenticationRequired = false
     clockOut.destructive = false
 
     let clockOutCategory = UIMutableUserNotificationCategory()
