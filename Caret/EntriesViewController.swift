@@ -394,10 +394,10 @@ extension EntriesViewController: UITableViewDataSource {
     if let mergableCell = cellAtPoint(point) {
       if mergableCell != mergingCell.cell {
         mergableCell.mergeable = true
+        return
       }
-    } else {
-      NSNotificationCenter.defaultCenter().postNotificationName(EntryBecameMergeableNotification, object: nil)
     }
+    NSNotificationCenter.defaultCenter().postNotificationName(EntryBecameMergeableNotification, object: nil)
   }
 
   func cellAtPoint(point: CGPoint) -> EntryTableViewCell? {
