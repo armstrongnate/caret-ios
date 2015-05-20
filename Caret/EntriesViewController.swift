@@ -86,8 +86,6 @@ class EntriesViewController: UIViewController {
     refreshControlTableViewController.refreshControl = refreshControl
     refreshControl.addTarget(self, action: "sync", forControlEvents: .ValueChanged)
 
-    sync()
-
     // setup
     durationButton.timerController = timerController
     durationButton.delegate = self
@@ -100,6 +98,9 @@ class EntriesViewController: UIViewController {
     date = NSDate()
     performFetch()
 
+    NSNotificationCenter.defaultCenter().addObserver(self, selector:"sync", name:
+      UIApplicationWillEnterForegroundNotification, object: nil)
+
     // bar button items
     navigationItem.rightBarButtonItems = [editButton, addButton]
     navigationItem.leftBarButtonItems = [calendarButton, settingsButton]
@@ -109,9 +110,8 @@ class EntriesViewController: UIViewController {
     navigationController!.toolbarHidden = false
   }
 
-  override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-    timerController.update()
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
   @IBAction func unwindFromEditEntry(segue: UIStoryboardSegue) {
