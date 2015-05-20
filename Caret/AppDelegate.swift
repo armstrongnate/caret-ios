@@ -41,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    if authenticated() {
+      timerController = TimerController(user: User.current!)
+    }
     persistenceController = PersistenceController(callback: loadUI)
     locationManager.delegate = self
 
@@ -71,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func loadUI() {
     window = UIWindow(frame: UIScreen.mainScreen().bounds)
     if authenticated() {
-      timerController = TimerController(user: User.current!)
       let nav = UINavigationController(rootViewController: entriesViewController)
       window!.rootViewController = nav
     } else {
